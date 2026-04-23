@@ -123,7 +123,17 @@
   .hol-func-cell .lbl { font-size: 6.5px; color: #444; display: block; line-height: 1; margin-bottom: 1px; }
   .hol-func-cell .val { font-size: 10.5px; display: block; line-height: 1.4; }
   /* Tabela verbas */
-  .hol-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .hol-table { 
+   width: 100%; 
+   border-collapse: collapse; 
+   table-layout: fixed; 
+   
+   /* 1. Reduz o espaço em branco entre as áreas para 2px (ou 3px se preferir) */
+   margin-top: 12px; 
+   
+   /* 2. Adiciona a linha preta que faltava no topo da tabela */
+   border-top: 1px solid #000; 
+ }
   .hol-table th {
     border: 1px solid #000; border-top: none; padding: 2px 4px; font-size: 9px;
     text-align: center; font-weight: bold; background: #fff;
