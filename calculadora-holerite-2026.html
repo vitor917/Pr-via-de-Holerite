@@ -111,12 +111,12 @@
     font-size: 10.5px; color: #000; background: #fff; position: relative;
   }
   /* Topo empresa */
-  .hol-header { display: flex; min-height: 42px; }
+  .hol-header { display: flex; border-bottom: 1px solid #000; min-height: 42px; }
   .hol-header-left { flex: 1; padding: 6px 8px; line-height: 1.5; }
   .hol-header-center { width: 180px; text-align: center; padding: 6px 6px; display: flex; flex-direction: column; justify-content: center; }
   .hol-header-right { width: 130px; text-align: right; padding: 6px 8px; display: flex; flex-direction: column; justify-content: center; }
   /* Funcionário */
-  .hol-func { }
+  .hol-func { border-bottom: 1px solid #000; }
   .hol-func-row { display: flex; }
   .hol-func-cell { padding: 2px 5px; }
   .hol-func-cell .lbl { font-size: 6.5px; color: #444; display: block; line-height: 1; margin-bottom: 1px; }
@@ -314,7 +314,6 @@
             <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block"><input class="e" id="func_filial" value="1" style="width:25px"></span><span class="val" style="display:block"><input class="e" id="func_admissao" value="01/01/2026" style="width:65px"></span></div>
           </div>
         </div>
-        <div style="height:1px;background:#000;font-size:0;line-height:0;overflow:hidden;"></div>
         <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body"></tbody></table>
         <div class="hol-totais-wrapper">
           <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
@@ -354,7 +353,6 @@
             <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block" id="func_filial2"></span><span class="val" style="display:block" id="func_admissao2"></span></div>
           </div>
         </div>
-        <div style="height:1px;background:#000;font-size:0;line-height:0;overflow:hidden;"></div>
         <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body2"></tbody></table>
         <div class="hol-totais-wrapper">
           <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
