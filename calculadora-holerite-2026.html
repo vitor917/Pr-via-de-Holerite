@@ -675,7 +675,7 @@ function calcular(){
 
   const adiantV=adiant?salMensal*0.4:0;
   const liq=bruto-inss-ir-adiantV;
-  const fgts=bruto*0.08;
+  const fgts=bINSS*0.08;
   const totalHoras=categoria==='horista'?dTrabCalc:dTrabCalc*(220/30);
   const faixaIR=bIR>0?irrfCalc(bIR).aliq*100:0;
 
@@ -700,20 +700,22 @@ function calcular(){
   if(ir>0) add(999,'IMPOSTO DE RENDA','',0,ir);
   if(adiantV>0) add(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
 
+  const sv=linhas.reduce((s,l)=>s+l.v,0),sd=linhas.reduce((s,l)=>s+l.ds,0);
+  add(900,'F.G.T.S','',fgts,0);
+
   while(linhas.length<MIN_ROWS)linhas.push({c:'',d:'',r:'',v:0,ds:0});
 
   const html=linhas.map(l=>`<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v>0?fmt(l.v):''}</td><td class="dsc">${l.ds>0?fmt(l.ds):''}</td></tr>`).join('');
   document.getElementById('hol-body').innerHTML=html;
   document.getElementById('hol-body2').innerHTML=html;
 
-  const sv=linhas.reduce((s,l)=>s+l.v,0),sd=linhas.reduce((s,l)=>s+l.ds,0);
   ['','2'].forEach(s=>{
     document.getElementById('hol-tvenc'+s).textContent=fmt(sv);
     document.getElementById('hol-tdesc'+s).textContent=fmt(sd);
     document.getElementById('hol-liq'+s).textContent=fmt(liq);
     document.getElementById('hol-sal-base'+s).textContent=fmt(sal);
     document.getElementById('hol-sal-inss'+s).textContent=fmt(bINSS);
-    document.getElementById('hol-base-fgts'+s).textContent=fmt(bruto);
+    document.getElementById('hol-base-fgts'+s).textContent=fmt(bINSS);
     document.getElementById('hol-fgts-mes'+s).textContent=fmt(fgts);
     document.getElementById('hol-base-irrf'+s).textContent=fmt(bIR);
     document.getElementById('hol-faixa-irrf'+s).textContent=fmt(faixaIR);
