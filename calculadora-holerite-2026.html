@@ -229,15 +229,30 @@
 
   /* Modal */
   .modal-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(10,22,40,0.82);
+    display: flex; position: fixed; inset: 0; background: rgba(10,22,40,0.82);
     z-index: 1000; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0s linear 0.28s;
   }
-  .modal-overlay.aberto { display: flex; }
+  .modal-overlay.aberto {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: opacity 0.28s ease, visibility 0s linear 0s;
+  }
+  @keyframes modalEntrar {
+    from { opacity: 0; transform: scale(0.05); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes modalSair {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.05); }
+  }
   .modal-box {
     background: #fff; border-radius: 12px; max-width: 860px; width: 92%; max-height: 86vh;
     overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.4);
     display: flex; flex-direction: column;
   }
+  .modal-box.anim-abrir  { animation: modalEntrar 0.38s cubic-bezier(0.34, 1.3, 0.64, 1) both; }
+  .modal-box.anim-fechar { animation: modalSair   0.25s ease-in both; }
   .modal-header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 18px 24px 14px; border-bottom: 2px solid var(--dourado);
@@ -579,16 +594,36 @@ function atualizarCategoria(){
   verificarAvisoMensalista();
 }
 
+function _origemBotao(box){
+  const btn=document.querySelector('.btn-instrucoes');
+  const b=btn.getBoundingClientRect(), r=box.getBoundingClientRect();
+  return (b.left+b.width/2-r.left)+'px '+(b.top+b.height/2-r.top)+'px';
+}
 function abrirModal(){
   const sb=window.innerWidth-document.documentElement.clientWidth;
   document.body.style.paddingRight=sb+'px';
   document.body.style.overflow='hidden';
-  document.getElementById('modalInstrucoes').classList.add('aberto');
+  const overlay=document.getElementById('modalInstrucoes');
+  const box=overlay.querySelector('.modal-box');
+  overlay.classList.add('aberto');
+  requestAnimationFrame(()=>{
+    box.style.transformOrigin=_origemBotao(box);
+    box.classList.remove('anim-fechar');
+    box.classList.add('anim-abrir');
+  });
 }
 function fecharModal(){
-  document.getElementById('modalInstrucoes').classList.remove('aberto');
-  document.body.style.overflow='';
-  document.body.style.paddingRight='';
+  const overlay=document.getElementById('modalInstrucoes');
+  const box=overlay.querySelector('.modal-box');
+  box.style.transformOrigin=_origemBotao(box);
+  box.classList.remove('anim-abrir');
+  box.classList.add('anim-fechar');
+  overlay.classList.remove('aberto');
+  setTimeout(()=>{
+    box.classList.remove('anim-fechar');
+    document.body.style.overflow='';
+    document.body.style.paddingRight='';
+  },260);
 }
 
 function atualizarDiasTrab(){
