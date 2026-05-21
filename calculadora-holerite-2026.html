@@ -736,11 +736,143 @@
 
 <!-- ===== ABA EMPREGADA DOMÉSTICA ===== -->
 <div id="tab-dom" class="tab-pane">
-  <div class="card" style="text-align:center;padding:60px 24px;">
-    <h2 style="font-size:1.3em;margin-bottom:16px;">Empregada Doméstica</h2>
-    <p style="font-size:1.1em;color:var(--texto-cinza);margin-bottom:8px;">&#9201; <strong>Em breve</strong></p>
-    <p style="color:var(--texto-cinza);font-size:0.95em;">O cálculo para Empregada Doméstica está sendo desenvolvido e estará disponível em breve.</p>
+<div class="grid">
+
+  <!-- Dados -->
+  <div class="card">
+    <h2>Dados da Empregada</h2>
+    <div class="field"><label>Sal&aacute;rio (R$)</label><input type="number" id="salario_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Hora-Extra 50% (qtd)</label><input type="number" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
   </div>
+
+  <!-- Informações -->
+  <div class="card">
+    <h2>Faltas e Informa&ccedil;&otilde;es</h2>
+    <div class="field"><label>Dias de falta</label><input type="number" id="dias_falta_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Horas de falta</label><input type="number" id="horas_falta_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
+    <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
+    <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Dias trabalhados</label><input type="number" id="dias_trab_dom" value="30" step="1" min="1" max="30" oninput="calcularDom()"></div>
+    <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+    <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+  </div>
+
+  <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
+
+  <!-- HOLERITE DOM 1ª VIA -->
+  <div class="card holerite-section" style="grid-column:1/-1; overflow-x:auto;">
+    <div class="hol-wrapper" style="margin-bottom:30px;">
+      <div class="hol">
+        <div class="hol-cab-box">
+        <div class="hol-header">
+          <div class="hol-header-row"><div class="hol-header-name"><input class="e" id="emp_nome_dom" value="NOME DA EMPRESA LTDA" style="font-size:12px;text-transform:uppercase;width:100%"></div></div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"><span>CNPJ:</span><input class="e" id="emp_cnpj_dom" value="00.000.000/0001-00" style="width:140px"></div>
+            <div class="hol-header-center">CC: <input class="e" id="emp_cc_dom" value="DOMÉSTICA" style="width:100px;text-align:center"></div>
+            <div class="hol-header-right">Folha Mensal</div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"></div>
+            <div class="hol-header-center"><input class="e" id="emp_setor_dom" value="Mensalista" style="width:80px;text-align:center" readonly></div>
+            <div class="hol-header-right"><input class="e" id="emp_mes_nome_dom" value="Abril" style="width:55px;text-align:right"> de <input class="e" id="emp_ano_dom" value="2026" style="width:32px"></div>
+          </div>
+        </div>
+        <div class="hol-func">
+          <div class="hol-func-row">
+            <div class="hol-func-cell" style="width:45px"><span class="lbl">C&oacute;digo</span><span class="val" style="display:block"><input class="e" id="func_cod_dom" value="1" style="width:30px"></span></div>
+            <div class="hol-func-cell" style="flex:1"><span class="lbl">Nome da Empregada</span><span class="val" style="display:block"><input class="e" id="func_nome_dom" value="NOME DA EMPREGADA"></span><span class="val" style="display:block"><input class="e" id="func_cargo_dom" value="EMPREGADA DOMÉSTICA"></span></div>
+            <div class="hol-func-cell" style="width:70px"><span class="lbl">CBO</span><span class="val" style="display:block"><input class="e" id="func_cbo_dom" value="521110" style="width:60px"></span><span class="val" style="display:block">Admiss&atilde;o:</span></div>
+            <div class="hol-func-cell" style="width:50px"><span class="lbl">Departamento</span><span class="val" style="display:block"><input class="e" id="func_depto_dom" value="1" style="width:30px"></span></div>
+            <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block"><input class="e" id="func_filial_dom" value="1" style="width:25px"></span><span class="val" style="display:block"><input class="e" id="func_admissao_dom" value="01/01/2026" style="width:65px"></span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hol-body-box">
+        <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body_dom"></tbody></table>
+        <div class="hol-totais-wrapper">
+          <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
+          <div class="t-row"><div class="t-value" id="hol-tvenc_dom">0,00</div><div class="t-value" id="hol-tdesc_dom">0,00</div></div>
+          <div class="t-liq-row"><div class="liq-left"><div class="liq-label">Valor L&iacute;quido</div><div class="liq-arrow">&#x21E8;</div></div><div class="liq-value" id="hol-liq_dom">0,00</div></div>
+        </div>
+        <div class="hol-bases">
+          <div class="hol-base-cell"><span class="lbl">Sal&aacute;rio Base</span><span class="val" id="hol-sal-base_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Sal. Contr. INSS</span><span class="val" id="hol-sal-inss_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. FGTS</span><span class="val" id="hol-base-fgts_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">F.G.T.S do M&ecirc;s</span><span class="val" id="hol-fgts-mes_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. IRRF</span><span class="val" id="hol-base-irrf_dom">0,00</span></div>
+          <div class="hol-base-cell" style="border-right:none"><span class="lbl">Faixa IRRF</span><span class="val" id="hol-faixa-irrf_dom">0,00</span></div>
+        </div>
+        </div>
+        <div class="hol-lateral-area" id="hol-lateral1_dom"></div></div>
+    </div>
+
+    <!-- 2ª VIA DOM -->
+    <div class="hol-wrapper">
+      <div class="hol">
+        <div class="hol-cab-box">
+        <div class="hol-header">
+          <div class="hol-header-row"><div class="hol-header-name" id="emp_nome2_dom"></div></div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"><span>CNPJ:</span> <span id="emp_cnpj2_dom"></span></div>
+            <div class="hol-header-center">CC: <span id="emp_cc2_dom"></span></div>
+            <div class="hol-header-right">Folha Mensal</div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"></div>
+            <div class="hol-header-center"><span id="emp_setor2_dom"></span></div>
+            <div class="hol-header-right"><span id="emp_mes_nome2_dom"></span> de <span id="emp_ano2_dom"></span></div>
+          </div>
+        </div>
+        <div class="hol-func">
+          <div class="hol-func-row">
+            <div class="hol-func-cell" style="width:45px"><span class="lbl">C&oacute;digo</span><span class="val" style="display:block" id="func_cod2_dom"></span></div>
+            <div class="hol-func-cell" style="flex:1"><span class="lbl">Nome da Empregada</span><span class="val" style="display:block" id="func_nome2_dom"></span><span class="val" style="display:block" id="func_cargo2_dom"></span></div>
+            <div class="hol-func-cell" style="width:70px"><span class="lbl">CBO</span><span class="val" style="display:block" id="func_cbo2_dom"></span><span class="val" style="display:block">Admiss&atilde;o:</span></div>
+            <div class="hol-func-cell" style="width:50px"><span class="lbl">Departamento</span><span class="val" style="display:block" id="func_depto2_dom"></span></div>
+            <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block" id="func_filial2_dom"></span><span class="val" style="display:block" id="func_admissao2_dom"></span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hol-body-box">
+        <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body2_dom"></tbody></table>
+        <div class="hol-totais-wrapper">
+          <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
+          <div class="t-row"><div class="t-value" id="hol-tvenc2_dom">0,00</div><div class="t-value" id="hol-tdesc2_dom">0,00</div></div>
+          <div class="t-liq-row"><div class="liq-left"><div class="liq-label">Valor L&iacute;quido</div><div class="liq-arrow">&#x21E8;</div></div><div class="liq-value" id="hol-liq2_dom">0,00</div></div>
+        </div>
+        <div class="hol-bases">
+          <div class="hol-base-cell"><span class="lbl">Sal&aacute;rio Base</span><span class="val" id="hol-sal-base2_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Sal. Contr. INSS</span><span class="val" id="hol-sal-inss2_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. FGTS</span><span class="val" id="hol-base-fgts2_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">F.G.T.S do M&ecirc;s</span><span class="val" id="hol-fgts-mes2_dom">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. IRRF</span><span class="val" id="hol-base-irrf2_dom">0,00</span></div>
+          <div class="hol-base-cell" style="border-right:none"><span class="lbl">Faixa IRRF</span><span class="val" id="hol-faixa-irrf2_dom">0,00</span></div>
+        </div>
+        </div>
+        <div class="hol-lateral-area" id="hol-lateral2_dom"></div></div>
+    </div>
+  </div>
+
+  <!-- Encargos do Empregador -->
+  <div class="card custo-wrap" style="grid-column:1/-1;">
+    <h2>Encargos do Empregador (DAE)</h2>
+    <div class="custo-item"><span>INSS Empregador (8%)</span><span id="dom-inss-emp">0,00</span></div>
+    <div class="custo-item"><span>FGTS (8%)</span><span id="dom-fgts">0,00</span></div>
+    <div class="custo-item"><span>Multa FGTS (3,2%)</span><span id="dom-multa-fgts">0,00</span></div>
+    <div class="custo-item"><span>Seguro Acidente de Trabalho / SAT (0,8%)</span><span id="dom-sat">0,00</span></div>
+    <div class="custo-total"><span>Total DAE</span><span id="dom-total-dae">0,00</span></div>
+    <hr style="margin:14px 0;border:none;border-top:1px solid #eee">
+    <div class="custo-item"><span>Prov. 13º Sal&aacute;rio (1/12)</span><span id="dom-prov13">0,00</span></div>
+    <div class="custo-item"><span>Prov. F&eacute;rias + 1/3 (1/12 × 4/3)</span><span id="dom-provferias">0,00</span></div>
+    <div class="custo-total"><span>Custo Mensal Total</span><span id="dom-custo-total">0,00</span></div>
+  </div>
+
+  <div class="print-bar"><button class="btn-print" onclick="window.print()">Imprimir Holerite</button></div>
+  <div class="info-note"><strong>Dica:</strong> Clique nos campos do holerite para editá-los diretamente.</div>
+
+</div>
 </div>
 <!-- fim tab-dom -->
 </div>
@@ -1010,6 +1142,119 @@ atualizarCategoria('');
 calcular('');
 atualizarCategoria('_pl');
 calcular('_pl');
+
+function calcularDom(){
+  const gd=id=>document.getElementById(id);
+  const sal=parseFloat(gd('salario_dom').value)||0;
+  const he50Q=parseFloat(gd('he50_qtd_dom').value)||0;
+  const he100Q=parseFloat(gd('he100_qtd_dom').value)||0;
+  const diasFalta=parseFloat(gd('dias_falta_dom').value)||0;
+  const horasFalta=parseFloat(gd('horas_falta_dom').value)||0;
+  const dsrD=parseFloat(gd('desconto_dsr_dias_dom').value)||0;
+  const deps=parseInt(gd('dependentes_dom').value)||0;
+  const diasTrab=Math.min(parseFloat(gd('dias_trab_dom').value)||30,30);
+  const vt=gd('vale_transporte_dom').value==='sim';
+  const adiant=gd('adiantamento_dom').value==='sim';
+
+  // Horas extras (valor/hora = sal/220)
+  const vh=sal/220;
+  const he50V=convH(he50Q)*vh*1.5;
+  const he100V=convH(he100Q)*vh*2;
+
+  // Descontos por falta
+  const dFaltaV=Math.trunc((sal/30)*diasFalta*100)/100;
+  const hFaltaV=Math.trunc((sal/220)*convH(horasFalta)*100)/100;
+  const dsrV=Math.trunc((sal/30)*dsrD*100)/100;
+
+  const prov=sal+he50V+he100V;
+  const bruto=prov-dFaltaV-hFaltaV-dsrV;
+
+  // INSS trabalhador: tabela progressiva (igual CLT)
+  const inss=calcINSS(bruto);
+
+  // Vale-transporte: desconto de 6% do salário base
+  const vtDesc=vt?Math.trunc(sal*0.06*100)/100:0;
+
+  // IRRF
+  const B22=bruto-inss;
+  const legal=Math.max(0,irrfCalc(B22-(deps*DEDUCAO_DEP)).imp);
+  const simp=Math.max(0,irrfCalc(bruto-DEDUCAO_SIMPLIFICADA).imp);
+  const ir=Math.min(simp,legal);
+
+  const adiantV=adiant?sal*0.4:0;
+  const liq=bruto-inss-ir-vtDesc-adiantV;
+
+  // FGTS
+  const fgts=Math.trunc(bruto*0.08*100)/100;
+
+  // Encargos empregador (sobre salário base)
+  const inssEmp=Math.trunc(sal*0.08*100)/100;
+  const fgtsE=Math.trunc(sal*0.08*100)/100;
+  const multaFgts=Math.trunc(sal*0.032*100)/100;
+  const sat=Math.trunc(sal*0.008*100)/100;
+  const totalDae=inssEmp+fgtsE+multaFgts+sat;
+
+  // Provisões
+  const prov13=Math.trunc(sal/12*100)/100;
+  const provFerias=Math.trunc(sal/12*(4/3)*100)/100;
+  const custoTotal=sal+totalDae+prov13+provFerias;
+
+  // Montar linhas do holerite
+  const linhasDom=[];
+  const addD=(c,d,r,v,ds)=>linhasDom.push({c,d,r,v,ds});
+  if(sal>0) addD(1,'SALARIO',diasTrab+' dias',sal,0);
+  if(he50V>0) addD(5000,'HORAS EXTRA 50%',fmtHMInput(he50Q),he50V,0);
+  if(he100V>0) addD(5001,'HORAS EXTRA 100%',fmtHMInput(he100Q),he100V,0);
+  if(dFaltaV>0) addD(8792,'DIAS FALTAS',diasFalta>0?fmt(diasFalta):'',0,dFaltaV);
+  if(hFaltaV>0) addD(8069,'HORAS FALTAS',horasFalta>0?fmt(horasFalta):'',0,hFaltaV);
+  if(dsrV>0) addD(8794,'DESCONTO DE DSR',dsrD>0?fmt(dsrD):'',0,dsrV);
+  if(inss>0) addD(998,'I.N.S.S.','',0,inss);
+  if(vtDesc>0) addD(110,'DESC. VALE TRANSPORTE','6%',0,vtDesc);
+  if(ir>0) addD(999,'IMPOSTO DE RENDA','',0,ir);
+  if(adiantV>0) addD(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
+  if(fgts>0) addD(900,'F.G.T.S','',fgts,0);
+
+  while(linhasDom.length<MIN_ROWS)linhasDom.push({c:'',d:'',r:'',v:0,ds:0});
+
+  const sv=linhasDom.reduce((a,l)=>a+l.v,0);
+  const sd=linhasDom.reduce((a,l)=>a+l.ds,0);
+  const html=linhasDom.map(l=>`<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v>0?fmt(l.v):''}</td><td class="dsc">${l.ds>0?fmt(l.ds):''}</td></tr>`).join('');
+
+  ['_dom','2_dom'].forEach(vs=>{
+    const b=gd('hol-body'+vs); if(b) b.innerHTML=html;
+    const setV=(id,v)=>{const el=gd(id+vs);if(el)el.textContent=v;};
+    setV('hol-tvenc',fmt(sv));
+    setV('hol-tdesc',fmt(sd));
+    setV('hol-liq',fmt(liq));
+    setV('hol-sal-base',fmt(sal));
+    setV('hol-sal-inss',fmt(bruto));
+    setV('hol-base-fgts',fmt(bruto));
+    setV('hol-fgts-mes',fmt(fgts));
+    setV('hol-base-irrf',fmt(B22));
+    const faixaIR=B22>0?irrfCalc(B22).aliq*100:0;
+    setV('hol-faixa-irrf',fmt(faixaIR));
+  });
+
+  // Sync 2ª via campos editáveis
+  const ids=['emp_nome','emp_cnpj','emp_cc','emp_mes_nome','emp_ano','emp_setor','func_cod','func_nome','func_cargo','func_cbo','func_depto','func_filial','func_admissao'];
+  ids.forEach(id=>{
+    const src=gd(id+'_dom');
+    const dst=gd(id+'2_dom');
+    if(src&&dst) dst.textContent=src.value;
+  });
+
+  // Encargos
+  const s2=(id,v)=>{const el=gd(id);if(el)el.textContent=fmt(v);};
+  s2('dom-inss-emp',inssEmp);
+  s2('dom-fgts',fgtsE);
+  s2('dom-multa-fgts',multaFgts);
+  s2('dom-sat',sat);
+  s2('dom-total-dae',totalDae);
+  s2('dom-prov13',prov13);
+  s2('dom-provferias',provFerias);
+  s2('dom-custo-total',custoTotal);
+}
+calcularDom();
 
 // Navegação por Enter nos campos digitáveis (pula selects e toggles)
 (function(){
