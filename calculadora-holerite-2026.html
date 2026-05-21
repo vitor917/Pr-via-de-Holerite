@@ -964,7 +964,7 @@ function calcular(s){
   const linhas=[];
   const add=(c,d,r,v,ds)=>linhas.push({c,d,r,v:v||0,ds:ds||0});
 
-  if(sal>0) add(1, proLabore?'PRO-LABORE':'HORAS NORMAIS',fmtHM(totalHoras),salMensal,0);
+  if(sal>0) add(proLabore?100:1, proLabore?'PRO-LABORE':'HORAS NORMAIS',fmtHM(totalHoras),salMensal,0);
   if(com>0) add(37,'COMISSOES',fmt(com),com,0);
   if(he50V>0) add(hePct===65?5002:hePct===60?5003:5000,'HORAS EXTRA '+hePct+'%',he50Q>0?fmtHMInput(he50Q):'',he50V,0);
   if(he100V>0) add(5001,'HORAS EXTRA 100%',he100Q>0?fmtHMInput(he100Q):'',he100V,0);
@@ -977,7 +977,7 @@ function calcular(s){
   if(dFaltaV>0) add(8792,'DIAS FALTAS',dFalta>0?fmt(dFalta):'',0,dFaltaV);
   if(hFaltaV>0) add(8069,'HORAS FALTAS',hFalta>0?fmt(hFalta):'',0,hFaltaV);
   if(dsrV>0) add(8794,'DESCONTO DE DSR',dsrD>0?fmt(dsrD):'',0,dsrV);
-  if(inss>0) add(998,'I.N.S.S.','',0,inss);
+  if(inss>0) add(proLabore?843:998,proLabore?'INSS EMPREGADOR':'I.N.S.S.','',0,inss);
   if(ir>0) add(999,'IMPOSTO DE RENDA','',0,ir);
   if(adiantV>0) add(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
 
