@@ -656,6 +656,7 @@ function calcular(){
   const deps=parseInt(document.getElementById('dependentes').value)||0;
   const dTrab=parseFloat(document.getElementById('dias_trab').value)||30;
   const adiant=document.getElementById('adiantamento').value==='sim';
+  const proLabore=document.getElementById('pro_labore').value==='sim';
   const categoria=document.getElementById('categoria_contrato').value;
   const dTrabCalc=categoria==='horista'?dTrab:Math.min(dTrab,30);
 
@@ -694,7 +695,7 @@ function calcular(){
   const descF=dFaltaV+hFaltaV+dsrV;
   const bruto=prov-descF;
 
-  const bINSS=bruto-prem,inss=calcINSS(bINSS);
+  const bINSS=bruto-prem,inss=proLabore?Math.trunc(bINSS*0.11*100)/100:calcINSS(bINSS);
 
   // IRRF conforme planilha CALCULADORA DE HOLERITE 2026 (aba Cálculo):
   // B22 = bruto - INSS  |  D15 = min(legal, simplificado)
@@ -712,7 +713,7 @@ function calcular(){
 
   const adiantV=adiant?salMensal*0.4:0;
   const liq=bruto-inss-ir-adiantV;
-  const fgts=bINSS*0.08;
+  const fgts=proLabore?0:bINSS*0.08;
   const totalHoras=categoria==='horista'?dTrabCalc:dTrabCalc*(220/30);
   const faixaIR=bIR>0?irrfCalc(bIR).aliq*100:0;
 
