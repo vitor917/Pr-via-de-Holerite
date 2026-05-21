@@ -421,6 +421,7 @@
       </div>
       <select id="periculosidade_pct" class="pct" onchange="calcular()"><option value="0.3" selected>30%</option></select>
     </div>
+    <div class="field"><label>Vale-transporte?</label><select id="vale_transporte" onchange="calcular()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <!-- Faltas e DSR -->
@@ -1088,7 +1089,9 @@ function calcular(s){
   const bIR=B22;
 
   const adiantV=adiant?salMensal*0.4:0;
-  const liq=bruto-inss-ir-adiantV;
+  const vtEl=g('vale_transporte'+s);
+  const vtDesc=vtEl&&vtEl.value==='sim'?Math.trunc(salMensal*0.06*100)/100:0;
+  const liq=bruto-inss-ir-adiantV-vtDesc;
   const fgts=proLabore?0:bINSS*0.08;
   const totalHoras=categoria==='horista'?dTrabCalc:dTrabCalc*(220/30);
   const faixaIR=bIR>0?irrfCalc(bIR).aliq*100:0;
@@ -1110,6 +1113,7 @@ function calcular(s){
   if(hFaltaV>0) add(8069,'HORAS FALTAS',hFalta>0?fmt(hFalta):'',0,hFaltaV);
   if(dsrV>0) add(8794,'DESCONTO DE DSR',dsrD>0?fmt(dsrD):'',0,dsrV);
   if(inss>0) add(proLabore?843:998,proLabore?'INSS EMPREGADOR':'I.N.S.S.','',0,inss);
+  if(vtDesc>0) add(110,'DESC. VALE TRANSPORTE','6%',0,vtDesc);
   if(ir>0) add(999,'IMPOSTO DE RENDA','',0,ir);
   if(adiantV>0) add(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
 
