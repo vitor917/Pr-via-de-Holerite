@@ -578,18 +578,18 @@
       ⚠️ <strong>Atenção:</strong> O valor informado é muito baixo para um pró-labore. Verifique o valor informado.
     </div>
     <div class="field"><label>Comiss&atilde;o (R$)</label><input type="number" id="comissao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field"><label>Hora-Extra <select id="he_pct_pl" onchange="calcular('_pl')" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Hora-Extra <select id="he_pct_pl" onchange="calcular('_pl')" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
     <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="number" id="gratificacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
     <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="number" id="premiacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field">
+    <div class="field" style="display:none">
       <div class="field-toggle-label">
         <label>Insalubridade</label>
         <label class="toggle"><input type="checkbox" id="insalubridade_on_pl" onchange="calcular('_pl')"><span class="slider"></span></label>
       </div>
       <select id="insalubridade_pct_pl" class="pct" onchange="calcular('_pl')"><option value="0.1">10%</option><option value="0.2" selected>20%</option><option value="0.4">40%</option></select>
     </div>
-    <div class="field">
+    <div class="field" style="display:none">
       <div class="field-toggle-label">
         <label>Periculosidade</label>
         <label class="toggle"><input type="checkbox" id="periculosidade_on_pl" onchange="calcular('_pl')"><span class="slider"></span></label>
@@ -601,16 +601,16 @@
   <!-- Faltas e DSR (Pró-labore) -->
   <div class="card">
     <h2>Faltas, DSR e Informa&ccedil;&otilde;es</h2>
-    <div class="field"><label>Dias de falta</label><input type="number" id="dias_falta_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
-    <div class="field"><label>Horas de falta</label><input type="number" id="horas_falta_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Dias de falta</label><input type="number" id="dias_falta_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Horas de falta</label><input type="number" id="horas_falta_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
     <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
     <div class="field"><label>Dias do m&ecirc;s</label><input type="number" id="dias_mes_pl" value="26" step="1" min="1" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
     <div class="field"><label>Domingos e feriados</label><input type="number" id="dom_feriados_pl" value="4" step="1" min="0" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
     <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
     <div class="field"><label id="label_dias_trab_pl">Dias trabalhados</label><input type="number" id="dias_trab_pl" value="30" step="1" min="1" oninput="validarDiasTrab(this,'_pl');calcular('_pl')"></div>
-    <div class="field"><label>Categoria de Contrato</label><select id="categoria_contrato_pl" onchange="atualizarCategoria('_pl')"><option value="mensalista">Mensalista</option><option value="horista">Horista</option></select></div>
-    <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_pl" onchange="calcular('_pl')"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+    <div class="field" style="display:none"><label>Categoria de Contrato</label><select id="categoria_contrato_pl" onchange="atualizarCategoria('_pl')"><option value="mensalista">Mensalista</option><option value="horista">Horista</option></select></div>
+    <div class="field" style="display:none"><label>Teve adiantamento?</label><select id="adiantamento_pl" onchange="calcular('_pl')"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
