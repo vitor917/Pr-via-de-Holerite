@@ -737,7 +737,7 @@ function calcular(){
   if(adiantV>0) add(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
 
   const sv=linhas.reduce((s,l)=>s+l.v,0),sd=linhas.reduce((s,l)=>s+l.ds,0);
-  add(900,'F.G.T.S','',fgts,0);
+  if(fgts>0) add(900,'F.G.T.S','',fgts,0);
 
   while(linhas.length<MIN_ROWS)linhas.push({c:'',d:'',r:'',v:0,ds:0});
 
