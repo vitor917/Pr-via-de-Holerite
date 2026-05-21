@@ -742,7 +742,7 @@
   <div class="card">
     <h2>Dados da Empregada</h2>
     <div class="field"><label>Sal&aacute;rio (R$)</label><input type="number" id="salario_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Hora-Extra 50% (qtd)</label><input type="number" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Hora-Extra <select id="he_pct_dom" onchange="calcularDom()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
   </div>
 
@@ -1147,6 +1147,7 @@ function calcularDom(){
   const gd=id=>document.getElementById(id);
   const sal=parseFloat(gd('salario_dom').value)||0;
   const he50Q=parseFloat(gd('he50_qtd_dom').value)||0;
+  const hePctDom=parseInt(gd('he_pct_dom').value)||50;
   const he100Q=parseFloat(gd('he100_qtd_dom').value)||0;
   const diasFalta=parseFloat(gd('dias_falta_dom').value)||0;
   const horasFalta=parseFloat(gd('horas_falta_dom').value)||0;
@@ -1158,7 +1159,7 @@ function calcularDom(){
 
   // Horas extras (valor/hora = sal/220)
   const vh=sal/220;
-  const he50V=convH(he50Q)*vh*1.5;
+  const he50V=convH(he50Q)*vh*(1+hePctDom/100);
   const he100V=convH(he100Q)*vh*2;
 
   // Descontos por falta
@@ -1203,7 +1204,7 @@ function calcularDom(){
   const linhasDom=[];
   const addD=(c,d,r,v,ds)=>linhasDom.push({c,d,r,v,ds});
   if(sal>0) addD(1,'SALARIO',diasTrab+' dias',sal,0);
-  if(he50V>0) addD(5000,'HORAS EXTRA 50%',fmtHMInput(he50Q),he50V,0);
+  if(he50V>0) addD(hePctDom===65?5002:hePctDom===60?5003:5000,'HORAS EXTRA '+hePctDom+'%',fmtHMInput(he50Q),he50V,0);
   if(he100V>0) addD(5001,'HORAS EXTRA 100%',fmtHMInput(he100Q),he100V,0);
   if(dFaltaV>0) addD(8792,'DIAS FALTAS',diasFalta>0?fmt(diasFalta):'',0,dFaltaV);
   if(hFaltaV>0) addD(8069,'HORAS FALTAS',horasFalta>0?fmt(horasFalta):'',0,hFaltaV);
