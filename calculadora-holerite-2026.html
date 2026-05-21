@@ -270,6 +270,21 @@
   .modal-body ul li { margin-bottom: 4px; }
   .modal-body .destaque { background: var(--dourado-light); border-radius: 6px; padding: 8px 12px; margin-top: 14px; font-size: 0.88em; color: var(--texto-escuro); }
 
+  /* ===== ABAS ===== */
+  .tab-nav {
+    display: flex; gap: 6px; margin-bottom: 18px; border-bottom: 2px solid var(--dourado);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 10px 28px; cursor: pointer; font-size: 0.97em; font-weight: 700;
+    border: 2px solid var(--dourado); border-bottom: none; border-radius: 8px 8px 0 0;
+    background: transparent; color: var(--dourado); transition: all 0.18s; letter-spacing: 0.3px;
+  }
+  .tab-btn:hover { background: rgba(201,168,76,0.15); }
+  .tab-btn.ativo { background: var(--dourado); color: #0A1628; }
+  .tab-pane { display: none; }
+  .tab-pane.ativo { display: block; }
+
   /* Print */
   @page { margin: 35mm 10mm 10mm 10mm; }
 
@@ -278,11 +293,13 @@
     body { background: white; }
     header, .instrucoes-bar, .sep-dourado, .card:not(.holerite-section), .btn-calc, .print-bar, .info-note,
     .grid > .card:first-child, .grid > .card:nth-child(2),
-    .card.custo-wrap { display: none !important; border: none !important; margin: 0 !important; }
+    .card.custo-wrap, .tab-nav { display: none !important; border: none !important; margin: 0 !important; }
     .holerite-section { border: none; box-shadow: none; padding: 0; margin-top: 0; overflow: visible !important; }
     .container { padding: 0; max-width: 100%; }
     .grid { display: block; }
     .e:hover, .e:focus { background: transparent; outline: none; }
+    .tab-pane { display: none !important; }
+    .tab-pane.ativo { display: block !important; }
     .hol-lateral-area {
     position: absolute; right: -82px; top: 0; bottom: 0; width: 76px;
     border: 1px solid #000;
@@ -362,6 +379,16 @@
 </div>
 
 <div class="container">
+
+<!-- Barra de abas -->
+<nav class="tab-nav">
+  <button class="tab-btn ativo" onclick="trocarAba('clt')">CLT</button>
+  <button class="tab-btn" onclick="trocarAba('pl')">Pró-labore</button>
+  <button class="tab-btn" onclick="trocarAba('dom')">Empregada Doméstica</button>
+</nav>
+
+<!-- ===== ABA CLT ===== -->
+<div id="tab-clt" class="tab-pane ativo">
 <div class="grid">
 
   <!-- Dados do Funcionário -->
@@ -532,7 +559,192 @@
     O bot&atilde;o &ldquo;Imprimir&rdquo; imprime apenas o holerite (2 vias). A 2&ordf; via espelha automaticamente os dados da 1&ordf;.
   </div>
 </div>
+<!-- fim tab-clt -->
+
+<!-- ===== ABA PRÓ-LABORE ===== -->
+<div id="tab-pl" class="tab-pane">
+<div class="grid">
+
+  <!-- Dados do Sócio (Pró-labore) -->
+  <div class="card">
+    <h2>Dados do Sócio / Pró-labore</h2>
+    <div class="field"><label id="label_salario_pl">Pró-labore (R$)</label><input type="number" id="salario_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')" onblur="verificarAvisoMensalista('_pl')"></div>
+    <div id="aviso_horista_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
+      ⚠️ <strong>Atenção:</strong> O valor informado parece ser um salário mensal, não um valor por hora. Verifique a <strong>Categoria de Contrato</strong> ou corrija o valor da hora.
+      <br><span id="aviso_horista_calc_pl" style="font-size:12px;opacity:0.85;"></span>
+    </div>
+    <div id="aviso_mensalista_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
+      ⚠️ <strong>Atenção:</strong> O valor informado é muito baixo para um pró-labore. Verifique o valor informado.
+    </div>
+    <div class="field"><label>Comiss&atilde;o (R$)</label><input type="number" id="comissao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label>Hora-Extra <select id="he_pct_pl" onchange="calcular('_pl')" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="number" id="gratificacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="number" id="premiacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field">
+      <div class="field-toggle-label">
+        <label>Insalubridade</label>
+        <label class="toggle"><input type="checkbox" id="insalubridade_on_pl" onchange="calcular('_pl')"><span class="slider"></span></label>
+      </div>
+      <select id="insalubridade_pct_pl" class="pct" onchange="calcular('_pl')"><option value="0.1">10%</option><option value="0.2" selected>20%</option><option value="0.4">40%</option></select>
+    </div>
+    <div class="field">
+      <div class="field-toggle-label">
+        <label>Periculosidade</label>
+        <label class="toggle"><input type="checkbox" id="periculosidade_on_pl" onchange="calcular('_pl')"><span class="slider"></span></label>
+      </div>
+      <select id="periculosidade_pct_pl" class="pct" onchange="calcular('_pl')"><option value="0.3" selected>30%</option></select>
+    </div>
+  </div>
+
+  <!-- Faltas e DSR (Pró-labore) -->
+  <div class="card">
+    <h2>Faltas, DSR e Informa&ccedil;&otilde;es</h2>
+    <div class="field"><label>Dias de falta</label><input type="number" id="dias_falta_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label>Horas de falta</label><input type="number" id="horas_falta_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
+    <div class="field"><label>Dias do m&ecirc;s</label><input type="number" id="dias_mes_pl" value="26" step="1" min="1" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
+    <div class="field"><label>Domingos e feriados</label><input type="number" id="dom_feriados_pl" value="4" step="1" min="0" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
+    <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label id="label_dias_trab_pl">Dias trabalhados</label><input type="number" id="dias_trab_pl" value="30" step="1" min="1" oninput="validarDiasTrab(this,'_pl');calcular('_pl')"></div>
+    <div class="field"><label>Categoria de Contrato</label><select id="categoria_contrato_pl" onchange="atualizarCategoria('_pl')"><option value="mensalista">Mensalista</option><option value="horista">Horista</option></select></div>
+    <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_pl" onchange="calcular('_pl')"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+  </div>
+
+  <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
+
+  <!-- ===== HOLERITE PRÓ-LABORE 1ª VIA ===== -->
+  <div class="card holerite-section" style="grid-column:1/-1; overflow-x:auto;">
+
+    <div class="hol-wrapper" style="margin-bottom:30px;">
+      <div class="hol">
+        <div class="hol-cab-box">
+        <div class="hol-header">
+          <div class="hol-header-row">
+            <div class="hol-header-name"><input class="e pl-sync" id="emp_nome_pl" value="NOME DA EMPRESA LTDA" style="font-size:12px;text-transform:uppercase;width:100%"></div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"><span>CNPJ:</span><input class="e pl-sync" id="emp_cnpj_pl" value="00.000.000/0001-00" style="width:140px"></div>
+            <div class="hol-header-center">CC: <input class="e pl-sync" id="emp_cc_pl" value="OPERACIONAL" style="width:100px;text-align:center"></div>
+            <div class="hol-header-right">Folha Mensal</div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"></div>
+            <div class="hol-header-center"><input class="e pl-sync" id="emp_setor_pl" value="Mensalista" style="width:80px;text-align:center" readonly></div>
+            <div class="hol-header-right"><input class="e pl-sync" id="emp_mes_nome_pl" value="Abril" style="width:55px;text-align:right"> de <input class="e pl-sync" id="emp_ano_pl" value="2026" style="width:32px"></div>
+          </div>
+        </div>
+        <div class="hol-func">
+          <div class="hol-func-row">
+            <div class="hol-func-cell" style="width:45px"><span class="lbl">C&oacute;digo</span><span class="val" style="display:block"><input class="e pl-sync" id="func_cod_pl" value="6" style="width:30px"></span></div>
+            <div class="hol-func-cell" style="flex:1"><span class="lbl">Nome do Sócio</span><span class="val" style="display:block"><input class="e pl-sync" id="func_nome_pl" value="NOME DO SÓCIO"></span><span class="val" style="display:block"><input class="e pl-sync" id="func_cargo_pl" value="SÓCIO-ADMINISTRADOR"></span></div>
+            <div class="hol-func-cell" style="width:70px"><span class="lbl">CBO</span><span class="val" style="display:block"><input class="e pl-sync" id="func_cbo_pl" value="000000" style="width:60px"></span><span class="val" style="display:block">Admiss&atilde;o:</span></div>
+            <div class="hol-func-cell" style="width:50px"><span class="lbl">Departamento</span><span class="val" style="display:block"><input class="e pl-sync" id="func_depto_pl" value="1" style="width:30px"></span></div>
+            <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block"><input class="e pl-sync" id="func_filial_pl" value="1" style="width:25px"></span><span class="val" style="display:block"><input class="e pl-sync" id="func_admissao_pl" value="01/01/2026" style="width:65px"></span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hol-body-box">
+        <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body_pl"></tbody></table>
+        <div class="hol-totais-wrapper">
+          <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
+          <div class="t-row"><div class="t-value" id="hol-tvenc_pl">0,00</div><div class="t-value" id="hol-tdesc_pl">0,00</div></div>
+          <div class="t-liq-row"><div class="liq-left"><div class="liq-label">Valor L&iacute;quido</div><div class="liq-arrow">&#x21E8;</div></div><div class="liq-value" id="hol-liq_pl">0,00</div></div>
+        </div>
+        <div class="hol-bases">
+          <div class="hol-base-cell"><span class="lbl">Pró-labore Base</span><span class="val" id="hol-sal-base_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Sal. Contr. INSS</span><span class="val" id="hol-sal-inss_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. FGTS</span><span class="val" id="hol-base-fgts_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">F.G.T.S do M&ecirc;s</span><span class="val" id="hol-fgts-mes_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. IRRF</span><span class="val" id="hol-base-irrf_pl">0,00</span></div>
+          <div class="hol-base-cell" style="border-right:none"><span class="lbl">Faixa IRRF</span><span class="val" id="hol-faixa-irrf_pl">0,00</span></div>
+        </div>
+        </div>
+        <div class="hol-lateral-area" id="hol-lateral1_pl"></div></div>
+        </div>
+
+    <!-- Aviso entre vias -->
+    <div id="aviso_hol1_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:6px 12px;font-size:11px;color:#7d5a00;text-align:center;margin:6px 0;width:636px;margin-left:auto;margin-right:auto;box-sizing:border-box;">
+      &#9888; <strong>ATENÇÃO:</strong> Valor da hora possivelmente incorreto — verifique a Categoria de Contrato
+    </div>
+    <div id="aviso_hol1_mens_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:6px 12px;font-size:11px;color:#7d5a00;text-align:center;margin:6px 0;width:636px;margin-left:auto;margin-right:auto;box-sizing:border-box;">
+      &#9888; <strong>ATENÇÃO:</strong> Pró-labore muito baixo — verifique o valor informado
+    </div>
+
+    <!-- 2ª VIA Pró-labore -->
+    <div class="hol-wrapper">
+      <div class="hol">
+        <div class="hol-cab-box">
+        <div class="hol-header">
+          <div class="hol-header-row">
+            <div class="hol-header-name" id="emp_nome2_pl"></div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"><span>CNPJ:</span> <span id="emp_cnpj2_pl"></span></div>
+            <div class="hol-header-center">CC: <span id="emp_cc2_pl"></span></div>
+            <div class="hol-header-right">Folha Mensal</div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"></div>
+            <div class="hol-header-center"><span id="emp_setor2_pl"></span></div>
+            <div class="hol-header-right"><span id="emp_mes_nome2_pl"></span> de <span id="emp_ano2_pl"></span></div>
+          </div>
+        </div>
+        <div class="hol-func">
+          <div class="hol-func-row">
+            <div class="hol-func-cell" style="width:45px"><span class="lbl">C&oacute;digo</span><span class="val" style="display:block" id="func_cod2_pl"></span></div>
+            <div class="hol-func-cell" style="flex:1"><span class="lbl">Nome do Sócio</span><span class="val" style="display:block" id="func_nome2_pl"></span><span class="val" style="display:block" id="func_cargo2_pl"></span></div>
+            <div class="hol-func-cell" style="width:70px"><span class="lbl">CBO</span><span class="val" style="display:block" id="func_cbo2_pl"></span><span class="val" style="display:block">Admiss&atilde;o:</span></div>
+            <div class="hol-func-cell" style="width:50px"><span class="lbl">Departamento</span><span class="val" style="display:block" id="func_depto2_pl"></span></div>
+            <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block" id="func_filial2_pl"></span><span class="val" style="display:block" id="func_admissao2_pl"></span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hol-body-box">
+        <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body2_pl"></tbody></table>
+        <div class="hol-totais-wrapper">
+          <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
+          <div class="t-row"><div class="t-value" id="hol-tvenc2_pl">0,00</div><div class="t-value" id="hol-tdesc2_pl">0,00</div></div>
+          <div class="t-liq-row"><div class="liq-left"><div class="liq-label">Valor L&iacute;quido</div><div class="liq-arrow">&#x21E8;</div></div><div class="liq-value" id="hol-liq2_pl">0,00</div></div>
+        </div>
+        <div class="hol-bases">
+          <div class="hol-base-cell"><span class="lbl">Pró-labore Base</span><span class="val" id="hol-sal-base2_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Sal. Contr. INSS</span><span class="val" id="hol-sal-inss2_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. FGTS</span><span class="val" id="hol-base-fgts2_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">F.G.T.S do M&ecirc;s</span><span class="val" id="hol-fgts-mes2_pl">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. IRRF</span><span class="val" id="hol-base-irrf2_pl">0,00</span></div>
+          <div class="hol-base-cell" style="border-right:none"><span class="lbl">Faixa IRRF</span><span class="val" id="hol-faixa-irrf2_pl">0,00</span></div>
+        </div>
+        </div>
+        <div class="hol-lateral-area" id="hol-lateral2_pl"></div></div>
+        </div>
+    </div>
+
+  <div class="print-bar">
+    <button class="btn-print" onclick="window.print()">Imprimir Holerite</button>
+  </div>
+
+  <div class="info-note">
+    <strong>Dica:</strong> Clique nos campos do holerite (nome da empresa, CNPJ, sócio, cargo, etc.) para edit&aacute;-los diretamente.
+    O bot&atilde;o &ldquo;Imprimir&rdquo; imprime apenas o holerite (2 vias). A 2&ordf; via espelha automaticamente os dados da 1&ordf;.
+  </div>
+
 </div>
+</div>
+<!-- fim tab-pl -->
+
+<!-- ===== ABA EMPREGADA DOMÉSTICA ===== -->
+<div id="tab-dom" class="tab-pane">
+  <div class="card" style="text-align:center;padding:60px 24px;">
+    <h2 style="font-size:1.3em;margin-bottom:16px;">Empregada Doméstica</h2>
+    <p style="font-size:1.1em;color:var(--texto-cinza);margin-bottom:8px;">&#9201; <strong>Em breve</strong></p>
+    <p style="color:var(--texto-cinza);font-size:0.95em;">O cálculo para Empregada Doméstica está sendo desenvolvido e estará disponível em breve.</p>
+  </div>
+</div>
+<!-- fim tab-dom -->
+</div>
+<!-- fim container -->
 
 <script>
 const fmt=v=>v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -548,52 +760,80 @@ function convH(h){return Math.round((Math.trunc(h)+(h-Math.trunc(h))*100/60)*100
 function fmtHM(h){const hrs=Math.floor(Math.abs(h)),mins=Math.round((Math.abs(h)-hrs)*60);return String(hrs)+':'+String(mins).padStart(2,'0')}
 function fmtHMInput(h){const hrs=Math.trunc(Math.abs(h)),mins=Math.round((Math.abs(h)-hrs)*100);return String(hrs)+':'+String(mins).padStart(2,'0')}
 
-function syncVia2(){
-  const ids=['emp_nome','emp_cnpj','emp_cc','emp_mes_nome','emp_ano','emp_setor','func_cod','func_nome','func_cargo','func_cbo','func_depto','func_admissao','func_filial'];
-  ids.forEach(id=>{const el2=document.getElementById(id+'2');if(el2)el2.textContent=document.getElementById(id).value});
+// Troca de abas
+function trocarAba(aba){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('ativo'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('ativo'));
+  document.getElementById('tab-'+aba).classList.add('ativo');
+  const btns={'clt':0,'pl':1,'dom':2};
+  document.querySelectorAll('.tab-btn')[btns[aba]].classList.add('ativo');
+  if(aba==='clt') calcular('');
+  if(aba==='pl') calcular('_pl');
 }
-document.querySelectorAll('.e').forEach(el=>el.addEventListener('input',syncVia2));
+
+function g(id){return document.getElementById(id)}
+
+function syncVia2(s){
+  s=s||'';
+  const sfx=s;
+  const ids=['emp_nome','emp_cnpj','emp_cc','emp_mes_nome','emp_ano','emp_setor','func_cod','func_nome','func_cargo','func_cbo','func_depto','func_admissao','func_filial'];
+  ids.forEach(id=>{
+    const src=g(id+sfx);
+    const dst=g(id+'2'+sfx);
+    if(src&&dst) dst.textContent=src.value;
+  });
+}
+
+// Sincroniza via2 ao digitar nos campos editáveis do holerite CLT
+document.querySelectorAll('#tab-clt .e').forEach(el=>el.addEventListener('input',()=>syncVia2('')));
+// Sincroniza via2 ao digitar nos campos editáveis do holerite PL
+document.querySelectorAll('#tab-pl .e').forEach(el=>el.addEventListener('input',()=>syncVia2('_pl')));
+
 document.querySelectorAll('input[type="number"]').forEach(el=>el.addEventListener('focus',function(){this.select()}));
 
-function verificarAvisoMensalista(){
-  const sal = parseFloat(document.getElementById('salario').value) || 0;
-  const categoria = document.getElementById('categoria_contrato').value;
+function verificarAvisoMensalista(s){
+  s=s||'';
+  const sal = parseFloat(g('salario'+s).value) || 0;
+  const catEl = g('categoria_contrato'+s);
+  const categoria = catEl ? catEl.value : 'mensalista';
   const mostrar = categoria === 'mensalista' && sal > 0 && sal < 120;
-  const avisoMensEl = document.getElementById('aviso_mensalista');
+  const avisoMensEl = g('aviso_mensalista'+s);
   if(avisoMensEl) avisoMensEl.style.display = mostrar ? 'block' : 'none';
-  const avisoHolMens = document.getElementById('aviso_hol1_mens');
+  const avisoHolMens = g('aviso_hol1_mens'+s);
   if(avisoHolMens) avisoHolMens.style.display = mostrar ? 'block' : 'none';
 }
 
-function validarDiasTrab(el){
-  const cat=document.getElementById('categoria_contrato').value;
+function validarDiasTrab(el,s){
+  s=s||'';
+  const catEl=g('categoria_contrato'+s);
+  const cat=catEl?catEl.value:'mensalista';
   if(cat==='mensalista'&&el.value>31)el.value=31;
 }
 
-function atualizarCategoria(){
-  const cat = document.getElementById('categoria_contrato').value;
-  const labelDias = document.getElementById('label_dias_trab');
-  const labelSal = document.getElementById('label_salario');
-  const input = document.getElementById('dias_trab');
-  const setorInput = document.getElementById('emp_setor');
-  
+function atualizarCategoria(s){
+  s=s||'';
+  const catEl=g('categoria_contrato'+s);
+  if(!catEl) return;
+  const cat = catEl.value;
+  const labelDias = g('label_dias_trab'+s);
+  const labelSalEl = g('label_salario'+s);
+  const input = g('dias_trab'+s);
+  const setorInput = g('emp_setor'+s);
+
   if(cat === 'horista'){
-    labelDias.textContent = 'Horas trabalhadas';
-    labelSal.textContent = 'Valor da Hora (R$)';
-    input.removeAttribute('max');
-    input.value = input.value == 30 ? 220 : input.value;
-    setorInput.value = 'Horista';
+    if(labelDias) labelDias.textContent = 'Horas trabalhadas';
+    if(labelSalEl) labelSalEl.textContent = 'Valor da Hora (R$)';
+    if(input){ input.removeAttribute('max'); input.value = input.value == 30 ? 220 : input.value; }
+    if(setorInput) setorInput.value = 'Horista';
   } else {
-    labelDias.textContent = 'Dias trabalhados';
-    labelSal.textContent = 'Salário (R$)';
-    input.setAttribute('max','31');
-    if(input.value > 31) input.value = 31;
-    input.value = input.value == 220 ? 30 : input.value;
-    setorInput.value = 'Mensalista';
+    if(labelDias) labelDias.textContent = 'Dias trabalhados';
+    if(labelSalEl) labelSalEl.textContent = s==='' ? 'Salário (R$)' : 'Pró-labore (R$)';
+    if(input){ input.setAttribute('max','31'); if(input.value > 31) input.value = 31; input.value = input.value == 220 ? 30 : input.value; }
+    if(setorInput) setorInput.value = 'Mensalista';
   }
-  syncVia2();
-  calcular();
-  verificarAvisoMensalista();
+  syncVia2(s);
+  calcular(s);
+  verificarAvisoMensalista(s);
 }
 
 function _origemBotao(box){
@@ -628,64 +868,72 @@ function fecharModal(){
   },260);
 }
 
-function atualizarDiasTrab(){
-  const dMes=parseFloat(document.getElementById('dias_mes').value)||0;
-  const domF=parseFloat(document.getElementById('dom_feriados').value)||0;
-  const input=document.getElementById('dias_trab');
+function atualizarDiasTrab(s){
+  s=s||'';
+  const dMes=parseFloat(g('dias_mes'+s).value)||0;
+  const domF=parseFloat(g('dom_feriados'+s).value)||0;
+  const input=g('dias_trab'+s);
   const soma=Math.min(dMes+domF,31);
-  input.value=soma;
+  if(input) input.value=soma;
 }
 
-function calcular(){
-  const sal=parseFloat(document.getElementById('salario').value)||0;
-  const com=parseFloat(document.getElementById('comissao').value)||0;
-  const he50Q=parseFloat(document.getElementById('he50_qtd').value)||0;
-  const hePct=parseInt(document.getElementById('he_pct').value)||50;
-  const he100Q=parseFloat(document.getElementById('he100_qtd').value)||0;
-  const grat=parseFloat(document.getElementById('gratificacao').value)||0;
-  const prem=parseFloat(document.getElementById('premiacao').value)||0;
-  const insOn=document.getElementById('insalubridade_on').checked;
-  const insP=parseFloat(document.getElementById('insalubridade_pct').value);
-  const perOn=document.getElementById('periculosidade_on').checked;
-  const perP=parseFloat(document.getElementById('periculosidade_pct').value);
-  const dFalta=parseFloat(document.getElementById('dias_falta').value)||0;
-  const hFalta=parseFloat(document.getElementById('horas_falta').value)||0;
-  const dsrD=parseFloat(document.getElementById('desconto_dsr_dias').value)||0;
-  const dMes=parseFloat(document.getElementById('dias_mes').value)||25;
-  const domF=parseFloat(document.getElementById('dom_feriados').value)||0;
-  const deps=parseInt(document.getElementById('dependentes').value)||0;
-  const dTrab=parseFloat(document.getElementById('dias_trab').value)||30;
-  const adiant=document.getElementById('adiantamento').value==='sim';
-  const proLabore=document.getElementById('pro_labore').value==='sim';
-  const categoria=document.getElementById('categoria_contrato').value;
+function calcular(s){
+  s=s===undefined?'':s;
+  // Pró-labore: INSS fixo 11%, sem FGTS
+  const proLabore = s==='_pl' ? true : (g('pro_labore') ? g('pro_labore').value==='sim' : false);
+
+  const salEl=g('salario'+s); if(!salEl) return;
+  const sal=parseFloat(salEl.value)||0;
+  const com=parseFloat(g('comissao'+s).value)||0;
+  const he50Q=parseFloat(g('he50_qtd'+s).value)||0;
+  const hePct=parseInt(g('he_pct'+s).value)||50;
+  const he100Q=parseFloat(g('he100_qtd'+s).value)||0;
+  const grat=parseFloat(g('gratificacao'+s).value)||0;
+  const prem=parseFloat(g('premiacao'+s).value)||0;
+  const insOnEl=g('insalubridade_on'+s);
+  const insOn=insOnEl?insOnEl.checked:false;
+  const insPEl=g('insalubridade_pct'+s);
+  const insP=insPEl?parseFloat(insPEl.value):0.2;
+  const perOnEl=g('periculosidade_on'+s);
+  const perOn=perOnEl?perOnEl.checked:false;
+  const perPEl=g('periculosidade_pct'+s);
+  const perP=perPEl?parseFloat(perPEl.value):0.3;
+  const dFalta=parseFloat(g('dias_falta'+s).value)||0;
+  const hFalta=parseFloat(g('horas_falta'+s).value)||0;
+  const dsrD=parseFloat(g('desconto_dsr_dias'+s).value)||0;
+  const dMes=parseFloat(g('dias_mes'+s).value)||25;
+  const domF=parseFloat(g('dom_feriados'+s).value)||0;
+  const deps=parseInt(g('dependentes'+s).value)||0;
+  const dTrab=parseFloat(g('dias_trab'+s).value)||30;
+  const adiantEl=g('adiantamento'+s);
+  const adiant=adiantEl?adiantEl.value==='sim':false;
+  const catEl=g('categoria_contrato'+s);
+  const categoria=catEl?catEl.value:'mensalista';
   const dTrabCalc=categoria==='horista'?dTrab:Math.min(dTrab,30);
 
   const salMensal = categoria === 'horista' ? sal * dTrabCalc : sal;
 
-  // Aviso horista: valor da hora acima de R$ 500 provavelmente é salário mensal digitado por engano
-  const avisoEl = document.getElementById('aviso_horista');
-  const avisoCalcEl = document.getElementById('aviso_horista_calc');
+  // Avisos horista / mensalista
+  const avisoEl = g('aviso_horista'+s);
+  const avisoCalcEl = g('aviso_horista_calc'+s);
   const mostrarAviso = categoria === 'horista' && sal > 500;
   if(avisoEl){
     avisoEl.style.display = mostrarAviso ? 'block' : 'none';
     if(mostrarAviso && avisoCalcEl)
       avisoCalcEl.textContent = 'Com esse valor, o salário mensal seria R$ ' + salMensal.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) + '.';
   }
-  const avisoHol=document.getElementById('aviso_hol1');
+  const avisoHol=g('aviso_hol1'+s);
   if(avisoHol) avisoHol.style.display = mostrarAviso ? 'block' : 'none';
 
-
   const catLabel = categoria === 'horista' ? 'Horista' : 'Mensalista';
-  ['hol-cat-contrato','hol-cat-contrato2'].forEach(id=>{
-    const el=document.getElementById(id);
+  ['hol-cat-contrato'+s,'hol-cat-contrato2'+s].forEach(id=>{
+    const el=g(id);
     if(el) el.textContent = catLabel;
   });
 
   const insV=insOn?SAL_MINIMO*insP:0;
   const base=salMensal+com,heBase=base+grat+insV,vh=heBase/220;
   const he50V=vh*(1+hePct/100)*convH(he50Q),he65V=0,he100V=vh*2*convH(he100Q);
-  // Art. 7°a Lei 605/49: DSR inclui HE habitualmente prestadas. Art. 6°: DSR não devido por falta injustificada.
-  // O reflexo incide somente sobre os DSRs efetivamente devidos (domF − dsrD).
   const dsrDevidos=Math.max(0,domF-dsrD);
   const dsrCom=dMes>0?(com/dMes)*domF:0,dsrHE=dMes>0?((he50V+he100V)/dMes)*dsrDevidos:0;
   const perV=perOn?base*perP:0;
@@ -697,10 +945,6 @@ function calcular(){
 
   const bINSS=bruto-prem,inss=proLabore?Math.trunc(bINSS*0.11*100)/100:calcINSS(bINSS);
 
-  // IRRF conforme planilha CALCULADORA DE HOLERITE 2026 (aba Cálculo):
-  // B22 = bruto - INSS  |  D15 = min(legal, simplificado)
-  // C72 = desconto progressivo para 5000 < B72 <= 7350
-  // B77 = D15 - C72  |  IR final = IF(B72 > 5000, B77, 0)
   const B22=bruto-inss;
   const legal=Math.max(0,irrfCalc(B22-(deps*DEDUCAO_DEP)).imp);
   const simp=Math.max(0,irrfCalc(bruto-DEDUCAO_SIMPLIFICADA).imp);
@@ -717,11 +961,10 @@ function calcular(){
   const totalHoras=categoria==='horista'?dTrabCalc:dTrabCalc*(220/30);
   const faixaIR=bIR>0?irrfCalc(bIR).aliq*100:0;
 
-  // Montar linhas com referências conforme aba Holerite da planilha
   const linhas=[];
   const add=(c,d,r,v,ds)=>linhas.push({c,d,r,v:v||0,ds:ds||0});
 
-  if(sal>0) add(1,'HORAS NORMAIS',fmtHM(totalHoras),salMensal,0);
+  if(sal>0) add(1, proLabore?'PRO-LABORE':'HORAS NORMAIS',fmtHM(totalHoras),salMensal,0);
   if(com>0) add(37,'COMISSOES',fmt(com),com,0);
   if(he50V>0) add(hePct===65?5002:hePct===60?5003:5000,'HORAS EXTRA '+hePct+'%',he50Q>0?fmtHMInput(he50Q):'',he50V,0);
   if(he100V>0) add(5001,'HORAS EXTRA 100%',he100Q>0?fmtHMInput(he100Q):'',he100V,0);
@@ -738,30 +981,35 @@ function calcular(){
   if(ir>0) add(999,'IMPOSTO DE RENDA','',0,ir);
   if(adiantV>0) add(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
 
-  const sv=linhas.reduce((s,l)=>s+l.v,0),sd=linhas.reduce((s,l)=>s+l.ds,0);
+  const sv=linhas.reduce((acc,l)=>acc+l.v,0),sd=linhas.reduce((acc,l)=>acc+l.ds,0);
   if(fgts>0) add(900,'F.G.T.S','',fgts,0);
 
   while(linhas.length<MIN_ROWS)linhas.push({c:'',d:'',r:'',v:0,ds:0});
 
   const html=linhas.map(l=>`<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v>0?fmt(l.v):''}</td><td class="dsc">${l.ds>0?fmt(l.ds):''}</td></tr>`).join('');
-  document.getElementById('hol-body').innerHTML=html;
-  document.getElementById('hol-body2').innerHTML=html;
+  const bodyEl=g('hol-body'+s); if(bodyEl) bodyEl.innerHTML=html;
+  const body2El=g('hol-body2'+s); if(body2El) body2El.innerHTML=html;
 
-  ['','2'].forEach(s=>{
-    document.getElementById('hol-tvenc'+s).textContent=fmt(sv);
-    document.getElementById('hol-tdesc'+s).textContent=fmt(sd);
-    document.getElementById('hol-liq'+s).textContent=fmt(liq);
-    document.getElementById('hol-sal-base'+s).textContent=fmt(sal);
-    document.getElementById('hol-sal-inss'+s).textContent=fmt(bINSS);
-    document.getElementById('hol-base-fgts'+s).textContent=fmt(bINSS);
-    document.getElementById('hol-fgts-mes'+s).textContent=fmt(fgts);
-    document.getElementById('hol-base-irrf'+s).textContent=fmt(bIR);
-    document.getElementById('hol-faixa-irrf'+s).textContent=fmt(faixaIR);
+  // Sufixos para via1 e via2: CLT usa '' e '2', PL usa '_pl' e '2_pl'
+  const viaSfxs = s==='' ? ['','2'] : ['_pl','2_pl'];
+  viaSfxs.forEach(vs=>{
+    const setV=(id,val)=>{const el=g(id+vs); if(el) el.textContent=val;};
+    setV('hol-tvenc',fmt(sv));
+    setV('hol-tdesc',fmt(sd));
+    setV('hol-liq',fmt(liq));
+    setV('hol-sal-base',fmt(sal));
+    setV('hol-sal-inss',fmt(bINSS));
+    setV('hol-base-fgts',fmt(bINSS));
+    setV('hol-fgts-mes',fmt(fgts));
+    setV('hol-base-irrf',fmt(bIR));
+    setV('hol-faixa-irrf',fmt(faixaIR));
   });
-  syncVia2();
+  syncVia2(s);
 }
-atualizarCategoria();
-calcular();
+atualizarCategoria('');
+calcular('');
+atualizarCategoria('_pl');
+calcular('_pl');
 
 // Navegação por Enter nos campos digitáveis (pula selects e toggles)
 (function(){
