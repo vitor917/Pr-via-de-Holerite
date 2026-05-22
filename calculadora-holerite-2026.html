@@ -648,7 +648,6 @@
         <input type="number" id="outras_pct" value="5.8" step="0.1" min="0" oninput="calcular()">
       </div>
     </div>
-    <div class="custo-item"><span>Sal&aacute;rio com Horas-Extras</span><span id="custo-bruto-clt">0,00</span></div>
     <div class="custo-item"><span>FGTS Mensal (8,0%)</span><span id="custo-fgts-clt">0,00</span></div>
     <div class="custo-item"><span>Contribui&ccedil;&atilde;o Previd. Patronal (20,0%)</span><span id="custo-patronal-clt">0,00</span></div>
     <div class="custo-item"><span>GILRAT (<span id="custo-gilrat-lbl">3,0</span>%) &times; FAP (<span id="custo-fap-lbl">1,00</span>)</span><span id="custo-gilrat-clt">0,00</span></div>
@@ -1268,7 +1267,6 @@ function calcular(s){
     const custoOutras=Math.round(bINSS*(outrasPct/100)*100)/100;
     const custoTotal=bruto+custoFgts+custoPatronal+custoGilrat+custoOutras;
     const sc=(id,v)=>{const el=g(id);if(el)el.textContent=fmt(v);};
-    sc('custo-bruto-clt',bruto);
     sc('custo-fgts-clt',custoFgts);
     sc('custo-patronal-clt',custoPatronal);
     sc('custo-gilrat-clt',custoGilrat);
