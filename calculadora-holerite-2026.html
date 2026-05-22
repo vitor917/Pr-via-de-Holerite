@@ -631,6 +631,31 @@
     <button class="btn-print" onclick="window.print()">Imprimir Holerite</button>
   </div>
 
+  <!-- Custo do Funcionário CLT -->
+  <div class="card custo-wrap" style="grid-column:1/-1;">
+    <h2>Custo do Funcion&aacute;rio</h2>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
+      <div class="field" style="flex:1;min-width:150px;margin:0">
+        <label>GILRAT / RAT (%)</label>
+        <input type="number" id="gilrat_pct" value="3" step="0.1" min="1" max="3" oninput="calcular()">
+      </div>
+      <div class="field" style="flex:1;min-width:150px;margin:0">
+        <label>FAP</label>
+        <input type="number" id="fap_val" value="1" step="0.01" min="0.5" max="2" oninput="calcular()">
+      </div>
+      <div class="field" style="flex:1;min-width:150px;margin:0">
+        <label>Outras Entidades (%)</label>
+        <input type="number" id="outras_pct" value="5.8" step="0.1" min="0" oninput="calcular()">
+      </div>
+    </div>
+    <div class="custo-item"><span>Sal&aacute;rio com Horas-Extras</span><span id="custo-bruto-clt">0,00</span></div>
+    <div class="custo-item"><span>FGTS Mensal (8,0%)</span><span id="custo-fgts-clt">0,00</span></div>
+    <div class="custo-item"><span>Contribui&ccedil;&atilde;o Previd. Patronal (20,0%)</span><span id="custo-patronal-clt">0,00</span></div>
+    <div class="custo-item"><span>GILRAT (<span id="custo-gilrat-lbl">3,0</span>%) &times; FAP (<span id="custo-fap-lbl">1,00</span>)</span><span id="custo-gilrat-clt">0,00</span></div>
+    <div class="custo-item"><span>Outras Entidades (<span id="custo-outras-lbl">5,8</span>%)</span><span id="custo-outras-clt">0,00</span></div>
+    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo Total do Funcion&aacute;rio</span><span id="custo-total-clt">0,00</span></div>
+  </div>
+
   <div class="info-note">
     <strong>Dica:</strong> Clique nos campos do holerite (nome da empresa, CNPJ, funcion&aacute;rio, cargo, etc.) para edit&aacute;-los diretamente.
     O bot&atilde;o &ldquo;Imprimir&rdquo; imprime apenas o holerite (2 vias). A 2&ordf; via espelha automaticamente os dados da 1&ordf;.
@@ -1231,6 +1256,28 @@ function calcular(s){
     setV('hol-faixa-irrf',fmt(faixaIR));
   });
   syncVia2(s);
+
+  // Custo do funcionário (apenas CLT)
+  if(!proLabore){
+    const gilratPct=parseFloat(g('gilrat_pct').value)||3;
+    const fapVal=parseFloat(g('fap_val').value)||1;
+    const outrasPct=parseFloat(g('outras_pct').value)||5.8;
+    const custoFgts=Math.round(bINSS*0.08*100)/100;
+    const custoPatronal=Math.round(bINSS*0.20*100)/100;
+    const custoGilrat=Math.round(bINSS*(gilratPct/100)*fapVal*100)/100;
+    const custoOutras=Math.round(bINSS*(outrasPct/100)*100)/100;
+    const custoTotal=bruto+custoFgts+custoPatronal+custoGilrat+custoOutras;
+    const sc=(id,v)=>{const el=g(id);if(el)el.textContent=fmt(v);};
+    sc('custo-bruto-clt',bruto);
+    sc('custo-fgts-clt',custoFgts);
+    sc('custo-patronal-clt',custoPatronal);
+    sc('custo-gilrat-clt',custoGilrat);
+    sc('custo-outras-clt',custoOutras);
+    sc('custo-total-clt',custoTotal);
+    const gEl=g('custo-gilrat-lbl');if(gEl)gEl.textContent=gilratPct.toFixed(1);
+    const fEl=g('custo-fap-lbl');if(fEl)fEl.textContent=fapVal.toFixed(2);
+    const oEl=g('custo-outras-lbl');if(oEl)oEl.textContent=outrasPct.toFixed(1);
+  }
 }
 atualizarCategoria('');
 calcular('');
