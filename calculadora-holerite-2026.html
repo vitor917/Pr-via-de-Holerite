@@ -421,6 +421,12 @@
           <li><strong>Vale-transporte:</strong> marque "Sim" se a empregada utiliza vale-transporte. O desconto de 6% sobre o salário base será aplicado automaticamente.</li>
         </ul>
 
+        <h3>Outros Proventos</h3>
+        <ul>
+          <li><strong>Gratificação:</strong> valor pago à empregada por acordo ou liberalidade do empregador. Incide INSS, FGTS e IR, e pode ser pago todos os meses.</li>
+          <li><strong>Premiação:</strong> benefício concedido como recompensa por desempenho. Não incide INSS nem FGTS, e não deve ser paga todos os meses.</li>
+        </ul>
+
         <h3>Faltas e DSR</h3>
         <ul>
           <li><strong>Dias de falta / Horas de falta:</strong> informe ausências do mês para o desconto proporcional.</li>
@@ -815,6 +821,8 @@
     <div class="field"><label>Sal&aacute;rio (R$)</label><input type="number" id="salario_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Hora-Extra <select id="he_pct_dom" onchange="calcularDom()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="number" id="gratificacao_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="number" id="premiacao_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
@@ -1240,6 +1248,8 @@ function calcularDom(){
   const dsrD=parseFloat(gd('desconto_dsr_dias_dom').value)||0;
   const deps=parseInt(gd('dependentes_dom').value)||0;
   const diasTrab=Math.min(parseFloat(gd('dias_trab_dom').value)||30,30);
+  const grat=parseFloat(gd('gratificacao_dom').value)||0;
+  const prem=parseFloat(gd('premiacao_dom').value)||0;
   const vt=gd('vale_transporte_dom').value==='sim';
   const adiant=gd('adiantamento_dom').value==='sim';
 
@@ -1253,11 +1263,12 @@ function calcularDom(){
   const hFaltaV=Math.trunc((sal/220)*convH(horasFalta)*100)/100;
   const dsrV=Math.trunc((sal/30)*dsrD*100)/100;
 
-  const prov=sal+he50V+he100V;
+  const prov=sal+he50V+he100V+grat+prem;
   const bruto=prov-dFaltaV-hFaltaV-dsrV;
 
-  // INSS trabalhador: tabela progressiva (igual CLT)
-  const inss=calcINSS(bruto);
+  // INSS: premiação não incide
+  const bINSS=bruto-prem;
+  const inss=calcINSS(bINSS);
 
   // Vale-transporte: desconto de 6% do salário base
   const vtDesc=vt?Math.trunc(sal*0.06*100)/100:0;
@@ -1271,8 +1282,8 @@ function calcularDom(){
   const adiantV=adiant?sal*0.4:0;
   const liq=bruto-inss-ir-vtDesc-adiantV;
 
-  // FGTS
-  const fgts=Math.trunc(bruto*0.08*100)/100;
+  // FGTS: premiação não incide
+  const fgts=Math.trunc(bINSS*0.08*100)/100;
 
   // Encargos empregador (sobre salário base)
   const inssEmp=Math.trunc(sal*0.08*100)/100;
@@ -1292,6 +1303,8 @@ function calcularDom(){
   if(sal>0) addD(1,'SALARIO',diasTrab+' dias',sal,0);
   if(he50V>0) addD(hePctDom===65?5002:hePctDom===60?5003:5000,'HORAS EXTRA '+hePctDom+'%',fmtHMInput(he50Q),he50V,0);
   if(he100V>0) addD(5001,'HORAS EXTRA 100%',fmtHMInput(he100Q),he100V,0);
+  if(grat>0) addD(20,'GRATIFICACOES',fmt(grat),grat,0);
+  if(prem>0) addD(5080,'PREMIO','',prem,0);
   if(dFaltaV>0) addD(8792,'DIAS FALTAS',diasFalta>0?fmt(diasFalta):'',0,dFaltaV);
   if(hFaltaV>0) addD(8069,'HORAS FALTAS',horasFalta>0?fmt(horasFalta):'',0,hFaltaV);
   if(dsrV>0) addD(8794,'DESCONTO DE DSR',dsrD>0?fmt(dsrD):'',0,dsrV);
