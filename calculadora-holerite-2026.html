@@ -745,6 +745,7 @@
     <div class="field"><label>Sal&aacute;rio (R$)</label><input type="number" id="salario_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Hora-Extra <select id="he_pct_dom" onchange="calcularDom()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <!-- Informações -->
@@ -756,7 +757,6 @@
     <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
     <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Dias trabalhados</label><input type="number" id="dias_trab_dom" value="30" step="1" min="1" max="30" oninput="calcularDom()"></div>
-    <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
     <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
