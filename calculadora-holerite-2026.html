@@ -329,51 +329,121 @@
       <button class="modal-fechar" onclick="fecharModal()">&times;</button>
     </div>
     <div class="modal-body">
-      <h3>Como preencher os dados</h3>
-      <ul>
-        <li><strong>Salário:</strong> informe o salário mensal bruto do funcionário. Para horistas, selecione a categoria "Horista" e informe o valor da hora.</li>
-        <li><strong>Comissão:</strong> valor de comissões do mês, se houver.</li>
-        <li><strong>Hora-Extra:</strong> Ao clicar em cima dos 50% e selecionar a porcentagem (50%, 60% ou 65%), informe a quantidade de horas no formato <strong>horas minutos</strong> — por exemplo, 7h34min deve ser digitado como <strong>7,34</strong>.</li>
-        <li><strong>Hora-Extra 100%:</strong> Informe a quantidade de horas no formato <strong>horas minutos</strong> — por exemplo, 7h34min deve ser digitado como <strong>7,34</strong>.</li>
-      </ul>
 
-      <h3>Outros Proventos</h3>
-      <ul>
-        <li><strong>Gratificação:</strong> valor pago ao empregado por acordo ou liberalidade do empregador, geralmente ligado a desempenho (como produtividade ou assiduidade). Faz incidência para tudo, e pode ser pago todos os meses.</li>
-        <li><strong>Premiação:</strong> benefício concedido pelo empregador, em dinheiro, bens ou serviços, como recompensa por desempenho acima do esperado ou metas atingidas. Não incide para INSS e FGTS, e não deve ser paga todos os meses.</li>
-        <li><strong>Insalubridade:</strong> ative o toggle e selecione o percentual (10%, 20% ou 40%). O valor é calculado sobre o salário mínimo vigente.</li>
-        <li><strong>Periculosidade:</strong> ative o toggle e selecione o percentual. Calculado sobre o salário base.</li>
-      </ul>
+      <!-- ===== INSTRUÇÕES CLT ===== -->
+      <div id="inst-clt">
+        <h3>Como preencher os dados</h3>
+        <ul>
+          <li><strong>Salário:</strong> informe o salário mensal bruto do funcionário. Para horistas, selecione a categoria "Horista" e informe o valor da hora.</li>
+          <li><strong>Comissão:</strong> valor de comissões do mês, se houver.</li>
+          <li><strong>Hora-Extra:</strong> Ao clicar em cima dos 50% e selecionar a porcentagem (50%, 60% ou 65%), informe a quantidade de horas no formato <strong>horas minutos</strong> — por exemplo, 7h34min deve ser digitado como <strong>7,34</strong>.</li>
+          <li><strong>Hora-Extra 100%:</strong> Informe a quantidade de horas no formato <strong>horas minutos</strong> — por exemplo, 7h34min deve ser digitado como <strong>7,34</strong>.</li>
+        </ul>
 
-      <h3>Faltas e DSR</h3>
-      <ul>
-        <li><strong>Dias de falta / Horas de falta:</strong> informe ausências do mês para o desconto proporcional.</li>
-        <li><strong>Desconto DSR:</strong> dias de DSR perdidos pelas faltas.</li>
-      </ul>
+        <h3>Outros Proventos</h3>
+        <ul>
+          <li><strong>Gratificação:</strong> valor pago ao empregado por acordo ou liberalidade do empregador, geralmente ligado a desempenho (como produtividade ou assiduidade). Faz incidência para tudo, e pode ser pago todos os meses.</li>
+          <li><strong>Premiação:</strong> benefício concedido pelo empregador, em dinheiro, bens ou serviços, como recompensa por desempenho acima do esperado ou metas atingidas. Não incide para INSS e FGTS, e não deve ser paga todos os meses.</li>
+          <li><strong>Insalubridade:</strong> ative o toggle e selecione o percentual (10%, 20% ou 40%). O valor é calculado sobre o salário mínimo vigente.</li>
+          <li><strong>Periculosidade:</strong> ative o toggle e selecione o percentual. Calculado sobre o salário base.</li>
+        </ul>
 
-      <h3>Informações do Mês</h3>
-      <ul>
-        <li><strong>Dias do mês:</strong> total de dias úteis usados como base de cálculo.</li>
-        <li><strong>Domingos e feriados:</strong> quantidade de domingos e feriados no mês (para cálculo do Reflexo DSR).</li>
-        <li><strong>Dependentes IR:</strong> informe a quantidade de dependentes para abatimento na base de cálculo do Imposto de Renda.</li>
-        <li><strong>Dias trabalhados:</strong> total de dias efetivamente trabalhados no mês. Usado para calcular descontos proporcionais.</li>
-        <li><strong>Adiantamento:</strong> marque "Sim" caso o funcionário tenha recebido adiantamento salarial, pago em folha até o dia 20 de cada mês. O valor será descontado no líquido.</li>
-      </ul>
+        <h3>Faltas e DSR</h3>
+        <ul>
+          <li><strong>Dias de falta / Horas de falta:</strong> informe ausências do mês para o desconto proporcional.</li>
+          <li><strong>Desconto DSR:</strong> dias de DSR perdidos pelas faltas.</li>
+        </ul>
 
-      <h3>Categoria de Contrato</h3>
-      <ul>
-        <li><strong>Mensalista:</strong> é o trabalhador com carteira assinada que recebe um salário fixo por mês, independentemente se o mês tem 28, 30 ou 31 dias.</li>
-        <li><strong>Horista:</strong> é o trabalhador com carteira assinada que recebe um salário variável, calculado apenas pelas horas efetivamente trabalhadas durante o mês.</li>
-      </ul>
+        <h3>Informações do Mês</h3>
+        <ul>
+          <li><strong>Dias do mês:</strong> total de dias úteis usados como base de cálculo.</li>
+          <li><strong>Domingos e feriados:</strong> quantidade de domingos e feriados no mês (para cálculo do Reflexo DSR).</li>
+          <li><strong>Dependentes IR:</strong> informe a quantidade de dependentes para abatimento na base de cálculo do Imposto de Renda.</li>
+          <li><strong>Dias trabalhados:</strong> total de dias efetivamente trabalhados no mês. Usado para calcular descontos proporcionais.</li>
+          <li><strong>Adiantamento:</strong> marque "Sim" caso o funcionário tenha recebido adiantamento salarial, pago em folha até o dia 20 de cada mês. O valor será descontado no líquido.</li>
+        </ul>
 
-      <h3>Holerite gerado</h3>
-      <ul>
-        <li>O holerite é atualizado automaticamente conforme os dados são preenchidos.</li>
-        <li>Os campos em <strong>amarelo claro</strong> no holerite são editáveis — clique para personalizar nome da empresa, CNPJ, funcionário, etc.</li>
-        <li>Use o botão <strong>Imprimir / Salvar PDF</strong> para exportar o holerite.</li>
-      </ul>
+        <h3>Categoria de Contrato</h3>
+        <ul>
+          <li><strong>Mensalista:</strong> é o trabalhador com carteira assinada que recebe um salário fixo por mês, independentemente se o mês tem 28, 30 ou 31 dias.</li>
+          <li><strong>Horista:</strong> é o trabalhador com carteira assinada que recebe um salário variável, calculado apenas pelas horas efetivamente trabalhadas durante o mês.</li>
+        </ul>
 
-      <div class="destaque">&#9888; Os valores gerados são uma <strong>prévia estimada</strong>. Pequenas diferenças em relação ao sistema de folha oficial podem ocorrer por arredondamentos.</div>
+        <h3>Holerite gerado</h3>
+        <ul>
+          <li>O holerite é atualizado automaticamente conforme os dados são preenchidos.</li>
+          <li>Os campos em <strong>amarelo claro</strong> no holerite são editáveis — clique para personalizar nome da empresa, CNPJ, funcionário, etc.</li>
+          <li>Use o botão <strong>Imprimir / Salvar PDF</strong> para exportar o holerite.</li>
+        </ul>
+
+        <div class="destaque">&#9888; Os valores gerados são uma <strong>prévia estimada</strong>. Pequenas diferenças em relação ao sistema de folha oficial podem ocorrer por arredondamentos.</div>
+      </div>
+
+      <!-- ===== INSTRUÇÕES PRÓ-LABORE ===== -->
+      <div id="inst-pl" style="display:none">
+        <h3>Como preencher os dados</h3>
+        <ul>
+          <li><strong>Pró-labore (R$):</strong> informe o valor mensal bruto do pró-labore do sócio.</li>
+          <li><strong>Comissão:</strong> valor de comissões do mês, se houver.</li>
+        </ul>
+
+        <h3>Outros Proventos</h3>
+        <ul>
+          <li><strong>Gratificação:</strong> valor pago ao sócio por acordo ou liberalidade, geralmente ligado a desempenho. Faz incidência para tudo e pode ser pago todos os meses.</li>
+          <li><strong>Premiação:</strong> benefício concedido como recompensa por desempenho acima do esperado ou metas atingidas. Não incide para INSS, e não deve ser paga todos os meses.</li>
+        </ul>
+
+        <h3>Informações do Mês</h3>
+        <ul>
+          <li><strong>Dias do mês:</strong> total de dias usados como base de cálculo (normalmente 26 dias úteis para pró-labore).</li>
+          <li><strong>Domingos e feriados:</strong> quantidade de domingos e feriados no mês.</li>
+          <li><strong>Dependentes IR:</strong> informe a quantidade de dependentes para abatimento na base de cálculo do Imposto de Renda.</li>
+          <li><strong>Dias trabalhados:</strong> total de dias efetivamente trabalhados no mês.</li>
+        </ul>
+
+        <h3>Holerite gerado</h3>
+        <ul>
+          <li>O holerite é atualizado automaticamente conforme os dados são preenchidos.</li>
+          <li>Os campos em <strong>amarelo claro</strong> no holerite são editáveis — clique para personalizar nome da empresa, CNPJ, sócio, etc.</li>
+          <li>Use o botão <strong>Imprimir / Salvar PDF</strong> para exportar o holerite.</li>
+        </ul>
+
+        <div class="destaque">&#9888; Os valores gerados são uma <strong>prévia estimada</strong>. Pequenas diferenças em relação ao sistema de folha oficial podem ocorrer por arredondamentos.</div>
+      </div>
+
+      <!-- ===== INSTRUÇÕES EMPREGADA DOMÉSTICA ===== -->
+      <div id="inst-dom" style="display:none">
+        <h3>Como preencher os dados</h3>
+        <ul>
+          <li><strong>Salário (R$):</strong> informe o salário mensal bruto da empregada doméstica.</li>
+          <li><strong>Hora-Extra:</strong> ao clicar em cima dos 50% e selecionar a porcentagem (50%, 60% ou 65%), informe a quantidade de horas no formato <strong>horas minutos</strong> — por exemplo, 7h34min deve ser digitado como <strong>7,34</strong>.</li>
+          <li><strong>Hora-Extra 100%:</strong> informe a quantidade de horas no mesmo formato acima.</li>
+          <li><strong>Vale-transporte:</strong> marque "Sim" se a empregada utiliza vale-transporte. O desconto de 6% sobre o salário base será aplicado automaticamente.</li>
+        </ul>
+
+        <h3>Faltas e DSR</h3>
+        <ul>
+          <li><strong>Dias de falta / Horas de falta:</strong> informe ausências do mês para o desconto proporcional.</li>
+          <li><strong>Desconto DSR:</strong> dias de DSR perdidos pelas faltas.</li>
+        </ul>
+
+        <h3>Informações do Mês</h3>
+        <ul>
+          <li><strong>Dependentes IR:</strong> informe a quantidade de dependentes para abatimento na base de cálculo do Imposto de Renda.</li>
+          <li><strong>Dias trabalhados:</strong> total de dias efetivamente trabalhados no mês. Usado para calcular descontos proporcionais.</li>
+          <li><strong>Adiantamento:</strong> marque "Sim" caso a empregada tenha recebido adiantamento salarial. O valor será descontado no líquido.</li>
+        </ul>
+
+        <h3>Holerite gerado</h3>
+        <ul>
+          <li>O holerite é atualizado automaticamente conforme os dados são preenchidos.</li>
+          <li>Os campos em <strong>amarelo claro</strong> no holerite são editáveis — clique para personalizar nome da empresa, CNPJ, empregada, etc.</li>
+          <li>Use o botão <strong>Imprimir / Salvar PDF</strong> para exportar o holerite.</li>
+        </ul>
+
+        <div class="destaque">&#9888; Os valores gerados são uma <strong>prévia estimada</strong>. Pequenas diferenças em relação ao sistema de folha oficial podem ocorrer por arredondamentos.</div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -976,6 +1046,17 @@ function _origemBotao(box){
   return (b.left+b.width/2-r.left)+'px '+(b.top+b.height/2-r.top)+'px';
 }
 function abrirModal(){
+  const abaAtiva=document.querySelector('.tab-pane.ativo');
+  const abaId=abaAtiva?abaAtiva.id:'tab-clt';
+  const mapa={'tab-clt':'clt','tab-pl':'pl','tab-dom':'dom'};
+  const secao=mapa[abaId]||'clt';
+  ['clt','pl','dom'].forEach(id=>{
+    const el=document.getElementById('inst-'+id);
+    if(el) el.style.display=id===secao?'':'none';
+  });
+  const titulos={'clt':'CLT','pl':'Pró-labore','dom':'Empregada Doméstica'};
+  const h2=document.querySelector('#modalInstrucoes .modal-header h2');
+  if(h2) h2.textContent='ℹ Instruções de Uso — '+titulos[secao];
   const sb=window.innerWidth-document.documentElement.clientWidth;
   document.body.style.paddingRight=sb+'px';
   document.body.style.overflow='hidden';
