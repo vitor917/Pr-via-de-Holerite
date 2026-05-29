@@ -461,6 +461,7 @@
   <button class="tab-btn ativo" onclick="trocarAba('clt')">CLT</button>
   <button class="tab-btn" onclick="trocarAba('pl')">Pró-labore</button>
   <button class="tab-btn" id="btn-tab-dom" onclick="trocarAba('dom')">Empregada Dom&eacute;stica</button>
+  <button class="tab-btn" id="btn-tab-ja" onclick="trocarAba('ja')">Jovem Aprendiz</button>
 </nav>
 
 <!-- ===== ABA CLT ===== -->
@@ -1017,6 +1018,169 @@
 </div>
 </div>
 <!-- fim tab-dom -->
+
+<!-- ===== ABA JOVEM APRENDIZ ===== -->
+<div id="tab-ja" class="tab-pane">
+<div class="grid">
+
+  <!-- Dados -->
+  <div class="card">
+    <h2>Dados do Jovem Aprendiz</h2>
+    <div class="field"><label>Sal&aacute;rio (R$)</label><input type="text" inputmode="decimal" id="salario_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Hora-Extra <select id="he_pct_ja" onchange="calcularJA()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+  </div>
+
+  <!-- Informações -->
+  <div class="card">
+    <h2>Faltas e Informa&ccedil;&otilde;es</h2>
+    <div class="field"><label>Dias de falta</label><input type="text" inputmode="decimal" id="dias_falta_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
+    <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
+    <div class="field"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
+    <div class="field"><label>Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab_ja" value="30" step="1" min="1" max="30" oninput="calcularJA()"></div>
+    <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+  </div>
+
+  <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
+
+  <!-- HOLERITE JA 1ª VIA -->
+  <div class="card holerite-section" style="grid-column:1/-1; overflow-x:auto;">
+    <div class="hol-wrapper" style="margin-bottom:30px;">
+      <div class="hol">
+        <div class="hol-cab-box">
+        <div class="hol-header">
+          <div class="hol-header-row"><div class="hol-header-name"><input class="e" id="emp_nome_ja" value="NOME DA EMPRESA LTDA" style="font-size:12px;text-transform:uppercase;width:100%"></div></div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"><span>CNPJ:</span><input class="e" id="emp_cnpj_ja" value="00.000.000/0001-00" style="width:140px"></div>
+            <div class="hol-header-center">CC: <input class="e" id="emp_cc_ja" value="JOVEM APRENDIZ" style="width:100px;text-align:center"></div>
+            <div class="hol-header-right">Folha Mensal</div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"></div>
+            <div class="hol-header-center"><input class="e" id="emp_setor_ja" value="Mensalista" style="width:80px;text-align:center" readonly></div>
+            <div class="hol-header-right"><input class="e" id="emp_mes_nome_ja" value="Abril" style="width:55px;text-align:right"> de <input class="e" id="emp_ano_ja" value="2026" style="width:32px"></div>
+          </div>
+        </div>
+        <div class="hol-func">
+          <div class="hol-func-row">
+            <div class="hol-func-cell" style="width:45px"><span class="lbl">C&oacute;digo</span><span class="val" style="display:block"><input class="e" id="func_cod_ja" value="1" style="width:30px"></span></div>
+            <div class="hol-func-cell" style="flex:1"><span class="lbl">Nome do Jovem Aprendiz</span><span class="val" style="display:block"><input class="e" id="func_nome_ja" value="NOME DO JOVEM APRENDIZ"></span><span class="val" style="display:block"><input class="e" id="func_cargo_ja" value="JOVEM APRENDIZ"></span></div>
+            <div class="hol-func-cell" style="width:70px"><span class="lbl">CBO</span><span class="val" style="display:block"><input class="e" id="func_cbo_ja" value="5152-05" style="width:60px"></span><span class="val" style="display:block">Admiss&atilde;o:</span></div>
+            <div class="hol-func-cell" style="width:50px"><span class="lbl">Departamento</span><span class="val" style="display:block"><input class="e" id="func_depto_ja" value="1" style="width:30px"></span></div>
+            <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block"><input class="e" id="func_filial_ja" value="1" style="width:25px"></span><span class="val" style="display:block"><input class="e" id="func_admissao_ja" value="01/01/2026" style="width:65px"></span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hol-body-box">
+        <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body_ja"></tbody></table>
+        <div class="hol-totais-wrapper">
+          <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
+          <div class="t-row"><div class="t-value" id="hol-tvenc_ja">0,00</div><div class="t-value" id="hol-tdesc_ja">0,00</div></div>
+          <div class="t-liq-row"><div class="liq-left"><div class="liq-label">Valor L&iacute;quido</div><div class="liq-arrow">&#x21E8;</div></div><div class="liq-value" id="hol-liq_ja">0,00</div></div>
+        </div>
+        <div class="hol-bases">
+          <div class="hol-base-cell"><span class="lbl">Sal&aacute;rio Base</span><span class="val" id="hol-sal-base_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Sal. Contr. INSS</span><span class="val" id="hol-sal-inss_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. FGTS</span><span class="val" id="hol-base-fgts_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">F.G.T.S do M&ecirc;s</span><span class="val" id="hol-fgts-mes_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. IRRF</span><span class="val" id="hol-base-irrf_ja">0,00</span></div>
+          <div class="hol-base-cell" style="border-right:none"><span class="lbl">Faixa IRRF</span><span class="val" id="hol-faixa-irrf_ja">0,00</span></div>
+        </div>
+        </div>
+        <div class="hol-lateral-area" id="hol-lateral1_ja"></div></div>
+    </div>
+
+    <!-- 2ª VIA JA -->
+    <div class="hol-wrapper">
+      <div class="hol">
+        <div class="hol-cab-box">
+        <div class="hol-header">
+          <div class="hol-header-row"><div class="hol-header-name" id="emp_nome2_ja"></div></div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"><span>CNPJ:</span> <span id="emp_cnpj2_ja"></span></div>
+            <div class="hol-header-center">CC: <span id="emp_cc2_ja"></span></div>
+            <div class="hol-header-right">Folha Mensal</div>
+          </div>
+          <div class="hol-header-row">
+            <div class="hol-header-left"></div>
+            <div class="hol-header-center"><span id="emp_setor2_ja"></span></div>
+            <div class="hol-header-right"><span id="emp_mes_nome2_ja"></span> de <span id="emp_ano2_ja"></span></div>
+          </div>
+        </div>
+        <div class="hol-func">
+          <div class="hol-func-row">
+            <div class="hol-func-cell" style="width:45px"><span class="lbl">C&oacute;digo</span><span class="val" style="display:block" id="func_cod2_ja"></span></div>
+            <div class="hol-func-cell" style="flex:1"><span class="lbl">Nome do Aprendiz</span><span class="val" style="display:block" id="func_nome2_ja"></span><span class="val" style="display:block" id="func_cargo2_ja"></span></div>
+            <div class="hol-func-cell" style="width:70px"><span class="lbl">CBO</span><span class="val" style="display:block" id="func_cbo2_ja"></span><span class="val" style="display:block">Admiss&atilde;o:</span></div>
+            <div class="hol-func-cell" style="width:50px"><span class="lbl">Departamento</span><span class="val" style="display:block" id="func_depto2_ja"></span></div>
+            <div class="hol-func-cell" style="width:75px"><span class="lbl">Filial</span><span class="val" style="display:block" id="func_filial2_ja"></span><span class="val" style="display:block" id="func_admissao2_ja"></span></div>
+          </div>
+        </div>
+        </div>
+        <div class="hol-body-box">
+        <table class="hol-table"><thead><tr><th style="width:45px">C&oacute;digo</th><th>Descri&ccedil;&atilde;o</th><th style="width:80px">Refer&ecirc;ncia</th><th style="width:95px">Vencimentos</th><th style="width:95px">Descontos</th></tr></thead><tbody id="hol-body2_ja"></tbody></table>
+        <div class="hol-totais-wrapper">
+          <div class="t-row"><div class="t-label">Total de Vencimentos</div><div class="t-label">Total de Descontos</div></div>
+          <div class="t-row"><div class="t-value" id="hol-tvenc2_ja">0,00</div><div class="t-value" id="hol-tdesc2_ja">0,00</div></div>
+          <div class="t-liq-row"><div class="liq-left"><div class="liq-label">Valor L&iacute;quido</div><div class="liq-arrow">&#x21E8;</div></div><div class="liq-value" id="hol-liq2_ja">0,00</div></div>
+        </div>
+        <div class="hol-bases">
+          <div class="hol-base-cell"><span class="lbl">Sal&aacute;rio Base</span><span class="val" id="hol-sal-base2_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Sal. Contr. INSS</span><span class="val" id="hol-sal-inss2_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. FGTS</span><span class="val" id="hol-base-fgts2_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">F.G.T.S do M&ecirc;s</span><span class="val" id="hol-fgts-mes2_ja">0,00</span></div>
+          <div class="hol-base-cell"><span class="lbl">Base C&aacute;lc. IRRF</span><span class="val" id="hol-base-irrf2_ja">0,00</span></div>
+          <div class="hol-base-cell" style="border-right:none"><span class="lbl">Faixa IRRF</span><span class="val" id="hol-faixa-irrf2_ja">0,00</span></div>
+        </div>
+        </div>
+        <div class="hol-lateral-area" id="hol-lateral2_ja"></div></div>
+    </div>
+  </div>
+
+  <div class="print-bar"><button class="btn-print" onclick="window.print()">Imprimir Holerite</button></div>
+
+  <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;">
+
+    <!-- Custo encargos Jovem Aprendiz -->
+    <div class="card custo-wrap">
+      <h2>Custo encargos do aprendiz</h2>
+      <div class="custo-item"><span>INSS Empregador (8%)</span><span id="ja-inss-emp">0,00</span></div>
+      <div class="custo-item"><span>FGTS (8%)</span><span id="ja-fgts">0,00</span></div>
+      <div class="custo-item"><span>Multa FGTS (3,2%)</span><span id="ja-multa-fgts">0,00</span></div>
+      <div class="custo-item"><span>Seguro Acidente de Trabalho / SAT (0,8%)</span><span id="ja-sat">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo total encargos do aprendiz</span><span id="ja-total-dae">0,00</span></div>
+    </div>
+
+    <!-- Provisionamento Jovem Aprendiz -->
+    <div class="card custo-wrap">
+      <h2>Provisionamento</h2>
+      <div class="custo-item"><span>1/12 avos de D&eacute;cimo Terceiro</span><span id="ja-prov13">0,00</span></div>
+      <div class="custo-item"><span>1/12 avos de F&eacute;rias</span><span id="ja-provferias">0,00</span></div>
+      <div class="custo-item"><span>Ter&ccedil;o de F&eacute;rias</span><span id="ja-prov-terco">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total de Provisionamento</span><span id="ja-prov-total">0,00</span></div>
+    </div>
+
+    <!-- Resumo Geral Jovem Aprendiz -->
+    <div class="card custo-wrap">
+      <h2>Resumo Geral</h2>
+      <div class="custo-item"><span>Custo total encargos do aprendiz</span><span id="ja-res-encargos">0,00</span></div>
+      <div class="custo-item"><span>Total de Provisionamento</span><span id="ja-res-prov">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total Geral</span><span id="ja-res-total">0,00</span></div>
+    </div>
+
+  </div>
+
+  <div class="info-note"><strong>Dica:</strong> Clique nos campos do holerite para edit&aacute;-los diretamente.</div>
+
+</div>
+</div>
+<!-- fim tab-ja -->
+
 </div>
 <!-- fim container -->
 
@@ -1039,10 +1203,11 @@ function trocarAba(aba){
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('ativo'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('ativo'));
   document.getElementById('tab-'+aba).classList.add('ativo');
-  const btns={'clt':0,'pl':1,'dom':2};
+  const btns={'clt':0,'pl':1,'dom':2,'ja':3};
   document.querySelectorAll('.tab-btn')[btns[aba]].classList.add('ativo');
   if(aba==='clt') calcular('');
   if(aba==='pl') calcular('_pl');
+  if(aba==='ja') calcularJA();
 }
 
 function g(id){return document.getElementById(id)}
@@ -1063,6 +1228,8 @@ function syncVia2(s){
 document.querySelectorAll('#tab-clt .e').forEach(el=>el.addEventListener('input',()=>syncVia2('')));
 // Sincroniza via2 ao digitar nos campos editáveis do holerite PL
 document.querySelectorAll('#tab-pl .e').forEach(el=>el.addEventListener('input',()=>syncVia2('_pl')));
+// Sincroniza via2 ao digitar nos campos editáveis do holerite JA
+document.querySelectorAll('#tab-ja .e').forEach(el=>el.addEventListener('input',()=>calcularJA()));
 
 document.querySelectorAll('input[inputmode="decimal"]').forEach(el=>el.addEventListener('focus',function(){this.select()}));
 
@@ -1119,13 +1286,13 @@ function _origemBotao(box){
 function abrirModal(){
   const abaAtiva=document.querySelector('.tab-pane.ativo');
   const abaId=abaAtiva?abaAtiva.id:'tab-clt';
-  const mapa={'tab-clt':'clt','tab-pl':'pl','tab-dom':'dom'};
+  const mapa={'tab-clt':'clt','tab-pl':'pl','tab-dom':'dom','tab-ja':'ja'};
   const secao=mapa[abaId]||'clt';
-  ['clt','pl','dom'].forEach(id=>{
+  ['clt','pl','dom','ja'].forEach(id=>{
     const el=document.getElementById('inst-'+id);
     if(el) el.style.display=id===secao?'':'none';
   });
-  const titulos={'clt':'CLT','pl':'Pró-labore','dom':'Empregada Doméstica'};
+  const titulos={'clt':'CLT','pl':'Pró-labore','dom':'Empregada Doméstica','ja':'Jovem Aprendiz'};
   const h2=document.querySelector('#modalInstrucoes .modal-header h2');
   if(h2) h2.textContent='ℹ Instruções de Uso — '+titulos[secao];
   const sb=window.innerWidth-document.documentElement.clientWidth;
@@ -1466,6 +1633,131 @@ function calcularDom(){
 }
 calcularDom();
 
+function calcularJA(){
+  const gd=id=>document.getElementById(id);
+  const sal=pv(gd('salario_ja'));
+  const he50Q=pv(gd('he50_qtd_ja'));
+  const hePctJa=parseInt(gd('he_pct_ja').value)||50;
+  const he100Q=pv(gd('he100_qtd_ja'));
+  const diasFalta=pv(gd('dias_falta_ja'));
+  const horasFalta=pv(gd('horas_falta_ja'));
+  const dsrD=pv(gd('desconto_dsr_dias_ja'));
+  const deps=parseInt(pv(gd('dependentes_ja')))||0;
+  const diasTrab=Math.min(pv(gd('dias_trab_ja'))||30,30);
+  const grat=pv(gd('gratificacao_ja'));
+  const prem=pv(gd('premiacao_ja'));
+  const vt=gd('vale_transporte_ja').value==='sim';
+  const adiant=gd('adiantamento_ja').value==='sim';
+
+  // Horas extras (valor/hora = sal/220)
+  const vh=sal/220;
+  const he50V=convH(he50Q)*vh*(1+hePctJa/100);
+  const he100V=convH(he100Q)*vh*2;
+
+  // Descontos por falta
+  const dFaltaV=Math.trunc((sal/30)*diasFalta*100)/100;
+  const hFaltaV=Math.trunc((sal/220)*convH(horasFalta)*100)/100;
+  const dsrV=Math.trunc((sal/30)*dsrD*100)/100;
+
+  const prov=sal+he50V+he100V+grat+prem;
+  const bruto=prov-dFaltaV-hFaltaV-dsrV;
+
+  // INSS: premiação não incide
+  const bINSS=bruto-prem;
+  const inss=calcINSS(bINSS);
+
+  // Vale-transporte: desconto de 6% do salário base
+  const vtDesc=vt?Math.trunc(sal*0.06*100)/100:0;
+
+  // IRRF
+  const B22=bruto-inss;
+  const legal=Math.max(0,irrfCalc(B22-(deps*DEDUCAO_DEP)).imp);
+  const simp=Math.max(0,irrfCalc(bruto-DEDUCAO_SIMPLIFICADA).imp);
+  const ir=Math.min(simp,legal);
+
+  const adiantV=adiant?sal*0.4:0;
+  const liq=bruto-inss-ir-vtDesc-adiantV;
+
+  // FGTS: premiação não incide
+  const fgts=Math.trunc(bINSS*0.08*100)/100;
+
+  // Encargos empregador (sobre salário base)
+  const inssEmp=Math.trunc(sal*0.08*100)/100;
+  const fgtsE=Math.trunc(sal*0.08*100)/100;
+  const multaFgts=Math.trunc(sal*0.032*100)/100;
+  const sat=Math.trunc(sal*0.008*100)/100;
+  const totalDae=inssEmp+fgtsE+multaFgts+sat;
+
+  // Provisões
+  const prov13=Math.trunc(sal/12*100)/100;
+  const provFerias=Math.trunc(sal/12*100)/100;
+  const provTerco=Math.round(provFerias/3*100)/100;
+  const totalProv=prov13+provFerias+provTerco;
+  const resTotal=totalDae+totalProv;
+
+  // Montar linhas do holerite
+  const linhasJa=[];
+  const addD=(c,d,r,v,ds)=>linhasJa.push({c,d,r,v,ds});
+  if(sal>0) addD(1,'SALARIO',diasTrab+' dias',sal,0);
+  if(he50V>0) addD(hePctJa===65?5002:hePctJa===60?5003:5000,'HORAS EXTRA '+hePctJa+'%',fmtHMInput(he50Q),he50V,0);
+  if(he100V>0) addD(5001,'HORAS EXTRA 100%',fmtHMInput(he100Q),he100V,0);
+  if(grat>0) addD(20,'GRATIFICACOES',fmt(grat),grat,0);
+  if(prem>0) addD(5080,'PREMIO','',prem,0);
+  if(dFaltaV>0) addD(8792,'DIAS FALTAS',diasFalta>0?fmt(diasFalta):'',0,dFaltaV);
+  if(hFaltaV>0) addD(8069,'HORAS FALTAS',horasFalta>0?fmt(horasFalta):'',0,hFaltaV);
+  if(dsrV>0) addD(8794,'DESCONTO DE DSR',dsrD>0?fmt(dsrD):'',0,dsrV);
+  if(inss>0) addD(998,'I.N.S.S.','',0,inss);
+  if(vtDesc>0) addD(110,'DESC. VALE TRANSPORTE','6%',0,vtDesc);
+  if(ir>0) addD(999,'IMPOSTO DE RENDA','',0,ir);
+  if(adiantV>0) addD(981,'ADIANTAMENTO SALARIAL','',0,adiantV);
+  if(fgts>0) addD(900,'F.G.T.S','',fgts,0);
+
+  while(linhasJa.length<MIN_ROWS)linhasJa.push({c:'',d:'',r:'',v:0,ds:0});
+
+  const sv=linhasJa.reduce((a,l)=>a+l.v,0);
+  const sd=linhasJa.reduce((a,l)=>a+l.ds,0);
+  const html=linhasJa.map(l=>`<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v>0?fmt(l.v):''}</td><td class="dsc">${l.ds>0?fmt(l.ds):''}</td></tr>`).join('');
+
+  ['_ja','2_ja'].forEach(vs=>{
+    const b=gd('hol-body'+vs); if(b) b.innerHTML=html;
+    const setV=(id,v)=>{const el=gd(id+vs);if(el)el.textContent=v;};
+    setV('hol-tvenc',fmt(sv));
+    setV('hol-tdesc',fmt(sd));
+    setV('hol-liq',fmt(liq));
+    setV('hol-sal-base',fmt(sal));
+    setV('hol-sal-inss',fmt(bruto));
+    setV('hol-base-fgts',fmt(bruto));
+    setV('hol-fgts-mes',fmt(fgts));
+    setV('hol-base-irrf',fmt(B22));
+    const faixaIR=B22>0?irrfCalc(B22).aliq*100:0;
+    setV('hol-faixa-irrf',fmt(faixaIR));
+  });
+
+  // Sync 2ª via campos editáveis
+  const ids=['emp_nome','emp_cnpj','emp_cc','emp_mes_nome','emp_ano','emp_setor','func_cod','func_nome','func_cargo','func_cbo','func_depto','func_filial','func_admissao'];
+  ids.forEach(id=>{
+    const src=gd(id+'_ja');
+    const dst=gd(id+'2_ja');
+    if(src&&dst) dst.textContent=src.value;
+  });
+
+  // Encargos
+  const s2=(id,v)=>{const el=gd(id);if(el)el.textContent=fmt(v);};
+  s2('ja-inss-emp',inssEmp);
+  s2('ja-fgts',fgtsE);
+  s2('ja-multa-fgts',multaFgts);
+  s2('ja-sat',sat);
+  s2('ja-total-dae',totalDae);
+  s2('ja-prov13',prov13);
+  s2('ja-provferias',provFerias);
+  s2('ja-prov-terco',provTerco);
+  s2('ja-prov-total',totalProv);
+  s2('ja-res-encargos',totalDae);
+  s2('ja-res-prov',totalProv);
+  s2('ja-res-total',resTotal);
+}
+calcularJA();
+
 // Navegação por Enter nos campos digitáveis (pula selects e toggles)
 (function(){
   const ORDEM=['salario','comissao','he50_qtd','he100_qtd','gratificacao','premiacao',
@@ -1481,7 +1773,7 @@ calcularDom();
   });
 })();
 
-// Empregada Doméstica: em construção no Netlify, visível no localhost
+// Empregada Doméstica e Jovem Aprendiz: em construção no Netlify, visível no localhost
 (function(){
   const isDev=['localhost','127.0.0.1'].includes(window.location.hostname);
   if(!isDev){
@@ -1494,6 +1786,17 @@ calcularDom();
       +'<h2 style="color:var(--azul-escuro);font-size:1.6em;margin-bottom:12px;">Em Constru&ccedil;&atilde;o</h2>'
       +'<div style="width:48px;height:3px;background:var(--dourado);border-radius:2px;margin:0 auto 20px;"></div>'
       +'<p style="color:#6b7280;font-size:0.97em;line-height:1.6;">A calculadora para <strong>Empregada Dom&eacute;stica</strong> est&aacute; sendo desenvolvida e em breve estar&aacute; dispon&iacute;vel.</p>'
+      +'</div>'
+      +'</div>';
+    const btnJa=document.getElementById('btn-tab-ja');
+    if(btnJa) btnJa.innerHTML='Jovem Aprendiz 🚧';
+    const tabJa=document.getElementById('tab-ja');
+    if(tabJa) tabJa.innerHTML='<div style="display:flex;justify-content:center;align-items:center;padding:48px 16px;">'
+      +'<div style="background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(18,43,86,0.13);padding:48px 56px;text-align:center;max-width:480px;width:100%;border-top:5px solid var(--dourado);">'
+      +'<div style="font-size:3.5em;margin-bottom:20px;">🚧</div>'
+      +'<h2 style="color:var(--azul-escuro);font-size:1.6em;margin-bottom:12px;">Em Constru&ccedil;&atilde;o</h2>'
+      +'<div style="width:48px;height:3px;background:var(--dourado);border-radius:2px;margin:0 auto 20px;"></div>'
+      +'<p style="color:#6b7280;font-size:0.97em;line-height:1.6;">A calculadora para <strong>Jovem Aprendiz</strong> est&aacute; sendo desenvolvida e em breve estar&aacute; dispon&iacute;vel.</p>'
       +'</div>'
       +'</div>';
   }
