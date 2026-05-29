@@ -460,7 +460,7 @@
 <nav class="tab-nav">
   <button class="tab-btn ativo" onclick="trocarAba('clt')">CLT</button>
   <button class="tab-btn" onclick="trocarAba('pl')">Pró-labore</button>
-  <button class="tab-btn" onclick="trocarAba('dom')">Empregada Doméstica</button>
+  <button class="tab-btn" id="btn-tab-dom" onclick="trocarAba('dom')">Empregada Dom&eacute;stica</button>
 </nav>
 
 <!-- ===== ABA CLT ===== -->
@@ -1452,6 +1452,21 @@ calcularDom();
     const prox=document.getElementById(ORDEM[idx+1]);
     if(prox){prox.focus();prox.select();}else{document.activeElement.blur();}
   });
+})();
+
+// Empregada Doméstica: em construção no Netlify, visível no localhost
+(function(){
+  const isDev=['localhost','127.0.0.1'].includes(window.location.hostname);
+  if(!isDev){
+    const btn=document.getElementById('btn-tab-dom');
+    if(btn) btn.innerHTML='Empregada Dom&eacute;stica 🚧';
+    const tab=document.getElementById('tab-dom');
+    if(tab) tab.innerHTML='<div style="text-align:center;padding:80px 24px;">'
+      +'<div style="font-size:3em;margin-bottom:16px;">🚧</div>'
+      +'<h2 style="color:var(--azul-escuro);margin-bottom:12px;">Em Constru&ccedil;&atilde;o</h2>'
+      +'<p style="color:var(--texto-cinza2);font-size:1em;">Esta se&ccedil;&atilde;o estar&aacute; dispon&iacute;vel em breve.</p>'
+      +'</div>';
+  }
 })();
 </script>
 </body>
