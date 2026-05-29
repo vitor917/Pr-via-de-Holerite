@@ -633,7 +633,7 @@
 
   <!-- Custo do Funcionário CLT -->
   <div class="card custo-wrap" style="grid-column:1/-1;">
-    <h2>Custo do Funcion&aacute;rio</h2>
+    <h2>Custo encargos do funcion&aacute;rio</h2>
     <div style="display:none;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
       <div class="field" style="flex:1;min-width:150px;margin:0">
         <label>GILRAT / RAT (%)</label>
@@ -652,7 +652,24 @@
     <div class="custo-item"><span>Contribui&ccedil;&atilde;o Previd. Patronal (20,0%)</span><span id="custo-patronal-clt">0,00</span></div>
     <div class="custo-item"><span>GILRAT (3%)<span style="display:none"> (<span id="custo-gilrat-lbl">3,0</span>%) &times; FAP (<span id="custo-fap-lbl">1,00</span>)</span></span><span id="custo-gilrat-clt">0,00</span></div>
     <div class="custo-item"><span>Outras Entidades (5,8%)<span style="display:none"> (<span id="custo-outras-lbl">5,8</span>%)</span></span><span id="custo-outras-clt">0,00</span></div>
-    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo Total do Funcion&aacute;rio</span><span id="custo-total-clt">0,00</span></div>
+    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo total encargos do funcion&aacute;rio</span><span id="custo-total-clt">0,00</span></div>
+  </div>
+
+  <!-- Provisionamento CLT -->
+  <div class="card custo-wrap" style="grid-column:1/-1;margin-top:8px;">
+    <h2>Provisionamento</h2>
+    <div class="custo-item"><span>1/12 avos de D&eacute;cimo Terceiro</span><span id="clt-prov-13">0,00</span></div>
+    <div class="custo-item"><span>1/12 avos de F&eacute;rias</span><span id="clt-prov-ferias">0,00</span></div>
+    <div class="custo-item"><span>Ter&ccedil;o de F&eacute;rias</span><span id="clt-prov-terco">0,00</span></div>
+    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total de Provisionamento</span><span id="clt-prov-total">0,00</span></div>
+  </div>
+
+  <!-- Resumo Geral CLT -->
+  <div class="card custo-wrap" style="grid-column:1/-1;margin-top:8px;">
+    <h2>Resumo Geral</h2>
+    <div class="custo-item"><span>Custo total encargos do funcion&aacute;rio</span><span id="clt-res-encargos">0,00</span></div>
+    <div class="custo-item"><span>Total de Provisionamento</span><span id="clt-res-prov">0,00</span></div>
+    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total Geral</span><span id="clt-res-total">0,00</span></div>
   </div>
 
   <div class="info-note">
@@ -1282,6 +1299,20 @@ function calcular(s){
     const gEl=g('custo-gilrat-lbl');if(gEl)gEl.textContent=gilratPct.toFixed(1);
     const fEl=g('custo-fap-lbl');if(fEl)fEl.textContent=fapVal.toFixed(2);
     const oEl=g('custo-outras-lbl');if(oEl)oEl.textContent=outrasPct.toFixed(1);
+    // Provisionamento
+    const prov13=Math.round(salMensal/12*100)/100;
+    const provFerias=Math.round(salMensal/12*100)/100;
+    const provTerco=Math.round(provFerias/3*100)/100;
+    const provTotal=prov13+provFerias+provTerco;
+    sc('clt-prov-13',prov13);
+    sc('clt-prov-ferias',provFerias);
+    sc('clt-prov-terco',provTerco);
+    sc('clt-prov-total',provTotal);
+    // Resumo geral
+    const resTotal=custoTotal+provTotal;
+    sc('clt-res-encargos',custoTotal);
+    sc('clt-res-prov',provTotal);
+    sc('clt-res-total',resTotal);
   }
 }
 atualizarCategoria('');
