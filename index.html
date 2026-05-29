@@ -71,7 +71,7 @@
   /* Fields */
   .field { display: flex; align-items: center; margin-bottom: 10px; gap: 8px; }
   .field label { flex: 1; font-size: 0.88em; font-weight: 500; white-space: nowrap; color: var(--texto-cinza2); }
-  .field input[type="number"], .field select {
+  .field input[type="text"], .field select {
     width: 140px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px;
     font-size: 0.95em; background: var(--bg-claro); text-align: right; transition: border-color 0.2s;
     color: var(--texto-escuro);
@@ -470,7 +470,7 @@
   <!-- Dados do Funcionário -->
   <div class="card">
     <h2>Dados do Funcion&aacute;rio</h2>
-    <div class="field"><label id="label_salario">Sal&aacute;rio (R$)</label><input type="number" id="salario" value="0" step="0.01" min="0" oninput="calcular()" onblur="verificarAvisoMensalista()"></div>
+    <div class="field"><label id="label_salario">Sal&aacute;rio (R$)</label><input type="text" inputmode="decimal" id="salario" value="0" step="0.01" min="0" oninput="calcular()" onblur="verificarAvisoMensalista()"></div>
     <div id="aviso_horista" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
       ⚠️ <strong>Atenção:</strong> O valor informado parece ser um salário mensal, não um valor por hora. Verifique a <strong>Categoria de Contrato</strong> ou corrija o valor da hora.
       <br><span id="aviso_horista_calc" style="font-size:12px;opacity:0.85;"></span>
@@ -478,11 +478,11 @@
     <div id="aviso_mensalista" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
       ⚠️ <strong>Atenção:</strong> O valor informado é muito baixo para um salário mensal. Verifique a <strong>Categoria de Contrato</strong> — talvez o correto seja <strong>Horista</strong>.
     </div>
-    <div class="field"><label>Comiss&atilde;o (R$)</label><input type="number" id="comissao" value="0" step="0.01" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Hora-Extra <select id="he_pct" onchange="calcular()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd" value="0" step="0.01" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd" value="0" step="0.01" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="number" id="gratificacao" value="0" step="0.01" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="number" id="premiacao" value="0" step="0.01" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Comiss&atilde;o (R$)</label><input type="text" inputmode="decimal" id="comissao" value="0" step="0.01" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Hora-Extra <select id="he_pct" onchange="calcular()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd" value="0" step="0.01" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd" value="0" step="0.01" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao" value="0" step="0.01" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao" value="0" step="0.01" min="0" oninput="calcular()"></div>
     <div class="field">
       <div class="field-toggle-label">
         <label>Insalubridade</label>
@@ -503,14 +503,14 @@
   <!-- Faltas e DSR -->
   <div class="card">
     <h2>Faltas, DSR e Informa&ccedil;&otilde;es</h2>
-    <div class="field"><label>Dias de falta</label><input type="number" id="dias_falta" value="0" step="1" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Horas de falta</label><input type="number" id="horas_falta" value="0" step="0.01" min="0" oninput="calcular()"></div>
-    <div class="field"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias" value="0" step="1" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Dias de falta</label><input type="text" inputmode="decimal" id="dias_falta" value="0" step="1" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta" value="0" step="0.01" min="0" oninput="calcular()"></div>
+    <div class="field"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias" value="0" step="1" min="0" oninput="calcular()"></div>
     <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
-    <div class="field"><label>Dias do m&ecirc;s</label><input type="number" id="dias_mes" value="26" step="1" min="1" oninput="atualizarDiasTrab();calcular()"></div>
-    <div class="field"><label>Domingos e feriados</label><input type="number" id="dom_feriados" value="4" step="1" min="0" oninput="atualizarDiasTrab();calcular()"></div>
-    <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes" value="0" step="1" min="0" oninput="calcular()"></div>
-    <div class="field"><label id="label_dias_trab">Dias trabalhados</label><input type="number" id="dias_trab" value="30" step="1" min="1" oninput="validarDiasTrab(this);calcular()"></div>
+    <div class="field"><label>Dias do m&ecirc;s</label><input type="text" inputmode="decimal" id="dias_mes" value="26" step="1" min="1" oninput="atualizarDiasTrab();calcular()"></div>
+    <div class="field"><label>Domingos e feriados</label><input type="text" inputmode="decimal" id="dom_feriados" value="4" step="1" min="0" oninput="atualizarDiasTrab();calcular()"></div>
+    <div class="field"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes" value="0" step="1" min="0" oninput="calcular()"></div>
+    <div class="field"><label id="label_dias_trab">Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab" value="30" step="1" min="1" oninput="validarDiasTrab(this);calcular()"></div>
     <div class="field"><label>Categoria de Contrato</label><select id="categoria_contrato" onchange="atualizarCategoria()"><option value="mensalista">Mensalista</option><option value="horista">Horista</option></select></div>
     <div class="field"><label>Teve adiantamento?</label><select id="adiantamento" onchange="calcular()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
     <select id="pro_labore" style="display:none"><option value="nao">Não</option><option value="sim">Sim</option></select>
@@ -637,15 +637,15 @@
     <div style="display:none;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
       <div class="field" style="flex:1;min-width:150px;margin:0">
         <label>GILRAT / RAT (%)</label>
-        <input type="number" id="gilrat_pct" value="3" step="0.1" min="1" max="3" oninput="calcular()">
+        <input type="text" inputmode="decimal" id="gilrat_pct" value="3" step="0.1" min="1" max="3" oninput="calcular()">
       </div>
       <div class="field" style="flex:1;min-width:150px;margin:0">
         <label>FAP</label>
-        <input type="number" id="fap_val" value="1" step="0.01" min="0.5" max="2" oninput="calcular()">
+        <input type="text" inputmode="decimal" id="fap_val" value="1" step="0.01" min="0.5" max="2" oninput="calcular()">
       </div>
       <div class="field" style="flex:1;min-width:150px;margin:0">
         <label>Outras Entidades (%)</label>
-        <input type="number" id="outras_pct" value="5.8" step="0.1" min="0" oninput="calcular()">
+        <input type="text" inputmode="decimal" id="outras_pct" value="5.8" step="0.1" min="0" oninput="calcular()">
       </div>
     </div>
     <div class="custo-item"><span>FGTS Mensal (8,0%)</span><span id="custo-fgts-clt">0,00</span></div>
@@ -669,7 +669,7 @@
   <!-- Dados do Sócio (Pró-labore) -->
   <div class="card">
     <h2>Dados do Sócio / Pró-labore</h2>
-    <div class="field"><label id="label_salario_pl">Pró-labore (R$)</label><input type="number" id="salario_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')" onblur="verificarAvisoMensalista('_pl')"></div>
+    <div class="field"><label id="label_salario_pl">Pró-labore (R$)</label><input type="text" inputmode="decimal" id="salario_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')" onblur="verificarAvisoMensalista('_pl')"></div>
     <div id="aviso_horista_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
       ⚠️ <strong>Atenção:</strong> O valor informado parece ser um salário mensal, não um valor por hora. Verifique a <strong>Categoria de Contrato</strong> ou corrija o valor da hora.
       <br><span id="aviso_horista_calc_pl" style="font-size:12px;opacity:0.85;"></span>
@@ -677,11 +677,11 @@
     <div id="aviso_mensalista_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
       ⚠️ <strong>Atenção:</strong> O valor informado é muito baixo para um pró-labore. Verifique o valor informado.
     </div>
-    <div class="field" style="display:none"><label>Comiss&atilde;o (R$)</label><input type="number" id="comissao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Hora-Extra <select id="he_pct_pl" onchange="calcular('_pl')" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="number" id="gratificacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Premia&ccedil;&atilde;o (R$)</label><input type="number" id="premiacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Comiss&atilde;o (R$)</label><input type="text" inputmode="decimal" id="comissao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Hora-Extra <select id="he_pct_pl" onchange="calcular('_pl')" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
     <div class="field" style="display:none">
       <div class="field-toggle-label">
         <label>Insalubridade</label>
@@ -701,14 +701,14 @@
   <!-- Faltas e DSR (Pró-labore) -->
   <div class="card">
     <h2>Faltas, DSR e Informa&ccedil;&otilde;es</h2>
-    <div class="field" style="display:none"><label>Dias de falta</label><input type="number" id="dias_falta_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Horas de falta</label><input type="number" id="horas_falta_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Dias de falta</label><input type="text" inputmode="decimal" id="dias_falta_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
     <hr style="display:none;margin:12px 0;border:none;border-top:2px solid var(--dourado)">
-    <div class="field" style="display:none"><label>Dias do m&ecirc;s</label><input type="number" id="dias_mes_pl" value="26" step="1" min="1" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Domingos e feriados</label><input type="number" id="dom_feriados_pl" value="4" step="1" min="0" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
-    <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
-    <div class="field"><label id="label_dias_trab_pl">Dias trabalhados</label><input type="number" id="dias_trab_pl" value="30" step="1" min="1" oninput="validarDiasTrab(this,'_pl');calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Dias do m&ecirc;s</label><input type="text" inputmode="decimal" id="dias_mes_pl" value="26" step="1" min="1" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
+    <div class="field" style="display:none"><label>Domingos e feriados</label><input type="text" inputmode="decimal" id="dom_feriados_pl" value="4" step="1" min="0" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
+    <div class="field"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
+    <div class="field"><label id="label_dias_trab_pl">Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab_pl" value="30" step="1" min="1" oninput="validarDiasTrab(this,'_pl');calcular('_pl')"></div>
     <div class="field" style="display:none"><label>Categoria de Contrato</label><select id="categoria_contrato_pl" onchange="atualizarCategoria('_pl')"><option value="mensalista">Mensalista</option><option value="horista">Horista</option></select></div>
     <div class="field" style="display:none"><label>Teve adiantamento?</label><select id="adiantamento_pl" onchange="calcular('_pl')"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
@@ -842,23 +842,23 @@
   <!-- Dados -->
   <div class="card">
     <h2>Dados da Empregada</h2>
-    <div class="field"><label>Sal&aacute;rio (R$)</label><input type="number" id="salario_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Hora-Extra <select id="he_pct_dom" onchange="calcularDom()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="number" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="number" id="he100_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="number" id="gratificacao_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="number" id="premiacao_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Sal&aacute;rio (R$)</label><input type="text" inputmode="decimal" id="salario_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Hora-Extra <select id="he_pct_dom" onchange="calcularDom()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
     <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <!-- Informações -->
   <div class="card">
     <h2>Faltas e Informa&ccedil;&otilde;es</h2>
-    <div class="field"><label>Dias de falta</label><input type="number" id="dias_falta_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Horas de falta</label><input type="number" id="horas_falta_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Desconto DSR (dias)</label><input type="number" id="desconto_dsr_dias_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Dias de falta</label><input type="text" inputmode="decimal" id="dias_falta_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta_dom" value="0" step="0.01" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
     <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
-    <div class="field"><label>Dependentes IR</label><input type="number" id="dependentes_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
-    <div class="field"><label>Dias trabalhados</label><input type="number" id="dias_trab_dom" value="30" step="1" min="1" max="30" oninput="calcularDom()"></div>
+    <div class="field"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_dom" value="0" step="1" min="0" oninput="calcularDom()"></div>
+    <div class="field"><label>Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab_dom" value="30" step="1" min="1" max="30" oninput="calcularDom()"></div>
     <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_dom" onchange="calcularDom()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
@@ -1008,6 +1008,7 @@ function trocarAba(aba){
 }
 
 function g(id){return document.getElementById(id)}
+function pv(el){return el?parseFloat((el.value||'').replace(',','.'))||0:0;}
 
 function syncVia2(s){
   s=s||'';
@@ -1025,11 +1026,11 @@ document.querySelectorAll('#tab-clt .e').forEach(el=>el.addEventListener('input'
 // Sincroniza via2 ao digitar nos campos editáveis do holerite PL
 document.querySelectorAll('#tab-pl .e').forEach(el=>el.addEventListener('input',()=>syncVia2('_pl')));
 
-document.querySelectorAll('input[type="number"]').forEach(el=>el.addEventListener('focus',function(){this.select()}));
+document.querySelectorAll('input[inputmode="decimal"]').forEach(el=>el.addEventListener('focus',function(){this.select()}));
 
 function verificarAvisoMensalista(s){
   s=s||'';
-  const sal = parseFloat(g('salario'+s).value) || 0;
+  const sal = pv(g('salario'+s));
   const catEl = g('categoria_contrato'+s);
   const categoria = catEl ? catEl.value : 'mensalista';
   const mostrar = categoria === 'mensalista' && sal > 0 && sal < 120;
@@ -1117,8 +1118,10 @@ function fecharModal(){
 
 function atualizarDiasTrab(s){
   s=s||'';
-  const dMes=parseFloat(g('dias_mes'+s).value)||0;
-  const domF=parseFloat(g('dom_feriados'+s).value)||0;
+  const catEl=g('categoria_contrato'+s);
+  if(catEl&&catEl.value==='horista') return;
+  const dMes=pv(g('dias_mes'+s));
+  const domF=pv(g('dom_feriados'+s));
   const input=g('dias_trab'+s);
   const soma=Math.min(dMes+domF,31);
   if(input) input.value=soma;
@@ -1130,13 +1133,13 @@ function calcular(s){
   const proLabore = s==='_pl' ? true : (g('pro_labore') ? g('pro_labore').value==='sim' : false);
 
   const salEl=g('salario'+s); if(!salEl) return;
-  const sal=parseFloat(salEl.value)||0;
-  const com=parseFloat(g('comissao'+s).value)||0;
-  const he50Q=parseFloat(g('he50_qtd'+s).value)||0;
+  const sal=pv(salEl);
+  const com=pv(g('comissao'+s));
+  const he50Q=pv(g('he50_qtd'+s));
   const hePct=parseInt(g('he_pct'+s).value)||50;
-  const he100Q=parseFloat(g('he100_qtd'+s).value)||0;
-  const grat=parseFloat(g('gratificacao'+s).value)||0;
-  const prem=parseFloat(g('premiacao'+s).value)||0;
+  const he100Q=pv(g('he100_qtd'+s));
+  const grat=pv(g('gratificacao'+s));
+  const prem=pv(g('premiacao'+s));
   const insOnEl=g('insalubridade_on'+s);
   const insOn=insOnEl?insOnEl.checked:false;
   const insPEl=g('insalubridade_pct'+s);
@@ -1145,20 +1148,23 @@ function calcular(s){
   const perOn=perOnEl?perOnEl.checked:false;
   const perPEl=g('periculosidade_pct'+s);
   const perP=perPEl?parseFloat(perPEl.value):0.3;
-  const dFalta=parseFloat(g('dias_falta'+s).value)||0;
-  const hFalta=parseFloat(g('horas_falta'+s).value)||0;
-  const dsrD=parseFloat(g('desconto_dsr_dias'+s).value)||0;
-  const dMes=parseFloat(g('dias_mes'+s).value)||25;
-  const domF=parseFloat(g('dom_feriados'+s).value)||0;
-  const deps=parseInt(g('dependentes'+s).value)||0;
-  const dTrab=parseFloat(g('dias_trab'+s).value)||30;
+  const dFalta=pv(g('dias_falta'+s));
+  const hFalta=pv(g('horas_falta'+s));
+  const dsrD=pv(g('desconto_dsr_dias'+s));
+  const dMes=pv(g('dias_mes'+s))||25;
+  const domF=pv(g('dom_feriados'+s));
+  const deps=parseInt(pv(g('dependentes'+s)))||0;
+  const dTrab=pv(g('dias_trab'+s))||30;
   const adiantEl=g('adiantamento'+s);
   const adiant=adiantEl?adiantEl.value==='sim':false;
   const catEl=g('categoria_contrato'+s);
   const categoria=catEl?catEl.value:'mensalista';
   const dTrabCalc=categoria==='horista'?dTrab:Math.min(dTrab,30);
 
-  const salMensal = categoria === 'horista' ? sal * dTrabCalc : sal;
+  // Para horista: repouso = (horas_trabalhadas / dias_do_mês) × domingos_feriados
+  const hRepouso = (categoria==='horista' && dMes>0) ? (dTrabCalc/dMes)*domF : 0;
+  const repousoV = categoria === 'horista' ? sal * hRepouso : 0;
+  const salMensal = categoria === 'horista' ? sal * (dTrabCalc - hRepouso) : sal;
 
   // Avisos horista / mensalista
   const avisoEl = g('aviso_horista'+s);
@@ -1186,7 +1192,7 @@ function calcular(s){
   const perV=perOn?base*perP:0;
   const dFaltaV=(base/30)*dFalta,hFaltaV=(base/220)*convH(hFalta),dsrV=(base/30)*dsrD;
 
-  const prov=salMensal+com+he50V+he65V+he100V+grat+prem+dsrCom+dsrHE+insV+perV;
+  const prov=salMensal+com+he50V+he65V+he100V+grat+prem+dsrCom+dsrHE+insV+perV+repousoV;
   const descF=dFaltaV+hFaltaV+dsrV;
   const bruto=prov-descF;
 
@@ -1207,13 +1213,14 @@ function calcular(s){
   const vtDesc=vtEl&&vtEl.value==='sim'?Math.trunc(salMensal*0.06*100)/100:0;
   const liq=bruto-inss-ir-adiantV-vtDesc;
   const fgts=proLabore?0:bINSS*0.08;
-  const totalHoras=categoria==='horista'?dTrabCalc:dTrabCalc*(220/30);
+  const totalHoras=categoria==='horista'?(dTrabCalc-hRepouso):dTrabCalc*(220/30);
   const faixaIR=bIR>0?irrfCalc(bIR).aliq*100:0;
 
   const linhas=[];
   const add=(c,d,r,v,ds)=>linhas.push({c,d,r,v:v||0,ds:ds||0});
 
   if(sal>0) add(proLabore?100:1, proLabore?'PRO-LABORE':'HORAS NORMAIS',fmtHM(totalHoras),salMensal,0);
+  if(repousoV>0) add(10,'HORAS REPOUSO REMUNERADO',fmtHMInput(hRepouso),repousoV,0);
   if(com>0) add(37,'COMISSOES',fmt(com),com,0);
   if(he50V>0) add(hePct===65?5002:hePct===60?5003:5000,'HORAS EXTRA '+hePct+'%',he50Q>0?fmtHMInput(he50Q):'',he50V,0);
   if(he100V>0) add(5001,'HORAS EXTRA 100%',he100Q>0?fmtHMInput(he100Q):'',he100V,0);
@@ -1258,9 +1265,9 @@ function calcular(s){
 
   // Custo do funcionário (apenas CLT)
   if(!proLabore){
-    const gilratPct=parseFloat(g('gilrat_pct').value)||3;
-    const fapVal=parseFloat(g('fap_val').value)||1;
-    const outrasPct=parseFloat(g('outras_pct').value)||5.8;
+    const gilratPct=pv(g('gilrat_pct'))||3;
+    const fapVal=pv(g('fap_val'))||1;
+    const outrasPct=pv(g('outras_pct'))||5.8;
     const custoFgts=Math.round(bINSS*0.08*100)/100;
     const custoPatronal=Math.round(bINSS*0.20*100)/100;
     const custoGilrat=Math.round(bINSS*(gilratPct/100)*fapVal*100)/100;
@@ -1284,17 +1291,17 @@ calcular('_pl');
 
 function calcularDom(){
   const gd=id=>document.getElementById(id);
-  const sal=parseFloat(gd('salario_dom').value)||0;
-  const he50Q=parseFloat(gd('he50_qtd_dom').value)||0;
+  const sal=pv(gd('salario_dom'));
+  const he50Q=pv(gd('he50_qtd_dom'));
   const hePctDom=parseInt(gd('he_pct_dom').value)||50;
-  const he100Q=parseFloat(gd('he100_qtd_dom').value)||0;
-  const diasFalta=parseFloat(gd('dias_falta_dom').value)||0;
-  const horasFalta=parseFloat(gd('horas_falta_dom').value)||0;
-  const dsrD=parseFloat(gd('desconto_dsr_dias_dom').value)||0;
-  const deps=parseInt(gd('dependentes_dom').value)||0;
-  const diasTrab=Math.min(parseFloat(gd('dias_trab_dom').value)||30,30);
-  const grat=parseFloat(gd('gratificacao_dom').value)||0;
-  const prem=parseFloat(gd('premiacao_dom').value)||0;
+  const he100Q=pv(gd('he100_qtd_dom'));
+  const diasFalta=pv(gd('dias_falta_dom'));
+  const horasFalta=pv(gd('horas_falta_dom'));
+  const dsrD=pv(gd('desconto_dsr_dias_dom'));
+  const deps=parseInt(pv(gd('dependentes_dom')))||0;
+  const diasTrab=Math.min(pv(gd('dias_trab_dom'))||30,30);
+  const grat=pv(gd('gratificacao_dom'));
+  const prem=pv(gd('premiacao_dom'));
   const vt=gd('vale_transporte_dom').value==='sim';
   const adiant=gd('adiantamento_dom').value==='sim';
 
