@@ -631,45 +631,49 @@
     <button class="btn-print" onclick="window.print()">Imprimir Holerite</button>
   </div>
 
-  <!-- Custo do Funcionário CLT -->
-  <div class="card custo-wrap" style="grid-column:1/-1;">
-    <h2>Custo encargos do funcion&aacute;rio</h2>
-    <div style="display:none;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
-      <div class="field" style="flex:1;min-width:150px;margin:0">
-        <label>GILRAT / RAT (%)</label>
-        <input type="text" inputmode="decimal" id="gilrat_pct" value="3" step="0.1" min="1" max="3" oninput="calcular()">
+  <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;">
+
+    <!-- Custo do Funcionário CLT -->
+    <div class="card custo-wrap">
+      <h2>Custo encargos do funcion&aacute;rio</h2>
+      <div style="display:none;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
+        <div class="field" style="flex:1;min-width:150px;margin:0">
+          <label>GILRAT / RAT (%)</label>
+          <input type="text" inputmode="decimal" id="gilrat_pct" value="3" step="0.1" min="1" max="3" oninput="calcular()">
+        </div>
+        <div class="field" style="flex:1;min-width:150px;margin:0">
+          <label>FAP</label>
+          <input type="text" inputmode="decimal" id="fap_val" value="1" step="0.01" min="0.5" max="2" oninput="calcular()">
+        </div>
+        <div class="field" style="flex:1;min-width:150px;margin:0">
+          <label>Outras Entidades (%)</label>
+          <input type="text" inputmode="decimal" id="outras_pct" value="5.8" step="0.1" min="0" oninput="calcular()">
+        </div>
       </div>
-      <div class="field" style="flex:1;min-width:150px;margin:0">
-        <label>FAP</label>
-        <input type="text" inputmode="decimal" id="fap_val" value="1" step="0.01" min="0.5" max="2" oninput="calcular()">
-      </div>
-      <div class="field" style="flex:1;min-width:150px;margin:0">
-        <label>Outras Entidades (%)</label>
-        <input type="text" inputmode="decimal" id="outras_pct" value="5.8" step="0.1" min="0" oninput="calcular()">
-      </div>
+      <div class="custo-item"><span>FGTS Mensal (8,0%)</span><span id="custo-fgts-clt">0,00</span></div>
+      <div class="custo-item"><span>Contribui&ccedil;&atilde;o Previd. Patronal (20,0%)</span><span id="custo-patronal-clt">0,00</span></div>
+      <div class="custo-item"><span>GILRAT (3%)<span style="display:none"> (<span id="custo-gilrat-lbl">3,0</span>%) &times; FAP (<span id="custo-fap-lbl">1,00</span>)</span></span><span id="custo-gilrat-clt">0,00</span></div>
+      <div class="custo-item"><span>Outras Entidades (5,8%)<span style="display:none"> (<span id="custo-outras-lbl">5,8</span>%)</span></span><span id="custo-outras-clt">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo total encargos do funcion&aacute;rio</span><span id="custo-total-clt">0,00</span></div>
     </div>
-    <div class="custo-item"><span>FGTS Mensal (8,0%)</span><span id="custo-fgts-clt">0,00</span></div>
-    <div class="custo-item"><span>Contribui&ccedil;&atilde;o Previd. Patronal (20,0%)</span><span id="custo-patronal-clt">0,00</span></div>
-    <div class="custo-item"><span>GILRAT (3%)<span style="display:none"> (<span id="custo-gilrat-lbl">3,0</span>%) &times; FAP (<span id="custo-fap-lbl">1,00</span>)</span></span><span id="custo-gilrat-clt">0,00</span></div>
-    <div class="custo-item"><span>Outras Entidades (5,8%)<span style="display:none"> (<span id="custo-outras-lbl">5,8</span>%)</span></span><span id="custo-outras-clt">0,00</span></div>
-    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo total encargos do funcion&aacute;rio</span><span id="custo-total-clt">0,00</span></div>
-  </div>
 
-  <!-- Provisionamento CLT -->
-  <div class="card custo-wrap" style="grid-column:1/-1;margin-top:8px;">
-    <h2>Provisionamento</h2>
-    <div class="custo-item"><span>1/12 avos de D&eacute;cimo Terceiro</span><span id="clt-prov-13">0,00</span></div>
-    <div class="custo-item"><span>1/12 avos de F&eacute;rias</span><span id="clt-prov-ferias">0,00</span></div>
-    <div class="custo-item"><span>Ter&ccedil;o de F&eacute;rias</span><span id="clt-prov-terco">0,00</span></div>
-    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total de Provisionamento</span><span id="clt-prov-total">0,00</span></div>
-  </div>
+    <!-- Provisionamento CLT -->
+    <div class="card custo-wrap">
+      <h2>Provisionamento</h2>
+      <div class="custo-item"><span>1/12 avos de D&eacute;cimo Terceiro</span><span id="clt-prov-13">0,00</span></div>
+      <div class="custo-item"><span>1/12 avos de F&eacute;rias</span><span id="clt-prov-ferias">0,00</span></div>
+      <div class="custo-item"><span>Ter&ccedil;o de F&eacute;rias</span><span id="clt-prov-terco">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total de Provisionamento</span><span id="clt-prov-total">0,00</span></div>
+    </div>
 
-  <!-- Resumo Geral CLT -->
-  <div class="card custo-wrap" style="grid-column:1/-1;margin-top:8px;">
-    <h2>Resumo Geral</h2>
-    <div class="custo-item"><span>Custo total encargos do funcion&aacute;rio</span><span id="clt-res-encargos">0,00</span></div>
-    <div class="custo-item"><span>Total de Provisionamento</span><span id="clt-res-prov">0,00</span></div>
-    <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total Geral</span><span id="clt-res-total">0,00</span></div>
+    <!-- Resumo Geral CLT -->
+    <div class="card custo-wrap">
+      <h2>Resumo Geral</h2>
+      <div class="custo-item"><span>Custo total encargos do funcion&aacute;rio</span><span id="clt-res-encargos">0,00</span></div>
+      <div class="custo-item"><span>Total de Provisionamento</span><span id="clt-res-prov">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total Geral</span><span id="clt-res-total">0,00</span></div>
+    </div>
+
   </div>
 
   <div class="info-note">
@@ -977,18 +981,35 @@
 
   <div class="print-bar"><button class="btn-print" onclick="window.print()">Imprimir Holerite</button></div>
 
-  <!-- Encargos do Empregador -->
-  <div class="card custo-wrap" style="grid-column:1/-1;">
-    <h2>Encargos do Empregador (DAE)</h2>
-    <div class="custo-item"><span>INSS Empregador (8%)</span><span id="dom-inss-emp">0,00</span></div>
-    <div class="custo-item"><span>FGTS (8%)</span><span id="dom-fgts">0,00</span></div>
-    <div class="custo-item"><span>Multa FGTS (3,2%)</span><span id="dom-multa-fgts">0,00</span></div>
-    <div class="custo-item"><span>Seguro Acidente de Trabalho / SAT (0,8%)</span><span id="dom-sat">0,00</span></div>
-    <div class="custo-total" style="display:flex;justify-content:space-between"><span>Custos Proventos Mensais</span><span id="dom-total-dae">0,00</span></div>
-    <hr style="margin:14px 0;border:none;border-top:1px solid #eee">
-    <div class="custo-item"><span>Prov. 13º Sal&aacute;rio (1/12)</span><span id="dom-prov13">0,00</span></div>
-    <div class="custo-item"><span>Prov. F&eacute;rias + 1/3 (1/12 × 4/3)</span><span id="dom-provferias">0,00</span></div>
-    <div class="custo-total" style="display:flex;justify-content:space-between"><span>Custo Mensal Total</span><span id="dom-custo-total">0,00</span></div>
+  <div style="grid-column:1/-1;display:flex;flex-direction:column;gap:8px;">
+
+    <!-- Custo encargos Doméstica -->
+    <div class="card custo-wrap">
+      <h2>Custo encargos da empregada</h2>
+      <div class="custo-item"><span>INSS Empregador (8%)</span><span id="dom-inss-emp">0,00</span></div>
+      <div class="custo-item"><span>FGTS (8%)</span><span id="dom-fgts">0,00</span></div>
+      <div class="custo-item"><span>Multa FGTS (3,2%)</span><span id="dom-multa-fgts">0,00</span></div>
+      <div class="custo-item"><span>Seguro Acidente de Trabalho / SAT (0,8%)</span><span id="dom-sat">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo total encargos da empregada</span><span id="dom-total-dae">0,00</span></div>
+    </div>
+
+    <!-- Provisionamento Doméstica -->
+    <div class="card custo-wrap">
+      <h2>Provisionamento</h2>
+      <div class="custo-item"><span>1/12 avos de D&eacute;cimo Terceiro</span><span id="dom-prov13">0,00</span></div>
+      <div class="custo-item"><span>1/12 avos de F&eacute;rias</span><span id="dom-provferias">0,00</span></div>
+      <div class="custo-item"><span>Ter&ccedil;o de F&eacute;rias</span><span id="dom-prov-terco">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total de Provisionamento</span><span id="dom-prov-total">0,00</span></div>
+    </div>
+
+    <!-- Resumo Geral Doméstica -->
+    <div class="card custo-wrap">
+      <h2>Resumo Geral</h2>
+      <div class="custo-item"><span>Custo total encargos da empregada</span><span id="dom-res-encargos">0,00</span></div>
+      <div class="custo-item"><span>Total de Provisionamento</span><span id="dom-res-prov">0,00</span></div>
+      <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Total Geral</span><span id="dom-res-total">0,00</span></div>
+    </div>
+
   </div>
 
   <div class="info-note"><strong>Dica:</strong> Clique nos campos do holerite para editá-los diretamente.</div>
@@ -1377,8 +1398,10 @@ function calcularDom(){
 
   // Provisões
   const prov13=Math.trunc(sal/12*100)/100;
-  const provFerias=Math.trunc(sal/12*(4/3)*100)/100;
-  const custoTotal=sal+totalDae+prov13+provFerias;
+  const provFerias=Math.trunc(sal/12*100)/100;
+  const provTerco=Math.round(provFerias/3*100)/100;
+  const totalProv=prov13+provFerias+provTerco;
+  const resTotal=totalDae+totalProv;
 
   // Montar linhas do holerite
   const linhasDom=[];
@@ -1435,7 +1458,11 @@ function calcularDom(){
   s2('dom-total-dae',totalDae);
   s2('dom-prov13',prov13);
   s2('dom-provferias',provFerias);
-  s2('dom-custo-total',custoTotal);
+  s2('dom-prov-terco',provTerco);
+  s2('dom-prov-total',totalProv);
+  s2('dom-res-encargos',totalDae);
+  s2('dom-res-prov',totalProv);
+  s2('dom-res-total',resTotal);
 }
 calcularDom();
 
