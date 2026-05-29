@@ -221,11 +221,21 @@
   /* Barra de instruções */
   .instrucoes-bar { text-align: center; padding: 10px 0 4px; }
   .btn-instrucoes {
-    display: inline-block; padding: 8px 22px; cursor: pointer;
-    background: transparent; color: var(--dourado); border: 2px solid var(--dourado);
-    border-radius: 6px; font-size: 0.9em; font-weight: 600; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 22px; cursor: pointer;
+    background: var(--dourado); color: var(--azul-escuro); border: none;
+    border-radius: 8px; font-size: 0.88em; font-weight: 800; letter-spacing: 0.4px;
+    box-shadow: 0 3px 12px rgba(197,160,80,0.4); transition: all 0.2s;
+    text-transform: uppercase;
   }
-  .btn-instrucoes:hover { background: var(--dourado); color: var(--azul-escuro); }
+  .btn-instrucoes::before {
+    content: '\24D8'; color: var(--azul-escuro);
+    font-size: 1.3em; flex-shrink: 0; line-height: 1; vertical-align: middle;
+  }
+  .btn-instrucoes:hover {
+    background: #e8c84a; box-shadow: 0 5px 18px rgba(197,160,80,0.6);
+    transform: translateY(-1px);
+  }
 
   /* Modal */
   .modal-overlay {
@@ -316,10 +326,6 @@
   <img src="https://static.wixstatic.com/media/a18b85_3bee0727a7a24b2eb4cfec39976d7f32~mv2.png/v1/fill/w_277,h_54,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo.png" alt="Vertra Contabilidade" style="height:48px;margin-bottom:10px;">
   <h1>Calculadora de Holerite</h1>
 </header>
-
-<div class="instrucoes-bar">
-  <button class="btn-instrucoes" onclick="abrirModal()">&#9432; Instruções de Uso</button>
-</div>
 
 <!-- Modal Instruções -->
 <div class="modal-overlay" id="modalInstrucoes" onclick="if(event.target===this)fecharModal()">
@@ -467,6 +473,9 @@
 <!-- ===== ABA CLT ===== -->
 <div id="tab-clt" class="tab-pane ativo">
 <div class="grid">
+  <div style="grid-column:1/-1;text-align:center;padding:4px 0 8px;">
+    <button class="btn-instrucoes" onclick="abrirModal()">Instruções de Uso</button>
+  </div>
 
   <!-- Dados do Funcionário -->
   <div class="card">
@@ -687,6 +696,9 @@
 <!-- ===== ABA PRÓ-LABORE ===== -->
 <div id="tab-pl" class="tab-pane">
 <div class="grid">
+  <div style="grid-column:1/-1;text-align:center;padding:4px 0 8px;">
+    <button class="btn-instrucoes" onclick="abrirModal()">Instruções de Uso</button>
+  </div>
 
   <!-- Dados do Sócio (Pró-labore) -->
   <div class="card">
@@ -860,6 +872,9 @@
 <!-- ===== ABA EMPREGADA DOMÉSTICA ===== -->
 <div id="tab-dom" class="tab-pane">
 <div class="grid">
+  <div style="grid-column:1/-1;text-align:center;padding:4px 0 8px;">
+    <button class="btn-instrucoes" onclick="abrirModal()">Instruções de Uso</button>
+  </div>
 
   <!-- Dados -->
   <div class="card">
@@ -1022,6 +1037,9 @@
 <!-- ===== ABA JOVEM APRENDIZ ===== -->
 <div id="tab-ja" class="tab-pane">
 <div class="grid">
+  <div style="grid-column:1/-1;text-align:center;padding:4px 0 8px;">
+    <button class="btn-instrucoes" onclick="abrirModal()">Instruções de Uso</button>
+  </div>
 
   <!-- Dados -->
   <div class="card">
