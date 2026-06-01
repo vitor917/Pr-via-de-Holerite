@@ -1395,11 +1395,12 @@ function calcular(s){
   });
 
   const insV=insOn?SAL_MINIMO*insP:0;
-  const base=salMensal+com,heBase=base+grat+insV,vh=heBase/220;
+  const base=salMensal+com;
+  const perV=perOn?base*perP:0;
+  const heBase=base+grat+insV+perV,vh=heBase/220;
   const he50V=vh*(1+hePct/100)*convH(he50Q),he65V=0,he100V=vh*2*convH(he100Q);
   const dsrDevidos=Math.max(0,domF-dsrD);
   const dsrCom=dMes>0?(com/dMes)*domF:0,dsrHE=dMes>0?((he50V+he100V)/dMes)*dsrDevidos:0;
-  const perV=perOn?base*perP:0;
   const dFaltaV=(base/30)*dFalta,hFaltaV=(base/220)*convH(hFalta),dsrV=(base/30)*dsrD;
 
   const prov=salMensal+com+he50V+he65V+he100V+grat+prem+dsrCom+dsrHE+insV+perV+repousoV;
