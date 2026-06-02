@@ -1427,7 +1427,12 @@ function calcular(s){
   // Para horista: repouso = (horas_trabalhadas / dias_do_mês) × domingos_feriados
   const hRepouso = (categoria==='horista' && dMes>0) ? (dTrabCalc/dMes)*domF : 0;
   const repousoV = categoria === 'horista' ? sal * hRepouso : 0;
-  const salMensal = categoria === 'horista' ? sal * (dTrabCalc - hRepouso) : sal;
+  // Proporcionalidade: Fev/Mar corte em 28 (≤27 proporcional), demais em 30 (≤29 proporcional)
+  const _propAtiva=!window.location.search.includes('sem-proporcional');
+  const _limCorte=(MES_ATUAL===2||MES_ATUAL===3)?28:30;
+  const salMensal = categoria === 'horista'
+    ? sal * (dTrabCalc - hRepouso)
+    : (_propAtiva && dTrabCalc < _limCorte) ? Math.trunc(sal/30*dTrabCalc*100)/100 : sal;
 
   // Avisos horista / mensalista
   const avisoEl = g('aviso_horista'+s);
@@ -1817,6 +1822,14 @@ function calcularJA(){
   s2('ja-res-total',resTotal);
 }
 calcularJA();
+
+// Data atual (usada internamente pelos cálculos)
+const HOJE=new Date();
+const MES_ATUAL=HOJE.getMonth()+1;
+const ANO_ATUAL=HOJE.getFullYear();
+const MESES_PT=['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const MES_NOME_ATUAL=MESES_PT[HOJE.getMonth()];
 
 // Navegação por Enter nos campos digitáveis (pula selects e toggles)
 (function(){
