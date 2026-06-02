@@ -324,7 +324,7 @@
 
 <header>
   <img src="https://static.wixstatic.com/media/a18b85_3bee0727a7a24b2eb4cfec39976d7f32~mv2.png/v1/fill/w_277,h_54,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo.png" alt="Vertra Contabilidade" style="height:48px;margin-bottom:10px;">
-  <h1>Calculadora de Holerite</h1>
+  <h1>Calcul<span id="dev-trigger" onclick="toggleDevPanel()" style="cursor:default;user-select:none;color:inherit;">a</span>dora de Holerite</h1>
 </header>
 
 <!-- Modal Instruções -->
@@ -443,6 +443,44 @@
         <div class="destaque">&#9888; Os valores gerados são uma <strong>prévia estimada</strong>. Pequenas diferenças em relação ao sistema de folha oficial podem ocorrer por arredondamentos.</div>
       </div>
 
+      <!-- ===== INSTRUÇÕES JOVEM APRENDIZ ===== -->
+      <div id="inst-ja" style="display:none">
+        <h3>Como preencher os dados</h3>
+        <ul>
+          <li><strong>Salário (R$):</strong> informe o salário mensal bruto do jovem aprendiz. O salário mínimo para jovem aprendiz deve seguir a convenção coletiva da categoria ou o salário mínimo vigente, proporcional à jornada.</li>
+          <li><strong>Vale-transporte:</strong> marque "Sim" se o aprendiz utiliza vale-transporte. O desconto de 6% sobre o salário base será aplicado automaticamente.</li>
+        </ul>
+
+        <h3>Outros Proventos</h3>
+        <ul>
+          <li><strong>Gratificação:</strong> valor pago por acordo ou liberalidade do empregador. Incide INSS, FGTS e IR, e pode ser pago todos os meses.</li>
+          <li><strong>Premiação:</strong> benefício concedido como recompensa por desempenho. Não incide INSS nem FGTS, e não deve ser paga todos os meses.</li>
+        </ul>
+
+        <h3>Faltas e DSR</h3>
+        <ul>
+          <li><strong>Dias de falta / Horas de falta:</strong> informe ausências do mês para o desconto proporcional.</li>
+          <li><strong>Desconto DSR:</strong> dias de DSR perdidos pelas faltas.</li>
+          <li><strong>Dias trabalhados:</strong> total de dias efetivamente trabalhados no mês.</li>
+        </ul>
+
+        <h3>Regras específicas do Jovem Aprendiz</h3>
+        <ul>
+          <li>O <strong>FGTS é de 2%</strong> (ao invés dos 8% do CLT regular).</li>
+          <li><strong>Hora extra não é permitida</strong> para jovem aprendiz.</li>
+          <li>A jornada máxima é de <strong>6 horas diárias</strong> para aprendizes que cursam ensino fundamental ou médio, e 8 horas para aqueles que completaram o ensino médio.</li>
+        </ul>
+
+        <h3>Holerite gerado</h3>
+        <ul>
+          <li>O holerite é atualizado automaticamente conforme os dados são preenchidos.</li>
+          <li>Os campos em <strong>amarelo claro</strong> no holerite são editáveis — clique para personalizar nome da empresa, CNPJ, aprendiz, etc.</li>
+          <li>Use o botão <strong>Imprimir Holerite</strong> para exportar as duas vias em PDF.</li>
+        </ul>
+
+        <div class="destaque">&#9888; Os valores gerados são uma <strong>prévia estimada</strong>. Pequenas diferenças em relação ao sistema de folha oficial podem ocorrer por arredondamentos.</div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -462,6 +500,15 @@
 <div class="grid">
   <div style="grid-column:1/-1;text-align:center;padding:4px 0 8px;">
     <button class="btn-instrucoes" onclick="abrirModal()">Instruções de Uso</button>
+  </div>
+
+  <!-- Painel Dev (oculto) -->
+  <div id="dev-panel-clt" style="display:none;grid-column:1/-1;">
+    <div style="font-size:0.85em;font-weight:700;color:var(--texto-cinza2);margin-bottom:8px;">Adiantamento</div>
+    <div class="field">
+      <label>981 — Desc. Adiantamento Salarial (R$)</label>
+      <input type="text" inputmode="decimal" id="dev_adiant_val" value="0" step="0.01" min="0" oninput="calcular()">
+    </div>
   </div>
 
   <!-- Dados do Funcionário -->
@@ -1032,8 +1079,8 @@
   <div class="card">
     <h2>Dados do Jovem Aprendiz</h2>
     <div class="field"><label>Sal&aacute;rio (R$)</label><input type="text" inputmode="decimal" id="salario_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
-    <div class="field"><label>Hora-Extra <select id="he_pct_ja" onchange="calcularJA()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
-    <div class="field"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field" style="display:none"><label>Hora-Extra <select id="he_pct_ja" onchange="calcularJA()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
+    <div class="field" style="display:none"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
@@ -1046,9 +1093,9 @@
     <div class="field"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
     <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
-    <div class="field"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
+    <div class="field" style="display:none"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab_ja" value="30" step="1" min="1" max="30" oninput="calcularJA()"></div>
-    <div class="field"><label>Teve adiantamento?</label><select id="adiantamento_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
+    <div class="field" style="display:none"><label>Teve adiantamento?</label><select id="adiantamento_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
@@ -1204,6 +1251,12 @@ function fmtHM(h){const hrs=Math.floor(Math.abs(h)),mins=Math.round((Math.abs(h)
 function fmtHMInput(h){const hrs=Math.trunc(Math.abs(h)),mins=Math.round((Math.abs(h)-hrs)*100);return String(hrs)+':'+String(mins).padStart(2,'0')}
 
 // Troca de abas
+function toggleDevPanel(){
+  trocarAba('clt');
+  const p=document.getElementById('dev-panel-clt');
+  if(p) p.style.display=p.style.display==='none'?'':'none';
+}
+
 function trocarAba(aba){
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('ativo'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('ativo'));
@@ -1419,7 +1472,8 @@ function calcular(s){
   const ir=(B72>5000)?Math.max(0,B77):0;
   const bIR=B22;
 
-  const adiantV=adiant?salMensal*0.4:0;
+  const devAdiant=s===''?pv(g('dev_adiant_val')):0;
+  const adiantV=(adiant?salMensal*0.4:0)+devAdiant;
   const vtEl=g('vale_transporte'+s);
   const vtDesc=vtEl&&vtEl.value==='sim'?Math.trunc(salMensal*0.06*100)/100:0;
   const liq=bruto-inss-ir-adiantV-vtDesc;
