@@ -1239,6 +1239,12 @@
 <script>
 const fmt=v=>v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
 const MIN_ROWS=14;
+// Data atual (usada internamente pelos cálculos)
+const HOJE=new Date();
+const MES_ATUAL=HOJE.getMonth()+1;
+const ANO_ATUAL=HOJE.getFullYear();
+const MESES_PT=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const MES_NOME_ATUAL=MESES_PT[HOJE.getMonth()];
 
 const INSS_FAIXAS=[{min:0,max:1621,aliq:0.075},{min:1621.01,max:2902.84,aliq:0.09},{min:2902.85,max:4354.27,aliq:0.12},{min:4354.28,max:8475.55,aliq:0.14}];
 const SAL_MINIMO=1621,DEDUCAO_DEP=189.59,DEDUCAO_SIMPLIFICADA=607.20;
@@ -1823,13 +1829,6 @@ function calcularJA(){
 }
 calcularJA();
 
-// Data atual (usada internamente pelos cálculos)
-const HOJE=new Date();
-const MES_ATUAL=HOJE.getMonth()+1;
-const ANO_ATUAL=HOJE.getFullYear();
-const MESES_PT=['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const MES_NOME_ATUAL=MESES_PT[HOJE.getMonth()];
 
 // Navegação por Enter nos campos digitáveis (pula selects e toggles)
 (function(){
