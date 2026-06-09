@@ -503,10 +503,10 @@
   </div>
 
   <!-- Painel Dev (oculto) -->
-  <div id="dev-panel-clt" style="display:none;grid-column:1/-1;">
-    <div style="font-size:0.85em;font-weight:700;color:var(--texto-cinza2);margin-bottom:8px;">Adiantamento</div>
+  <div id="dev-panel-clt" style="display:none;grid-column:1/-1;background:rgba(255,255,255,0.06);border:1px solid rgba(212,175,55,0.35);border-radius:8px;padding:12px 14px;">
+    <div style="font-size:0.85em;font-weight:700;color:var(--dourado);margin-bottom:8px;letter-spacing:0.04em;">Adiantamento</div>
     <div class="field">
-      <label>981 — Desc. Adiantamento Salarial (R$)</label>
+      <label style="color:#e0e0e0;">981 — Desc. Adiantamento Salarial (R$)</label>
       <input type="text" inputmode="decimal" id="dev_adiant_val" value="0" step="0.01" min="0" oninput="calcular()">
     </div>
   </div>
@@ -1203,8 +1203,8 @@
       <h2>Custo encargos do aprendiz</h2>
       <div class="custo-item"><span>INSS Empregador (8%)</span><span id="ja-inss-emp">0,00</span></div>
       <div class="custo-item"><span>FGTS (2%)</span><span id="ja-fgts">0,00</span></div>
-      <div class="custo-item"><span>Multa FGTS (3,2%)</span><span id="ja-multa-fgts">0,00</span></div>
-      <div class="custo-item"><span>Seguro Acidente de Trabalho / SAT (0,8%)</span><span id="ja-sat">0,00</span></div>
+      <div style="display:none"><span>Multa FGTS (3,2%)</span><span id="ja-multa-fgts">0,00</span></div>
+      <div style="display:none"><span>Seguro Acidente de Trabalho / SAT (0,8%)</span><span id="ja-sat">0,00</span></div>
       <div class="custo-total" style="display:flex;justify-content:space-between;margin-top:8px"><span>Custo total encargos do aprendiz</span><span id="ja-total-dae">0,00</span></div>
     </div>
 
