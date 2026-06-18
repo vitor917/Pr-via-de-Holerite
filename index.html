@@ -745,40 +745,13 @@
     <div id="aviso_mensalista_pl" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:13px;color:#856404;">
       ⚠️ <strong>Atenção:</strong> O valor informado é muito baixo para um pró-labore. Verifique o valor informado.
     </div>
-    <div class="field" style="display:none"><label>Comiss&atilde;o (R$)</label><input type="text" inputmode="decimal" id="comissao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Hora-Extra <select id="he_pct_pl" onchange="calcular('_pl')" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none">
-      <div class="field-toggle-label">
-        <label>Insalubridade</label>
-        <label class="toggle"><input type="checkbox" id="insalubridade_on_pl" onchange="calcular('_pl')"><span class="slider"></span></label>
-      </div>
-      <select id="insalubridade_pct_pl" class="pct" onchange="calcular('_pl')"><option value="0.1">10%</option><option value="0.2" selected>20%</option><option value="0.4">40%</option></select>
-    </div>
-    <div class="field" style="display:none">
-      <div class="field-toggle-label">
-        <label>Periculosidade</label>
-        <label class="toggle"><input type="checkbox" id="periculosidade_on_pl" onchange="calcular('_pl')"><span class="slider"></span></label>
-      </div>
-      <select id="periculosidade_pct_pl" class="pct" onchange="calcular('_pl')"><option value="0.3" selected>30%</option></select>
-    </div>
   </div>
 
   <!-- Faltas e DSR (Pró-labore) -->
   <div class="card">
     <h2>Faltas, DSR e Informa&ccedil;&otilde;es</h2>
-    <div class="field" style="display:none"><label>Dias de falta</label><input type="text" inputmode="decimal" id="dias_falta_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta_pl" value="0" step="0.01" min="0" oninput="calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
-    <hr style="display:none;margin:12px 0;border:none;border-top:2px solid var(--dourado)">
-    <div class="field" style="display:none"><label>Dias do m&ecirc;s</label><input type="text" inputmode="decimal" id="dias_mes_pl" value="26" step="1" min="1" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Domingos e feriados</label><input type="text" inputmode="decimal" id="dom_feriados_pl" value="4" step="1" min="0" oninput="atualizarDiasTrab('_pl');calcular('_pl')"></div>
     <div class="field"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_pl" value="0" step="1" min="0" oninput="calcular('_pl')"></div>
     <div class="field"><label id="label_dias_trab_pl">Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab_pl" value="30" step="1" min="1" oninput="validarDiasTrab(this,'_pl');calcular('_pl')"></div>
-    <div class="field" style="display:none"><label>Categoria de Contrato</label><select id="categoria_contrato_pl" onchange="atualizarCategoria('_pl')"><option value="mensalista">Mensalista</option><option value="horista">Horista</option></select></div>
-    <div class="field" style="display:none"><label>Teve adiantamento?</label><select id="adiantamento_pl" onchange="calcular('_pl')"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
@@ -1079,8 +1052,6 @@
   <div class="card">
     <h2>Dados do Jovem Aprendiz</h2>
     <div class="field"><label>Sal&aacute;rio (R$)</label><input type="text" inputmode="decimal" id="salario_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
-    <div class="field" style="display:none"><label>Hora-Extra <select id="he_pct_ja" onchange="calcularJA()" style="font-size:inherit;border:none;background:transparent;color:inherit;font-family:inherit;font-weight:inherit;cursor:pointer;padding:0;width:30px;appearance:none;-webkit-appearance:none;"><option value="50">50%</option><option value="60">60%</option><option value="65">65%</option></select><span> (qtd)</span></label><input type="text" inputmode="decimal" id="he50_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
-    <div class="field" style="display:none"><label>Hora-Extra 100% (qtd)</label><input type="text" inputmode="decimal" id="he100_qtd_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Gratifica&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="gratificacao_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Premia&ccedil;&atilde;o (R$)</label><input type="text" inputmode="decimal" id="premiacao_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Vale-transporte?</label><select id="vale_transporte_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
@@ -1093,9 +1064,7 @@
     <div class="field"><label>Horas de falta</label><input type="text" inputmode="decimal" id="horas_falta_ja" value="0" step="0.01" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Desconto DSR (dias)</label><input type="text" inputmode="decimal" id="desconto_dsr_dias_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
     <hr style="margin:12px 0;border:none;border-top:2px solid var(--dourado)">
-    <div class="field" style="display:none"><label>Dependentes IR</label><input type="text" inputmode="decimal" id="dependentes_ja" value="0" step="1" min="0" oninput="calcularJA()"></div>
     <div class="field"><label>Dias trabalhados</label><input type="text" inputmode="decimal" id="dias_trab_ja" value="30" step="1" min="1" max="30" oninput="calcularJA()"></div>
-    <div class="field" style="display:none"><label>Teve adiantamento?</label><select id="adiantamento_ja" onchange="calcularJA()"><option value="nao">N&atilde;o</option><option value="sim">Sim</option></select></div>
   </div>
 
   <div class="sep-dourado" style="grid-column:1/-1;height:3px;background:var(--dourado);border-radius:2px;margin:8px 0;"></div>
@@ -1238,6 +1207,7 @@
 
 <script>
 const fmt=v=>v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const USAR_NOVO_MOTOR = true; // trocar para false reverte tudo
 const MIN_ROWS=14;
 // Data atual (usada internamente pelos cálculos)
 const HOJE=new Date();
@@ -1246,12 +1216,56 @@ const ANO_ATUAL=HOJE.getFullYear();
 const MESES_PT=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 const MES_NOME_ATUAL=MESES_PT[HOJE.getMonth()];
 
+// === [REFACTOR 1] início ===
+const TABELAS = {
+  ano: 2026,
+  salarioMinimo: 1621,
+  inssFaixas: [
+    {min:0, max:1621, aliq:0.075},
+    {min:1621.01, max:2902.84, aliq:0.09},
+    {min:2902.85, max:4354.27, aliq:0.12},
+    {min:4354.28, max:8475.55, aliq:0.14}
+  ],
+  inssTeto: 8475.55,
+  irrfFaixas: [
+    {min:0, max:2428.80, aliq:0, ded:0},
+    {min:2428.81, max:2826.65, aliq:0.075, ded:182.16},
+    {min:2826.66, max:3751.05, aliq:0.15, ded:394.16},
+    {min:3751.06, max:4664.68, aliq:0.225, ded:675.49},
+    {min:4664.69, max:999999, aliq:0.275, ded:908.73}
+  ],
+  deducaoPorDependente: 189.59,
+  deducaoSimplificada: 607.20,
+  isencaoIR: { limite: 5000, faixaSuperior: 7350, redutorBase: 978.62, redutorFator: 0.133145 },
+  horasMes: 220,
+  diasMes: 30,
+  fgts: { clt: 0.08, aprendiz: 0.02 },
+  encargos: {
+    patronalPct: 0.20,
+    gilratPctDefault: 3,
+    fapDefault: 1,
+    outrasPctDefault: 5.8,
+    domInssEmpPct: 0.08,
+    domFgtsPct: 0.08,
+    domMultaFgtsPct: 0.032,
+    domSatPct: 0.008,
+    jaMultaFgtsPct: 0.032,
+    jaSatPct: 0.008
+  },
+  adiantamentoPct: 0.4,
+  valeTransportePct: 0.06
+};
+// === [REFACTOR 1] fim ===
 const INSS_FAIXAS=[{min:0,max:1621,aliq:0.075},{min:1621.01,max:2902.84,aliq:0.09},{min:2902.85,max:4354.27,aliq:0.12},{min:4354.28,max:8475.55,aliq:0.14}];
 const SAL_MINIMO=1621,DEDUCAO_DEP=189.59,DEDUCAO_SIMPLIFICADA=607.20;
 const IRRF_FAIXAS=[{min:0,max:2428.80,aliq:0,ded:0},{min:2428.81,max:2826.65,aliq:0.075,ded:182.16},{min:2826.66,max:3751.05,aliq:0.15,ded:394.16},{min:3751.06,max:4664.68,aliq:0.225,ded:675.49},{min:4664.69,max:999999,aliq:0.275,ded:908.73}];
 
 function calcINSS(b){let t=0;for(const f of INSS_FAIXAS)if(b>=f.min)t+=Math.trunc(Math.max(0,Math.min(b,f.max)-f.min)*f.aliq*100)/100;return t}
 function irrfCalc(b){for(let i=IRRF_FAIXAS.length-1;i>=0;i--)if(b>=IRRF_FAIXAS[i].min)return{aliq:IRRF_FAIXAS[i].aliq,imp:b*IRRF_FAIXAS[i].aliq-IRRF_FAIXAS[i].ded};return{aliq:0,imp:0}}
+// === [REFACTOR 1] início (funções _NEW) ===
+function calcINSS_NEW(b){let t=0;for(const f of TABELAS.inssFaixas)if(b>=f.min)t+=Math.trunc(Math.max(0,Math.min(b,f.max)-f.min)*f.aliq*100)/100;return t}
+function irrfCalc_NEW(b){for(let i=TABELAS.irrfFaixas.length-1;i>=0;i--)if(b>=TABELAS.irrfFaixas[i].min)return{aliq:TABELAS.irrfFaixas[i].aliq,imp:b*TABELAS.irrfFaixas[i].aliq-TABELAS.irrfFaixas[i].ded};return{aliq:0,imp:0}}
+// === [REFACTOR 1] fim (funções _NEW) ===
 function convH(h){return Math.round((Math.trunc(h)+(h-Math.trunc(h))*100/60)*100)/100}
 function fmtHM(h){const hrs=Math.floor(Math.abs(h)),mins=Math.round((Math.abs(h)-hrs)*60);return String(hrs)+':'+String(mins).padStart(2,'0')}
 function fmtHMInput(h){const hrs=Math.trunc(Math.abs(h)),mins=Math.round((Math.abs(h)-hrs)*100);return String(hrs)+':'+String(mins).padStart(2,'0')}
@@ -1396,7 +1410,7 @@ function atualizarDiasTrab(s){
   if(input) input.value=soma;
 }
 
-function calcular(s){
+function calcular_OLD(s){
   s=s===undefined?'':s;
   // Pró-labore: INSS fixo 11%, sem FGTS
   const proLabore = s==='_pl' ? true : (g('pro_labore') ? g('pro_labore').value==='sim' : false);
@@ -1405,7 +1419,7 @@ function calcular(s){
   const sal=pv(salEl);
   const com=pv(g('comissao'+s));
   const he50Q=pv(g('he50_qtd'+s));
-  const hePct=parseInt(g('he_pct'+s).value)||50;
+  const _hePctEl=g('he_pct'+s); const hePct=_hePctEl?parseInt(_hePctEl.value)||50:50;
   const he100Q=pv(g('he100_qtd'+s));
   const grat=pv(g('gratificacao'+s));
   const prem=pv(g('premiacao'+s));
@@ -1579,7 +1593,7 @@ calcular('');
 atualizarCategoria('_pl');
 calcular('_pl');
 
-function calcularDom(){
+function calcularDom_OLD(){
   const gd=id=>document.getElementById(id);
   const sal=pv(gd('salario_dom'));
   const he50Q=pv(gd('he50_qtd_dom'));
@@ -1704,11 +1718,11 @@ function calcularDom(){
 }
 calcularDom();
 
-function calcularJA(){
+function calcularJA_OLD(){
   const gd=id=>document.getElementById(id);
   const sal=pv(gd('salario_ja'));
   const he50Q=pv(gd('he50_qtd_ja'));
-  const hePctJa=parseInt(gd('he_pct_ja').value)||50;
+  const _hePctJaEl=gd('he_pct_ja'); const hePctJa=_hePctJaEl?parseInt(_hePctJaEl.value)||50:50;
   const he100Q=pv(gd('he100_qtd_ja'));
   const diasFalta=pv(gd('dias_falta_ja'));
   const horasFalta=pv(gd('horas_falta_ja'));
@@ -1718,7 +1732,7 @@ function calcularJA(){
   const grat=pv(gd('gratificacao_ja'));
   const prem=pv(gd('premiacao_ja'));
   const vt=gd('vale_transporte_ja').value==='sim';
-  const adiant=gd('adiantamento_ja').value==='sim';
+  const _adiantJaEl=gd('adiantamento_ja'); const adiant=_adiantJaEl?_adiantJaEl.value==='sim':false;
 
   // Horas extras (valor/hora = sal/220)
   const vh=sal/220;
@@ -1829,6 +1843,404 @@ function calcularJA(){
 }
 calcularJA();
 
+
+// === [REFACTOR 2] início ===
+
+// Wrappers com flag de motor
+function calcular(s) { return USAR_NOVO_MOTOR ? calcular_NEW(s) : calcular_OLD(s); }
+function calcularDom() { return USAR_NOVO_MOTOR ? calcularDom_NEW() : calcularDom_OLD(); }
+function calcularJA() { return USAR_NOVO_MOTOR ? calcularJA_NEW() : calcularJA_OLD(); }
+
+// Helper: soma vencimentos e descontos de um array de linhas
+function somarVencDesc(linhas) {
+  return {
+    sv: linhas.reduce((acc, l) => acc + l.v, 0),
+    sd: linhas.reduce((acc, l) => acc + l.ds, 0)
+  };
+}
+
+// Helper 3: renderiza holerite nos sufixos dados
+// sfxs: array de sufixos ex ['', '2'] ou ['_dom', '2_dom']
+// dados: { sv, sd, liq, sal, bINSS, fgts, bIR, faixaIR, html }
+// gd: função getElementById
+function renderizarHol(sfxs, dados, gd) {
+  sfxs.forEach(vs => {
+    const b = gd('hol-body' + vs);
+    if (b) b.innerHTML = dados.html;
+    const setV = (id, v) => { const el = gd(id + vs); if (el) el.textContent = v; };
+    setV('hol-tvenc', fmt(dados.sv));
+    setV('hol-tdesc', fmt(dados.sd));
+    setV('hol-liq', fmt(dados.liq));
+    setV('hol-sal-base', fmt(dados.sal));
+    setV('hol-sal-inss', fmt(dados.bINSS));
+    setV('hol-base-fgts', fmt(dados.bINSS));
+    setV('hol-fgts-mes', fmt(dados.fgts));
+    setV('hol-base-irrf', fmt(dados.bIR));
+    setV('hol-faixa-irrf', fmt(dados.faixaIR));
+  });
+}
+
+function calcular_NEW(s) {
+  s = s === undefined ? '' : s;
+  const proLabore = s === '_pl' ? true : (g('pro_labore') ? g('pro_labore').value === 'sim' : false);
+
+  const salEl = g('salario' + s); if (!salEl) return;
+  const sal = pv(salEl);
+  const com = pv(g('comissao' + s));
+  const he50Q = pv(g('he50_qtd' + s));
+  const _hePctEl2 = g('he_pct' + s); const hePct = _hePctEl2 ? parseInt(_hePctEl2.value) || 50 : 50;
+  const he100Q = pv(g('he100_qtd' + s));
+  const grat = pv(g('gratificacao' + s));
+  const prem = pv(g('premiacao' + s));
+  const insOnEl = g('insalubridade_on' + s);
+  const insOn = insOnEl ? insOnEl.checked : false;
+  const insPEl = g('insalubridade_pct' + s);
+  const insP = insPEl ? parseFloat(insPEl.value) : 0.2;
+  const perOnEl = g('periculosidade_on' + s);
+  const perOn = perOnEl ? perOnEl.checked : false;
+  const perPEl = g('periculosidade_pct' + s);
+  const perP = perPEl ? parseFloat(perPEl.value) : 0.3;
+  const dFalta = pv(g('dias_falta' + s));
+  const hFalta = pv(g('horas_falta' + s));
+  const dsrD = pv(g('desconto_dsr_dias' + s));
+  const dMes = pv(g('dias_mes' + s)) || 25;
+  const domF = pv(g('dom_feriados' + s));
+  const deps = parseInt(pv(g('dependentes' + s))) || 0;
+  const dTrab = pv(g('dias_trab' + s)) || 30;
+  const adiantEl = g('adiantamento' + s);
+  const adiant = adiantEl ? adiantEl.value === 'sim' : false;
+  const catEl = g('categoria_contrato' + s);
+  const categoria = catEl ? catEl.value : 'mensalista';
+  const dTrabCalc = categoria === 'horista' ? dTrab : Math.min(dTrab, 30);
+
+  const hRepouso = (categoria === 'horista' && dMes > 0) ? (dTrabCalc / dMes) * domF : 0;
+  const repousoV = categoria === 'horista' ? sal * hRepouso : 0;
+  const _propAtiva = !window.location.search.includes('sem-proporcional');
+  const _limCorte = (MES_ATUAL === 2 || MES_ATUAL === 3) ? 28 : 30;
+  const salMensal = categoria === 'horista'
+    ? sal * (dTrabCalc - hRepouso)
+    : (_propAtiva && dTrabCalc < _limCorte) ? Math.trunc(sal / 30 * dTrabCalc * 100) / 100 : sal;
+
+  const avisoEl = g('aviso_horista' + s);
+  const avisoCalcEl = g('aviso_horista_calc' + s);
+  const mostrarAviso = categoria === 'horista' && sal > 500;
+  if (avisoEl) {
+    avisoEl.style.display = mostrarAviso ? 'block' : 'none';
+    if (mostrarAviso && avisoCalcEl)
+      avisoCalcEl.textContent = 'Com esse valor, o salário mensal seria R$ ' + salMensal.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '.';
+  }
+  const avisoHol = g('aviso_hol1' + s);
+  if (avisoHol) avisoHol.style.display = mostrarAviso ? 'block' : 'none';
+
+  const catLabel = categoria === 'horista' ? 'Horista' : 'Mensalista';
+  ['hol-cat-contrato' + s, 'hol-cat-contrato2' + s].forEach(id => {
+    const el = g(id);
+    if (el) el.textContent = catLabel;
+  });
+
+  const insV = insOn ? TABELAS.salarioMinimo * insP : 0;
+  const base = salMensal + com;
+  const perV = perOn ? base * perP : 0;
+  const heBase = base + grat + insV + perV, vh = heBase / TABELAS.horasMes;
+  const he50V = vh * (1 + hePct / 100) * convH(he50Q), he65V = 0, he100V = vh * 2 * convH(he100Q);
+  const dsrDevidos = Math.max(0, domF - dsrD);
+  const dsrCom = dMes > 0 ? (com / dMes) * domF : 0, dsrHE = dMes > 0 ? ((he50V + he100V) / dMes) * dsrDevidos : 0;
+  const dFaltaV = (base / 30) * dFalta, hFaltaV = (base / TABELAS.horasMes) * convH(hFalta), dsrV = (base / 30) * dsrD;
+
+  const prov = salMensal + com + he50V + he65V + he100V + grat + prem + dsrCom + dsrHE + insV + perV + repousoV;
+  const descF = dFaltaV + hFaltaV + dsrV;
+  const bruto = prov - descF;
+
+  const bINSS = bruto - prem, inss = proLabore ? Math.trunc(bINSS * 0.11 * 100) / 100 : calcINSS_NEW(bINSS);
+
+  const B22 = bruto - inss;
+  const legal = Math.max(0, irrfCalc_NEW(B22 - (deps * TABELAS.deducaoPorDependente)).imp);
+  const simp = Math.max(0, irrfCalc_NEW(bruto - TABELAS.deducaoSimplificada).imp);
+  const D15 = Math.min(simp, legal);
+  const B72 = prov;
+  const C72 = (B72 > TABELAS.isencaoIR.limite && B72 <= TABELAS.isencaoIR.faixaSuperior) ? TABELAS.isencaoIR.redutorBase - TABELAS.isencaoIR.redutorFator * B72 : 0;
+  const B77 = D15 - C72;
+  const ir = (B72 > TABELAS.isencaoIR.limite) ? Math.max(0, B77) : 0;
+  const bIR = B22;
+
+  const devAdiant = s === '' ? pv(g('dev_adiant_val')) : 0;
+  const adiantV = (adiant ? salMensal * TABELAS.adiantamentoPct : 0) + devAdiant;
+  const vtEl = g('vale_transporte' + s);
+  const vtDesc = vtEl && vtEl.value === 'sim' ? Math.trunc(salMensal * TABELAS.valeTransportePct * 100) / 100 : 0;
+  const liq = bruto - inss - ir - adiantV - vtDesc;
+  const fgts = proLabore ? 0 : bINSS * TABELAS.fgts.clt;
+  const totalHoras = categoria === 'horista' ? (dTrabCalc - hRepouso) : dTrabCalc * (TABELAS.horasMes / 30);
+  const faixaIR = bIR > 0 ? irrfCalc_NEW(bIR).aliq * 100 : 0;
+
+  const linhas = [];
+  const add = (c, d, r, v, ds) => linhas.push({c, d, r, v: v || 0, ds: ds || 0});
+
+  if (sal > 0) add(proLabore ? 100 : 1, proLabore ? 'PRO-LABORE' : 'HORAS NORMAIS', fmtHM(totalHoras), salMensal, 0);
+  if (repousoV > 0) add(10, 'HORAS REPOUSO REMUNERADO', fmtHMInput(hRepouso), repousoV, 0);
+  if (com > 0) add(37, 'COMISSOES', fmt(com), com, 0);
+  if (he50V > 0) add(hePct === 65 ? 5002 : hePct === 60 ? 5003 : 5000, 'HORAS EXTRA ' + hePct + '%', he50Q > 0 ? fmtHMInput(he50Q) : '', he50V, 0);
+  if (he100V > 0) add(5001, 'HORAS EXTRA 100%', he100Q > 0 ? fmtHMInput(he100Q) : '', he100V, 0);
+  if (grat > 0) add(20, 'GRATIFICACOES', fmt(grat), grat, 0);
+  if (prem > 0) add(5080, 'PREMIO', '', prem, 0);
+  if (dsrHE > 0) add(250, 'REFLEXO EXTRA DSR', '', dsrHE, 0);
+  if (dsrCom > 0) add(853, 'REFLEXO COMISSOES DSR', '', dsrCom, 0);
+  if (insV > 0) { const ic = insP === 0.1 ? 15 : insP === 0.2 ? 16 : 17; add(ic, 'INSALUBRIDADE ' + (insP * 100) + '%', fmt(insP), insV, 0); }
+  if (perV > 0) add(217, 'PERICULOSIDADE', fmt(perP), perV, 0);
+  if (dFaltaV > 0) add(8792, 'DIAS FALTAS', dFalta > 0 ? fmt(dFalta) : '', 0, dFaltaV);
+  if (hFaltaV > 0) add(8069, 'HORAS FALTAS', hFalta > 0 ? fmt(hFalta) : '', 0, hFaltaV);
+  if (dsrV > 0) add(8794, 'DESCONTO DE DSR', dsrD > 0 ? fmt(dsrD) : '', 0, dsrV);
+  if (inss > 0) add(proLabore ? 843 : 998, proLabore ? 'INSS EMPREGADOR' : 'I.N.S.S.', '', 0, inss);
+  if (vtDesc > 0) add(110, 'DESC. VALE TRANSPORTE', '6%', 0, vtDesc);
+  if (ir > 0) add(999, 'IMPOSTO DE RENDA', '', 0, ir);
+  if (adiantV > 0) add(981, 'ADIANTAMENTO SALARIAL', '', 0, adiantV);
+
+  const {sv, sd} = somarVencDesc(linhas);
+  if (fgts > 0) add(900, 'F.G.T.S', '', fgts, 0);
+
+  while (linhas.length < MIN_ROWS) linhas.push({c: '', d: '', r: '', v: 0, ds: 0});
+
+  const html = linhas.map(l => `<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v > 0 ? fmt(l.v) : ''}</td><td class="dsc">${l.ds > 0 ? fmt(l.ds) : ''}</td></tr>`).join('');
+
+  const viaSfxs = s === '' ? ['', '2'] : ['_pl', '2_pl'];
+  renderizarHol(viaSfxs, {sv, sd, liq, sal, bINSS, fgts, bIR, faixaIR, html}, g);
+  syncVia2(s);
+
+  if (!proLabore) {
+    const gilratPct = pv(g('gilrat_pct')) || TABELAS.encargos.gilratPctDefault;
+    const fapVal = pv(g('fap_val')) || TABELAS.encargos.fapDefault;
+    const outrasPct = pv(g('outras_pct')) || TABELAS.encargos.outrasPctDefault;
+    const custoFgts = Math.round(bINSS * TABELAS.fgts.clt * 100) / 100;
+    const custoPatronal = Math.round(bINSS * TABELAS.encargos.patronalPct * 100) / 100;
+    const custoGilrat = Math.round(bINSS * (gilratPct / 100) * fapVal * 100) / 100;
+    const custoOutras = Math.round(bINSS * (outrasPct / 100) * 100) / 100;
+    const custoTotal = custoFgts + custoPatronal + custoGilrat + custoOutras;
+    const sc = (id, v) => { const el = g(id); if (el) el.textContent = fmt(v); };
+    sc('custo-fgts-clt', custoFgts);
+    sc('custo-patronal-clt', custoPatronal);
+    sc('custo-gilrat-clt', custoGilrat);
+    sc('custo-outras-clt', custoOutras);
+    sc('custo-total-clt', custoTotal);
+    const gEl = g('custo-gilrat-lbl'); if (gEl) gEl.textContent = gilratPct.toFixed(1);
+    const fEl = g('custo-fap-lbl'); if (fEl) fEl.textContent = fapVal.toFixed(2);
+    const oEl = g('custo-outras-lbl'); if (oEl) oEl.textContent = outrasPct.toFixed(1);
+    const prov13 = Math.round(salMensal / 12 * 100) / 100;
+    const provFerias = Math.round(salMensal / 12 * 100) / 100;
+    const provTerco = Math.round(provFerias / 3 * 100) / 100;
+    const provTotal = prov13 + provFerias + provTerco;
+    sc('clt-prov-13', prov13);
+    sc('clt-prov-ferias', provFerias);
+    sc('clt-prov-terco', provTerco);
+    sc('clt-prov-total', provTotal);
+    const resTotal = custoTotal + provTotal;
+    sc('clt-res-encargos', custoTotal);
+    sc('clt-res-prov', provTotal);
+    sc('clt-res-total', resTotal);
+  }
+}
+
+function calcularDom_NEW() {
+  const gd = id => document.getElementById(id);
+  const sal = pv(gd('salario_dom'));
+  const he50Q = pv(gd('he50_qtd_dom'));
+  const hePctDom = parseInt(gd('he_pct_dom').value) || 50;
+  const he100Q = pv(gd('he100_qtd_dom'));
+  const diasFalta = pv(gd('dias_falta_dom'));
+  const horasFalta = pv(gd('horas_falta_dom'));
+  const dsrD = pv(gd('desconto_dsr_dias_dom'));
+  const deps = parseInt(pv(gd('dependentes_dom'))) || 0;
+  const diasTrab = Math.min(pv(gd('dias_trab_dom')) || 30, 30);
+  const _propAtivaDom = !window.location.search.includes('sem-proporcional');
+  const _limCorteDom = (MES_ATUAL === 2 || MES_ATUAL === 3) ? 28 : 30;
+  const salMensal = (_propAtivaDom && diasTrab < _limCorteDom) ? Math.trunc(sal / 30 * diasTrab * 100) / 100 : sal;
+  const grat = pv(gd('gratificacao_dom'));
+  const prem = pv(gd('premiacao_dom'));
+  const vt = gd('vale_transporte_dom').value === 'sim';
+  const adiant = gd('adiantamento_dom').value === 'sim';
+
+  const vh = sal / TABELAS.horasMes;
+  const he50V = convH(he50Q) * vh * (1 + hePctDom / 100);
+  const he100V = convH(he100Q) * vh * 2;
+
+  const dFaltaV = Math.trunc((sal / 30) * diasFalta * 100) / 100;
+  const hFaltaV = Math.trunc((sal / TABELAS.horasMes) * convH(horasFalta) * 100) / 100;
+  const dsrV = Math.trunc((sal / 30) * dsrD * 100) / 100;
+
+  const prov = salMensal + he50V + he100V + grat + prem;
+  const bruto = prov - dFaltaV - hFaltaV - dsrV;
+
+  const bINSS = bruto - prem;
+  const inss = calcINSS_NEW(bINSS);
+
+  const vtDesc = vt ? Math.trunc(salMensal * TABELAS.valeTransportePct * 100) / 100 : 0;
+
+  const B22 = bruto - inss;
+  const legal = Math.max(0, irrfCalc_NEW(B22 - (deps * TABELAS.deducaoPorDependente)).imp);
+  const simp = Math.max(0, irrfCalc_NEW(bruto - TABELAS.deducaoSimplificada).imp);
+  const ir = Math.min(simp, legal);
+
+  const adiantV = adiant ? salMensal * TABELAS.adiantamentoPct : 0;
+  const liq = bruto - inss - ir - vtDesc - adiantV;
+
+  const fgts = Math.trunc(bINSS * TABELAS.encargos.domFgtsPct * 100) / 100;
+
+  const inssEmp = Math.trunc(sal * TABELAS.encargos.domInssEmpPct * 100) / 100;
+  const fgtsE = Math.trunc(sal * TABELAS.encargos.domFgtsPct * 100) / 100;
+  const multaFgts = Math.trunc(sal * TABELAS.encargos.domMultaFgtsPct * 100) / 100;
+  const sat = Math.trunc(sal * TABELAS.encargos.domSatPct * 100) / 100;
+  const totalDae = inssEmp + fgtsE + multaFgts + sat;
+
+  const prov13 = Math.trunc(sal / 12 * 100) / 100;
+  const provFerias = Math.trunc(sal / 12 * 100) / 100;
+  const provTerco = Math.round(provFerias / 3 * 100) / 100;
+  const totalProv = prov13 + provFerias + provTerco;
+  const resTotal = totalDae + totalProv;
+
+  const linhasDom = [];
+  const addD = (c, d, r, v, ds) => linhasDom.push({c, d, r, v, ds});
+  if (sal > 0) addD(1, 'SALARIO', diasTrab + ' dias', salMensal, 0);
+  if (he50V > 0) addD(hePctDom === 65 ? 5002 : hePctDom === 60 ? 5003 : 5000, 'HORAS EXTRA ' + hePctDom + '%', fmtHMInput(he50Q), he50V, 0);
+  if (he100V > 0) addD(5001, 'HORAS EXTRA 100%', fmtHMInput(he100Q), he100V, 0);
+  if (grat > 0) addD(20, 'GRATIFICACOES', fmt(grat), grat, 0);
+  if (prem > 0) addD(5080, 'PREMIO', '', prem, 0);
+  if (dFaltaV > 0) addD(8792, 'DIAS FALTAS', diasFalta > 0 ? fmt(diasFalta) : '', 0, dFaltaV);
+  if (hFaltaV > 0) addD(8069, 'HORAS FALTAS', horasFalta > 0 ? fmt(horasFalta) : '', 0, hFaltaV);
+  if (dsrV > 0) addD(8794, 'DESCONTO DE DSR', dsrD > 0 ? fmt(dsrD) : '', 0, dsrV);
+  if (inss > 0) addD(998, 'I.N.S.S.', '', 0, inss);
+  if (vtDesc > 0) addD(110, 'DESC. VALE TRANSPORTE', '6%', 0, vtDesc);
+  if (ir > 0) addD(999, 'IMPOSTO DE RENDA', '', 0, ir);
+  if (adiantV > 0) addD(981, 'ADIANTAMENTO SALARIAL', '', 0, adiantV);
+
+  const {sv, sd} = somarVencDesc(linhasDom);
+  if (fgts > 0) addD(900, 'F.G.T.S', '', fgts, 0);
+  while (linhasDom.length < MIN_ROWS) linhasDom.push({c: '', d: '', r: '', v: 0, ds: 0});
+  const html = linhasDom.map(l => `<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v > 0 ? fmt(l.v) : ''}</td><td class="dsc">${l.ds > 0 ? fmt(l.ds) : ''}</td></tr>`).join('');
+
+  renderizarHol(['_dom', '2_dom'], {sv, sd, liq, sal, bINSS, fgts, bIR: B22, faixaIR: B22 > 0 ? irrfCalc_NEW(B22).aliq * 100 : 0, html}, gd);
+
+  const ids = ['emp_nome', 'emp_cnpj', 'emp_cc', 'emp_mes_nome', 'emp_ano', 'emp_setor', 'func_cod', 'func_nome', 'func_cargo', 'func_cbo', 'func_depto', 'func_filial', 'func_admissao'];
+  ids.forEach(id => {
+    const src = gd(id + '_dom');
+    const dst = gd(id + '2_dom');
+    if (src && dst) dst.textContent = src.value;
+  });
+
+  const s2 = (id, v) => { const el = gd(id); if (el) el.textContent = fmt(v); };
+  s2('dom-inss-emp', inssEmp);
+  s2('dom-fgts', fgtsE);
+  s2('dom-multa-fgts', multaFgts);
+  s2('dom-sat', sat);
+  s2('dom-total-dae', totalDae);
+  s2('dom-prov13', prov13);
+  s2('dom-provferias', provFerias);
+  s2('dom-prov-terco', provTerco);
+  s2('dom-prov-total', totalProv);
+  s2('dom-res-encargos', totalDae);
+  s2('dom-res-prov', totalProv);
+  s2('dom-res-total', resTotal);
+}
+
+function calcularJA_NEW() {
+  const gd = id => document.getElementById(id);
+  const sal = pv(gd('salario_ja'));
+  const he50Q = pv(gd('he50_qtd_ja'));
+  const _hePctJaEl2 = gd('he_pct_ja'); const hePctJa = _hePctJaEl2 ? parseInt(_hePctJaEl2.value) || 50 : 50;
+  const he100Q = pv(gd('he100_qtd_ja'));
+  const diasFalta = pv(gd('dias_falta_ja'));
+  const horasFalta = pv(gd('horas_falta_ja'));
+  const dsrD = pv(gd('desconto_dsr_dias_ja'));
+  const deps = parseInt(pv(gd('dependentes_ja'))) || 0;
+  const diasTrab = Math.min(pv(gd('dias_trab_ja')) || 30, 30);
+  const _propAtivaJa = !window.location.search.includes('sem-proporcional');
+  const _limCorteJa = (MES_ATUAL === 2 || MES_ATUAL === 3) ? 28 : 30;
+  const salMensal = (_propAtivaJa && diasTrab < _limCorteJa) ? Math.trunc(sal / 30 * diasTrab * 100) / 100 : sal;
+  const grat = pv(gd('gratificacao_ja'));
+  const prem = pv(gd('premiacao_ja'));
+  const vt = gd('vale_transporte_ja').value === 'sim';
+  const _adiantJaEl2 = gd('adiantamento_ja'); const adiant = _adiantJaEl2 ? _adiantJaEl2.value === 'sim' : false;
+
+  const vh = sal / TABELAS.horasMes;
+  const he50V = convH(he50Q) * vh * (1 + hePctJa / 100);
+  const he100V = convH(he100Q) * vh * 2;
+
+  const dFaltaV = Math.trunc((sal / 30) * diasFalta * 100) / 100;
+  const hFaltaV = Math.trunc((sal / TABELAS.horasMes) * convH(horasFalta) * 100) / 100;
+  const dsrV = Math.trunc((sal / 30) * dsrD * 100) / 100;
+
+  const prov = salMensal + he50V + he100V + grat + prem;
+  const bruto = prov - dFaltaV - hFaltaV - dsrV;
+
+  const bINSS = bruto - prem;
+  const inss = calcINSS_NEW(bINSS);
+
+  const vtDesc = vt ? Math.trunc(salMensal * TABELAS.valeTransportePct * 100) / 100 : 0;
+
+  const B22 = bruto - inss;
+  const legal = Math.max(0, irrfCalc_NEW(B22 - (deps * TABELAS.deducaoPorDependente)).imp);
+  const simp = Math.max(0, irrfCalc_NEW(bruto - TABELAS.deducaoSimplificada).imp);
+  const ir = Math.min(simp, legal);
+
+  const adiantV = adiant ? salMensal * TABELAS.adiantamentoPct : 0;
+  const liq = bruto - inss - ir - vtDesc - adiantV;
+
+  const fgts = Math.trunc(bINSS * TABELAS.fgts.aprendiz * 100) / 100;
+
+  const inssEmp = 0;
+  const fgtsE = Math.trunc(sal * TABELAS.fgts.aprendiz * 100) / 100;
+  const multaFgts = Math.trunc(sal * TABELAS.encargos.jaMultaFgtsPct * 100) / 100;
+  const sat = Math.trunc(sal * TABELAS.encargos.jaSatPct * 100) / 100;
+  const totalDae = inssEmp + fgtsE + multaFgts + sat;
+
+  const prov13 = Math.trunc(sal / 12 * 100) / 100;
+  const provFerias = Math.trunc(sal / 12 * 100) / 100;
+  const provTerco = Math.round(provFerias / 3 * 100) / 100;
+  const totalProv = prov13 + provFerias + provTerco;
+  const resTotal = totalDae + totalProv;
+
+  const linhasJa = [];
+  const addD = (c, d, r, v, ds) => linhasJa.push({c, d, r, v, ds});
+  if (sal > 0) addD(1, 'SALARIO', diasTrab + ' dias', salMensal, 0);
+  if (he50V > 0) addD(hePctJa === 65 ? 5002 : hePctJa === 60 ? 5003 : 5000, 'HORAS EXTRA ' + hePctJa + '%', fmtHMInput(he50Q), he50V, 0);
+  if (he100V > 0) addD(5001, 'HORAS EXTRA 100%', fmtHMInput(he100Q), he100V, 0);
+  if (grat > 0) addD(20, 'GRATIFICACOES', fmt(grat), grat, 0);
+  if (prem > 0) addD(5080, 'PREMIO', '', prem, 0);
+  if (dFaltaV > 0) addD(8792, 'DIAS FALTAS', diasFalta > 0 ? fmt(diasFalta) : '', 0, dFaltaV);
+  if (hFaltaV > 0) addD(8069, 'HORAS FALTAS', horasFalta > 0 ? fmt(horasFalta) : '', 0, hFaltaV);
+  if (dsrV > 0) addD(8794, 'DESCONTO DE DSR', dsrD > 0 ? fmt(dsrD) : '', 0, dsrV);
+  if (inss > 0) addD(998, 'I.N.S.S.', '', 0, inss);
+  if (vtDesc > 0) addD(110, 'DESC. VALE TRANSPORTE', '6%', 0, vtDesc);
+  if (ir > 0) addD(999, 'IMPOSTO DE RENDA', '', 0, ir);
+  if (adiantV > 0) addD(981, 'ADIANTAMENTO SALARIAL', '', 0, adiantV);
+
+  const {sv, sd} = somarVencDesc(linhasJa);
+  if (fgts > 0) addD(900, 'F.G.T.S', '', fgts, 0);
+  while (linhasJa.length < MIN_ROWS) linhasJa.push({c: '', d: '', r: '', v: 0, ds: 0});
+  const html = linhasJa.map(l => `<tr><td class="cod">${l.c}</td><td class="desc">${l.d}</td><td class="ref">${l.r}</td><td class="venc">${l.v > 0 ? fmt(l.v) : ''}</td><td class="dsc">${l.ds > 0 ? fmt(l.ds) : ''}</td></tr>`).join('');
+
+  renderizarHol(['_ja', '2_ja'], {sv, sd, liq, sal, bINSS, fgts, bIR: B22, faixaIR: B22 > 0 ? irrfCalc_NEW(B22).aliq * 100 : 0, html}, gd);
+
+  const ids = ['emp_nome', 'emp_cnpj', 'emp_cc', 'emp_mes_nome', 'emp_ano', 'emp_setor', 'func_cod', 'func_nome', 'func_cargo', 'func_cbo', 'func_depto', 'func_filial', 'func_admissao'];
+  ids.forEach(id => {
+    const src = gd(id + '_ja');
+    const dst = gd(id + '2_ja');
+    if (src && dst) dst.textContent = src.value;
+  });
+
+  const s2 = (id, v) => { const el = gd(id); if (el) el.textContent = fmt(v); };
+  s2('ja-inss-emp', inssEmp);
+  s2('ja-fgts', fgtsE);
+  s2('ja-multa-fgts', multaFgts);
+  s2('ja-sat', sat);
+  s2('ja-total-dae', totalDae);
+  s2('ja-prov13', prov13);
+  s2('ja-provferias', provFerias);
+  s2('ja-prov-terco', provTerco);
+  s2('ja-prov-total', totalProv);
+  s2('ja-res-encargos', totalDae);
+  s2('ja-res-prov', totalProv);
+  s2('ja-res-total', resTotal);
+}
+
+// === [REFACTOR 2] fim ===
 
 // Navegação por Enter nos campos digitáveis (pula selects e toggles)
 (function(){
